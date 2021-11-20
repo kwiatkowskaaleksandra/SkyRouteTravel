@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerMenu">
+   <children>
+      <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('56776.jpg');" />
+      <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
+      <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">
+         <font>
+            <Font name="Symbol" size="36.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Button fx:id="IdZaloguj" layoutX="1828.0" layoutY="6.0" mnemonicParsing="false" onAction="#IdZalogujOnAction" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="ZALOGUJ" textFill="#090875">
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="IdLogin" layoutX="1597.0" layoutY="6.0" prefHeight="31.0" prefWidth="116.0" promptText="Login" />
+      <TextField fx:id="IdMiejsce" layoutX="278.0" layoutY="275.0" prefHeight="31.0" prefWidth="200.0" promptText="MIEJSCE" />
+      <TextField fx:id="IdTermin" layoutX="509.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="TERMIN" />
+      <TextField fx:id="IdLiczba" layoutX="739.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="LICZBA OSOB" />
+      <TextField fx:id="IdTransport" layoutX="972.0" layoutY="274.0" prefHeight="31.0" prefWidth="200.0" promptText="TRANSPORT" />
+      <Button fx:id="IdSzukaj" layoutX="1250.0" layoutY="209.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="48.0" />
+         </font>
+      </Button>
+      <Label layoutX="282.0" layoutY="189.0" prefHeight="80.0" prefWidth="200.0" text="GDZIE CHCESZ JECHAĆ?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="509.0" layoutY="188.0" prefHeight="80.0" prefWidth="200.0" text="KIEDY CHCESZ JECHAĆ?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="739.0" layoutY="187.0" prefHeight="80.0" prefWidth="200.0" text="W ILE OSÓB?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="974.0" layoutY="189.0" prefHeight="80.0" prefWidth="200.0" text="JAKI TRANSPORT?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="IdOferta" layoutX="469.0" layoutY="2.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="IdPromocja" layoutX="698.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="PROMOCJE" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="IdLast" layoutX="900.0" layoutY="3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="LAST MINUTE" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="IdEgzotyka" layoutX="1129.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="EGZOTYKA" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <PasswordField fx:id="IdHaslo" layoutX="1720.0" layoutY="6.0" prefHeight="31.0" prefWidth="116.0" promptText="Hasło" />
+      <Label fx:id="IdLabel" layoutX="1595.0" layoutY="40.0" prefHeight="11.0" prefWidth="322.0" textFill="#f50101">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+
+</AnchorPane>
