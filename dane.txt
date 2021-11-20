@@ -1,0 +1,10 @@
+1. Temat projektu: Biuro podróży
+
+2. Techonologie:
+- baza danych MySQL
+- Java FX
+
+3. Skład zepsołu
+- Kot Jarosław (jarek003514@outlook.com): funkcje dla klienta
+- Kwiatkowska Aleksandra (kwiatkowska.aleksandra_00@wp.pl): funkcje dla pracownika
+- Zapała Michał (michas2820@onet.eu): funkcje dla administratora
