@@ -13,6 +13,7 @@
       <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
       <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">
          <font>
+
             <Font name="Symbol" size="36.0" />
          </font>
          <cursor>
