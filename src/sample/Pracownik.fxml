@@ -21,7 +21,7 @@
             <DropShadow />
          </effect>
       </Label>
-      <Button layoutX="469.0" layoutY="2.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
+      <Button fx:id="OfertyWycieczek" layoutX="469.0" layoutY="2.0" mnemonicParsing="false" onAction="#WycieczkiOnAction" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
@@ -33,7 +33,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button layoutX="698.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="FAKTURY" textFill="#160d75">
+      <Button fx:id="Faktury" layoutX="698.0" layoutY="4.0" mnemonicParsing="false" onAction="#FakturyOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="FAKTURY" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
