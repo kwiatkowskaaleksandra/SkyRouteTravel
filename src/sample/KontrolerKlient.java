@@ -12,6 +12,7 @@ import javafx.stage.StageStyle;
 public class KontrolerKlient {
     @FXML
     private Button IdWyloguj;
+    public Button WycieczkiKlient;
 
     public void IdWylogujOnAciotn(javafx.event.ActionEvent event)
     {
@@ -21,6 +22,23 @@ public class KontrolerKlient {
         try{
             Parent root;
             root = FXMLLoader.load(getClass().getResource("HOME.fxml"));
+            Stage menuStage = new Stage();
+            menuStage.initStyle(StageStyle.DECORATED);
+            menuStage.setScene(new Scene(root, 1820,980));
+            menuStage.show();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    public void WycieczkiOnAction(javafx.event.ActionEvent event){
+        Stage stage = (Stage) WycieczkiKlient.getScene().getWindow();
+        stage.close();
+
+        try{
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("WycieczkiKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
