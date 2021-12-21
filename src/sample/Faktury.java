@@ -178,13 +178,25 @@ public class Faktury implements Initializable {
             pst.setString(10,TextK9.getText());
             pst.setString(11,RodzajWycieczki.getValue());
 
-            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()){
+            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()||TextK9.getText().isEmpty()||RodzajPlatnosci.getValue().equals("Rodzaj platnosci")||RodzajWycieczki.getValue().equals("Rodzaj wycieczki")){
                 throw new Exception();
             }
             else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
                 WyswietlFaktury();
+                TextK1.clear();
+                TextK2.clear();
+                TextK3.clear();
+                TextK4.clear();
+                TextK5.clear();
+                TextK6.clear();
+                TextK7.clear();
+                TextK8.clear();
+                TextK9.clear();
+                RodzajWycieczki.setValue("Rodzaj wycieczki");
+                RodzajPlatnosci.setValue("Rodzaj platnosci");
+
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Blad dodawania! "+e);
@@ -203,6 +215,17 @@ public class Faktury implements Initializable {
             pst.execute();
             JOptionPane.showMessageDialog(null,"Usunieto pomyslnie!");
             WyswietlFaktury();
+            TextK1.clear();
+            TextK2.clear();
+            TextK3.clear();
+            TextK4.clear();
+            TextK5.clear();
+            TextK6.clear();
+            TextK7.clear();
+            TextK8.clear();
+            TextK9.clear();
+            RodzajWycieczki.setValue("Rodzaj wycieczki");
+            RodzajPlatnosci.setValue("Rodzaj platnosci");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Blad przy usuwaniu! "+e);
         }
@@ -227,12 +250,23 @@ public class Faktury implements Initializable {
 
             String danee="UPDATE faktury SET id='"+val1+"',imie='"+val2+"',nazwisko='"+val3+"',email='"+val4+"',telefon='"+val5+"',miejscowosc='"+val6+"',numer='"+val7+"',kod='"+val8+"',platnosc='"+val9+"',data='"+val10+"',rodzajWycieczki='"+val11+"' WHERE id='"+val1+"'";
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()){
+            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()||TextK9.getText().isEmpty()||RodzajPlatnosci.getValue().equals("Rodzaj platnosci")||RodzajWycieczki.getValue().equals("Rodzaj wycieczki")){
                 throw new Exception();
             }else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Edycja zakonczona pomyslnie!");
                 WyswietlFaktury();
+                TextK1.clear();
+                TextK2.clear();
+                TextK3.clear();
+                TextK4.clear();
+                TextK5.clear();
+                TextK6.clear();
+                TextK7.clear();
+                TextK8.clear();
+                TextK9.clear();
+                RodzajWycieczki.setValue("Rodzaj wycieczki");
+                RodzajPlatnosci.setValue("Rodzaj platnosci");
             }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Blad przy edycji! "+e);
@@ -264,20 +298,25 @@ public class Faktury implements Initializable {
 
     private void ChoiceBoxWycieczki(){
         listWycieczki.removeAll(listWycieczki);
-        String a="Last Minute";
-        String b="Promocja";
-        String c="Egzotyka";
-        listWycieczki.addAll(a,b,c);
+        String a="Rodzaj wycieczki";
+
+        String b="Last Minute";
+        String c="Promocja";
+        String d="Egzotyka";
+        listWycieczki.addAll(b,c,d);
         RodzajWycieczki.getItems().addAll(listWycieczki);
+        RodzajWycieczki.setValue(a);
     }
 
     private void ChoiceBoxPlatnosc(){
         listPlatnosc.removeAll(listPlatnosc);
-        String a="BLIK";
-        String b="Pay Pal";
-        String c="Przelew bankowy";
-        listPlatnosc.addAll(a,b,c);
+        String a="Rodzaj platnosci";
+        String b="BLIK";
+        String c="Pay Pal";
+        String d="Przelew bankowy";
+        listPlatnosc.addAll(b,c,d);
         RodzajPlatnosci.getItems().addAll(listPlatnosc);
+        RodzajPlatnosci.setValue(a);
     }
 
     public void getSelected(){
@@ -295,7 +334,7 @@ public class Faktury implements Initializable {
         TextK8.setText(kd.getCellData(index).toString());
         RodzajPlatnosci.setValue(pln.getCellData(index));
         TextK9.setText(dta.getCellData(index).toString());
-        RodzajWycieczki.setValue(pln.getCellData(index));
+        RodzajWycieczki.setValue(rdz.getCellData(index));
     }
 
     @Override

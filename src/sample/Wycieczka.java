@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.*;
 import java.util.Objects;
@@ -37,6 +38,8 @@ public class Wycieczka implements Initializable {
     @FXML
     private TableColumn<DaneDoWycieczek,String> zak;
     @FXML
+    private TableColumn<DaneDoWycieczek,String> wyz;
+    @FXML
     private TableColumn<DaneDoWycieczek,String> tran;
     @FXML
     private TableColumn<DaneDoWycieczek,String> atr;
@@ -46,6 +49,10 @@ public class Wycieczka implements Initializable {
     private TableColumn<DaneDoWycieczek,String> czs;
     @FXML
     private TableColumn<DaneDoWycieczek,Float> cn;
+    @FXML
+    private TableColumn<DaneDoWycieczek,Integer> ilDn;
+    @FXML
+    private TableColumn<DaneDoWycieczek,String> rodz;
     @FXML
     private Button ZamknijButton;
     @FXML
@@ -70,8 +77,19 @@ public class Wycieczka implements Initializable {
     private TextField TextK8;
     @FXML
     private TextArea TextK7;
+    @FXML
+    private CheckBox TextK9;
+    @FXML
+    private CheckBox TextK10;
+    @FXML
+    private TextField TextK11;
+    @FXML
+    private ChoiceBox<String> RodzajWycieczki;
 
     int index=-1;
+    Poloczenie connectNow = new Poloczenie();
+    Connection connectDB = connectNow.getConnection();
+    ObservableList listWycieczki= FXCollections.observableArrayList();
 
     public void WyswietlWycieczki(){
         Poloczenie connectNow = new Poloczenie();
@@ -102,9 +120,12 @@ public class Wycieczka implements Initializable {
                 String transport = rs.getString("transport");
                 String czasPodrozy =rs.getString("czas");
                 String zakwaterowanie =rs.getString("zakwaterowanie");
+                String wyzywienie=rs.getString("wyzywienie");
                 String premium =rs.getString("premium");
                 String atrakcje =rs.getString("atrakcje");
-                daneDoWycieczek = new DaneDoWycieczek(id1, miejsce,cena,transport,czasPodrozy,zakwaterowanie,premium,atrakcje);
+                String rodzaj = rs.getString("rodzaj");
+                int iloscDni = rs.getInt("iloscDni");
+                daneDoWycieczek = new DaneDoWycieczek(id1, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
 
             }
@@ -119,8 +140,11 @@ public class Wycieczka implements Initializable {
         tran.setCellValueFactory(new PropertyValueFactory<>("transport"));
         czs.setCellValueFactory(new PropertyValueFactory<>("czasPodrozy"));
         zak.setCellValueFactory(new PropertyValueFactory<>("zakwaterowanie"));
+        wyz.setCellValueFactory(new PropertyValueFactory<>("wyzywienie"));
         prem.setCellValueFactory(new PropertyValueFactory<>("premium"));
         atr.setCellValueFactory(new PropertyValueFactory<>("atrakcje"));
+        rodz.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
+        ilDn.setCellValueFactory(new PropertyValueFactory<>("iloscDni"));
 
         Tab1.setItems(WczTab);
 
@@ -131,25 +155,51 @@ public class Wycieczka implements Initializable {
         Connection connectDB = connectNow.getConnection();
 
 
-        String danee="INSERT INTO wycieczki(id,miejsce,cena,transport,zakwaterowanie,czas,premium,atrakcje)values(?,?,?,?,?,?,?,?)";
+        String danee="INSERT INTO wycieczki(id,miejsce,cena,transport,zakwaterowanie,wyzywienie,czas,premium,atrakcje,rodzaj,iloscDni)values(?,?,?,?,?,?,?,?,?,?,?)";
         try{
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
             pst.setString(1,TextK1.getText());
             pst.setString(2,TextK2.getText());
             pst.setString(3,TextK3.getText());
             pst.setString(4,TextK4.getText());
-            pst.setString(5,TextK5.getText());
-            pst.setString(6,TextK6.getText());
-            pst.setString(7,TextK7.getText());
-            pst.setString(8,TextK8.getText());
-            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()){
+            pst.setString(5,TextK6.getText());
+            if(TextK9.isSelected() && !TextK10.isSelected()){
+                TextK9.setSelected(true);
+                TextK10.setSelected(false);
+                pst.setString(6,TextK9.getText());
+
+            }
+            else if(TextK10.isSelected() && !TextK9.isSelected()){
+                TextK9.setSelected(false);
+                TextK10.setSelected(true);
+                pst.setString(6,TextK10.getText());
+            }
+            pst.setString(7,TextK5.getText());
+            pst.setString(8,TextK7.getText());
+            pst.setString(9,TextK8.getText());
+            pst.setString(10,RodzajWycieczki.getValue());
+            pst.setString(11, TextK11.getText());
+            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
                 throw new Exception();
             }
             else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
                 WyswietlWycieczki();
+                TextK1.clear();
+                TextK2.clear();
+                TextK3.clear();
+                TextK4.clear();
+                TextK5.clear();
+                TextK6.clear();
+                TextK7.clear();
+                TextK8.clear();
+                TextK9.setSelected(false);
+                TextK10.setSelected(false);
+                TextK11.clear();
+                RodzajWycieczki.setValue("Rodzaj wycieczki");
             }
+
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Blad dodawania! "+e);
         }
@@ -166,16 +216,26 @@ public class Wycieczka implements Initializable {
             pst.execute();
             JOptionPane.showMessageDialog(null,"Usunieto pomyslnie!");
             WyswietlWycieczki();
+            TextK1.clear();
+            TextK2.clear();
+            TextK3.clear();
+            TextK4.clear();
+            TextK5.clear();
+            TextK6.clear();
+            TextK7.clear();
+            TextK8.clear();
+            TextK9.setSelected(false);
+            TextK10.setSelected(false);
+            TextK11.clear();
+            RodzajWycieczki.setValue("Rodzaj wycieczki");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Blad przy usuwaniu! "+e);
         }
     }
 
     public void EdytujWycieczke(){
-
+    String danee;
         try{
-            Poloczenie connectNow = new Poloczenie();
-            Connection connectDB = connectNow.getConnection();
 
             String val1=TextK1.getText();
             String val2=TextK2.getText();
@@ -185,15 +245,43 @@ public class Wycieczka implements Initializable {
             String val6=TextK6.getText();
             String val7=TextK7.getText();
             String val8=TextK8.getText();
+            String val9=TextK9.getText();
+            String val10=TextK10.getText();
+            String val12=RodzajWycieczki.getValue();
+            String val11=TextK11.getText();
 
-            String danee="UPDATE wycieczki SET id='"+val1+"',miejsce='"+val2+"',cena='"+val3+"',transport='"+val4+"',czas='"+val5+"',zakwaterowanie='"+val6+"',premium='"+val7+"',atrakcje='"+val8+"' WHERE id='"+val1+"'";
-            pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()){
+            if(TextK9.isSelected() && !TextK10.isSelected()){
+                TextK9.setSelected(true);
+                TextK10.setSelected(false);
+                danee = "UPDATE wycieczki SET id='" + val1 + "',miejsce='" + val2 + "',cena='" + val3 + "',transport='" + val4 + "',czas='" + val5 + "',zakwaterowanie='" + val6 + "',wyzywienie='" + val9 + "',premium='" + val7 + "',atrakcje='" + val8 +"',rodzaj='"+val12+"',iloscDni='"+ val11+"'WHERE id='" + val1 + "'";
+                pst = (PreparedStatement) connectDB.prepareStatement(danee);
+
+            }
+            else if(TextK10.isSelected() && !TextK9.isSelected()){
+                TextK9.setSelected(false);
+                TextK10.setSelected(true);
+                danee = "UPDATE wycieczki SET id='" + val1 + "',miejsce='" + val2 + "',cena='" + val3 + "',transport='" + val4 + "',czas='" + val5 + "',zakwaterowanie='" + val6 + "',wyzywienie='" + val10 + "',premium='" + val7 + "',atrakcje='" + val8 + "',rodzaj='"+val12+"',iloscDni='"+ val11+"' WHERE id='" + val1 + "'";
+                pst = (PreparedStatement) connectDB.prepareStatement(danee);
+            }
+
+            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
                 throw new Exception();
             }else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Edycja zakonczona pomyslnie!");
                 WyswietlWycieczki();
+                /*TextK1.clear();
+                TextK2.clear();
+                TextK3.clear();
+                TextK4.clear();
+                TextK5.clear();
+                TextK6.clear();
+                TextK7.clear();
+                TextK8.clear();
+                TextK9.setSelected(false);
+                TextK10.setSelected(false);
+                TextK11.clear();
+                RodzajWycieczki.setValue("Rodzaj wycieczki");*/
             }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Blad przy edycji! "+e);
@@ -217,6 +305,18 @@ public class Wycieczka implements Initializable {
         }
     }
 
+    private void ChoiceBoxWycieczki(){
+        listWycieczki.removeAll(listWycieczki);
+        String a="Rodzaj wycieczki";
+
+        String b="Last Minute";
+        String c="Promocja";
+        String d="Egzotyka";
+        listWycieczki.addAll(b,c,d);
+        RodzajWycieczki.getItems().addAll(listWycieczki);
+        RodzajWycieczki.setValue(a);
+    }
+
     public void DodajButtonOnActionEvent(){ DodajWycieczke();}
 
     public void UsunButtonOnActionEvent(){ UsunWycieczke();}
@@ -234,13 +334,31 @@ public class Wycieczka implements Initializable {
         TextK4.setText(tran.getCellData(index));
         TextK5.setText(czs.getCellData(index));
         TextK6.setText(zak.getCellData(index));
+        TextK9.setText(wyz.getCellData(index));
+        TextK10.setText(wyz.getCellData(index));
+        if(TextK9.getText().equals("Tak"))
+        {
+            TextK9.setSelected(true);
+            TextK10.setText("Nie");
+            TextK10.setSelected(false);
+
+        }else
+        {
+            TextK9.setSelected(false);
+            TextK9.setText("Tak");
+            TextK10.setSelected(true);
+        }
         TextK8.setText(prem.getCellData(index));
         TextK7.setText(atr.getCellData(index));
+        TextK11.setText(ilDn.getCellData(index).toString());
+        RodzajWycieczki.setValue(rodz.getCellData(index));
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         WyswietlWycieczki();
+        ChoiceBoxWycieczki();
     }
 }
 

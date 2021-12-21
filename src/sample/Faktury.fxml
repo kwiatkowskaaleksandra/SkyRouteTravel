@@ -19,14 +19,14 @@
             <Font name="Berlin Sans FB" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="EdytujButton" layoutX="486.0" layoutY="145.0" mnemonicParsing="false" onAction="#EdytujButtonOnActionEvent" prefHeight="48.0" prefWidth="120.0" text="EDYTUJ" textFill="#160d75">
+      <Button fx:id="EdytujButton" layoutX="281.0" layoutY="145.0" mnemonicParsing="false" onAction="#EdytujButtonOnActionEvent" prefHeight="48.0" prefWidth="120.0" text="EDYTUJ" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="22.0" />
          </font>
          <effect>
             <InnerShadow />
          </effect></Button>
-      <Button fx:id="UsunButton" layoutX="283.0" layoutY="145.0" mnemonicParsing="false" onAction="#UsunButtonOnActionEvent" prefHeight="47.0" prefWidth="120.0" text="USUN" textFill="#160d75">
+      <Button fx:id="UsunButton" layoutX="471.0" layoutY="146.0" mnemonicParsing="false" onAction="#UsunButtonOnActionEvent" prefHeight="47.0" prefWidth="120.0" text="USUN" textFill="#160d75">
          <effect>
             <InnerShadow />
          </effect>
