@@ -7,19 +7,21 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 public class DaneDoWycieczek {
-    String miejsce, zakwaterowanie,transport,atrakcje,premium;
+    String miejsce, zakwaterowanie,transport,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj;
     float cena;
-    int id;
-    String czasPodrozy;
-    public DaneDoWycieczek(int id,String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String atrakcje, String premium){
+    int id, iloscDni;
+    public DaneDoWycieczek(int id,String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String atrakcje, String premium, String rodzaj, int iloscDni){
         this.id=id;
         this.miejsce=miejsce;
         this.zakwaterowanie=zakwaterowanie;
+        this.wyzywienie=wyzywienie;
         this.transport=transport;
         this.atrakcje=atrakcje;
         this.premium=premium;
         this.czasPodrozy=czasPodrozy;
         this.cena=cena;
+        this.rodzaj=rodzaj;
+        this.iloscDni=iloscDni;
     }
 
     public int getId(){
@@ -45,6 +47,10 @@ public class DaneDoWycieczek {
     public void setZakwaterowanie(String zakwaterowanie){
         this.zakwaterowanie=zakwaterowanie;
     }
+
+    public String getWyzywienie() { return wyzywienie; }
+
+    public void setWyzywienie(String wyzywienie) { this.wyzywienie = wyzywienie; }
 
     public String getTransport() {
         return transport;
@@ -85,4 +91,12 @@ public class DaneDoWycieczek {
     public void setCena(float cena){
         this.cena=cena;
     }
+
+    public int getIloscDni() { return iloscDni; }
+
+    public void setIloscDni(int iloscDni) { this.iloscDni = iloscDni; }
+
+    public String getRodzaj() { return rodzaj; }
+
+    public void setRodzaj(String rodzaj) { this.rodzaj = rodzaj; }
 }
