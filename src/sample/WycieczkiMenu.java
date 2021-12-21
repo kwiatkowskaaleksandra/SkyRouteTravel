@@ -9,17 +9,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import static java.lang.StrictMath.round;
-import javax.swing.*;
+
 import java.net.URL;
 import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class WycieczkiKlient implements Initializable {
+import static java.lang.StrictMath.round;
+
+public class WycieczkiMenu implements Initializable {
     PreparedStatement pst = null;
 
     @FXML
@@ -42,6 +42,8 @@ public class WycieczkiKlient implements Initializable {
     private TableColumn<DaneDoWycieczek,Float> cn;
     @FXML
     private Button ZamknijButton;
+    @FXML
+    private Button zalogujButton;
 
     @FXML
     private TextField TextK1;
@@ -57,6 +59,18 @@ public class WycieczkiKlient implements Initializable {
     private TextField TextK6;
     @FXML
     private TextArea TextK7;
+
+
+
+
+
+    @FXML
+    private Label label;
+    @FXML
+    private TextField login;
+
+    @FXML
+    private PasswordField haslo;
     @FXML
     private TextField TextK9;
     @FXML
@@ -73,6 +87,69 @@ public class WycieczkiKlient implements Initializable {
     Poloczenie connectNow = new Poloczenie();
     Connection connectDB = connectNow.getConnection();
 
+    public void zalogujButtonOnAction(javafx.event.ActionEvent event)
+    {
+
+        if(!login.getText().isBlank() && !haslo.getText().isBlank())
+        {
+            validateLogin();
+        }
+        else
+        {
+            label.setText("Wpisz login i haslo");
+        }
+    }
+
+
+    public void validateLogin()
+    {
+        Poloczenie connectNow = new Poloczenie();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyLogin = "SELECT * FROM uzytkownicy WHERE Login = '" +login.getText() +"'AND Haslo = '" + haslo.getText() + "'" ;
+
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+
+
+            while(queryResult.next())
+            {
+
+                System.out.println(queryResult);
+                if(queryResult.getString("Login").equals("Klient"))
+                {
+
+                    label.setText("Udalo sie zalogowac!");
+                     WycieczkiKlient();
+                }
+                if(queryResult.getString("Login").equals("Pracownik"))
+                {
+                    label.setText("Udalo sie zalogowac!");
+                    Wycieczka();
+                }
+                if(queryResult.getString("Login").equals("Admin"))
+                {
+                    label.setText("Udalo sie zalogowac!");
+                    WycieczkiKlient();
+                }
+
+                else
+                {
+                    label.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
+                }
+            }
+            Stage stage = (Stage) login.getScene().getWindow();
+            stage.close();
+
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 
 
     public void WyswietlWycieczki(){
@@ -136,12 +213,41 @@ public class WycieczkiKlient implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Klient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1720.0D, 880.0D));
             menuStage.show();
         } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void WycieczkiKlient(){
+        try{
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("WycieczkiKlient.fxml"));
+            Stage menuStage = new Stage();
+            menuStage.initStyle(StageStyle.DECORATED);
+            menuStage.setScene(new Scene(root, 1920,1080));
+            menuStage.show();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    public void Wycieczka(){
+        try{
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("OfertyWycieczek.fxml"));
+            Stage menuStage = new Stage();
+            menuStage.initStyle(StageStyle.DECORATED);
+            menuStage.setScene(new Scene(root, 1920,1080));
+            menuStage.show();
+        }catch(Exception e)
+        {
             e.printStackTrace();
             e.getCause();
         }
@@ -187,7 +293,7 @@ public class WycieczkiKlient implements Initializable {
                 nowaCena *= 100;
                 nowaCena = round(nowaCena);
                 nowaCena /= 100;
-                this.TextK9.setText(String.valueOf(nowaCena));
+
                 if(RodzajUbezpieczenia.getValue().equals("Standardowe")){
                     int iloscDni=wynik.getInt("iloscDni");
                     double cenaUbezpieczenia=iloscDni*20.64;
@@ -211,7 +317,7 @@ public class WycieczkiKlient implements Initializable {
                 nowaCena *= 100;
                 nowaCena = round(nowaCena);
                 nowaCena /= 100;
-                this.TextK9.setText(String.valueOf(nowaCena));
+
                 if(RodzajUbezpieczenia.getValue().equals("Standardowe")){
                     int iloscDni=wynik.getInt("iloscDni");
                     double cenaUbezpieczenia=iloscDni*20.64;
@@ -235,7 +341,7 @@ public class WycieczkiKlient implements Initializable {
                 nowaCena *= 100;
                 nowaCena = round(nowaCena);
                 nowaCena /= 100;
-                this.TextK9.setText(String.valueOf(nowaCena));
+
                 if(RodzajUbezpieczenia.getValue().equals("Standardowe")){
                     int iloscDni=wynik.getInt("iloscDni");
                     double cenaUbezpieczenia=iloscDni*20.64;
@@ -259,7 +365,7 @@ public class WycieczkiKlient implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ChoiceBoxWycieczki();
+
         WyswietlWycieczki();
     }
     }

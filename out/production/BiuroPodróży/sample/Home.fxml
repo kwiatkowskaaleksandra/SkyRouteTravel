@@ -39,7 +39,7 @@
       <TextField fx:id="IdTermin" layoutX="509.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="TERMIN" />
       <TextField fx:id="IdLiczba" layoutX="739.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="LICZBA OSOB" />
       <TextField fx:id="IdTransport" layoutX="972.0" layoutY="274.0" prefHeight="31.0" prefWidth="200.0" promptText="TRANSPORT" />
-      <Button fx:id="IdSzukaj" layoutX="1250.0" layoutY="209.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
+      <Button fx:id="IdSzukaj"  layoutX="1250.0" layoutY="209.0" mnemonicParsing="false"  prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="48.0" />
          </font>
@@ -64,7 +64,7 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="IdOferta" layoutX="469.0" layoutY="2.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
+      <Button fx:id="WycieczkiKlient" onAction="#WycieczkiMenuOnAction" layoutX="469.0" layoutY="2.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
@@ -76,7 +76,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button fx:id="IdPromocja" layoutX="698.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="PROMOCJE" textFill="#160d75">
+      <Button fx:id="Promocja" onAction="#WycieczkiMenuOnAction" layoutX="698.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="PROMOCJE" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
@@ -88,7 +88,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button fx:id="IdLast" layoutX="900.0" layoutY="3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="LAST MINUTE" textFill="#160d75">
+      <Button fx:id="LastMinute" onAction="#WycieczkiMenuOnAction" layoutX="900.0" layoutY="3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="LAST MINUTE" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
@@ -100,7 +100,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button fx:id="IdEgzotyka" layoutX="1129.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="EGZOTYKA" textFill="#160d75">
+      <Button fx:id="Egzotyka" onAction="#WycieczkiMenuOnAction" layoutX="1129.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="EGZOTYKA" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>

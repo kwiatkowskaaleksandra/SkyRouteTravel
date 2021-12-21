@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="980.0" prefWidth="1820.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@klient.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WycieczkiKlient">
+<AnchorPane prefHeight="980.0" prefWidth="1820.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@klient.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WycieczkiMenu">
     <children>
         <Pane layoutX="-8.0" prefHeight="980.0" prefWidth="1820.0" style="-fx-background-image: url('klient1.jpg');" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -47,14 +47,18 @@
                         <Font name="Berlin Sans FB" size="17.0" />
                     </font></Button>
             <TextField fx:id="TextK2" layoutX="1526.0" layoutY="241.0" prefHeight="47.0" prefWidth="267.0" promptText="Cena" />
-            <TextField fx:id="TextK9" layoutX="1526.0" layoutY="311.0" prefHeight="47.0" prefWidth="267.0" promptText="Twoja cena" />
-            <TextField fx:id="TextK3" layoutX="1526.0" layoutY="381.0" prefHeight="47.0" prefWidth="267.0" promptText="Transport" />
-            <TextField fx:id="TextK4" layoutX="1526.0" layoutY="451.0" prefHeight="47.0" prefWidth="267.0" promptText="Czas podróży" />
-            <TextField fx:id="TextK5" layoutX="1526.0" layoutY="521.0" prefHeight="47.0" prefWidth="267.0" promptText="Zakwaterowanie" />
-            <TextField fx:id="TextK6" layoutX="1526.0" layoutY="591.0" prefHeight="47.0" prefWidth="267.0" promptText="Oferta premium" />
-            <TextArea fx:id="TextK7" layoutX="1526.0" layoutY="665.0" prefHeight="105.0" prefWidth="267.0" promptText="Atrakcje" />
-                <ChoiceBox fx:id="RodzajUbezpieczenia" layoutX="1501.0" layoutY="719.0" prefHeight="39.0" prefWidth="172.0" />
-                <TextField fx:id="TextK10" layoutX="1689.0" layoutY="719.0" prefHeight="39.0" prefWidth="121.0" promptText="Cena ubezpieczenia" />
+            <TextField fx:id="TextK3" layoutX="1526.0" layoutY="311.0" prefHeight="47.0" prefWidth="267.0" promptText="Transport" />
+            <TextField fx:id="TextK4" layoutX="1526.0" layoutY="381.0" prefHeight="47.0" prefWidth="267.0" promptText="Czas podróży" />
+            <TextField fx:id="TextK5" layoutX="1526.0" layoutY="451.0" prefHeight="47.0" prefWidth="267.0" promptText="Zakwaterowanie" />
+            <TextField fx:id="TextK6" layoutX="1526.0" layoutY="521.0" prefHeight="47.0" prefWidth="267.0" promptText="Oferta premium" />
+            <TextArea fx:id="TextK7" layoutX="1526.0" layoutY="591.0" prefHeight="105.0" prefWidth="267.0" promptText="Atrakcje" />
+            <Button fx:id="zalogujButton" layoutX="1621.0" layoutY="33.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" onAction="#zalogujButtonOnAction" prefHeight="47.0" prefWidth="172.0" text="Zaloguj sie" textFill="#160d75">
+               <font>
+                  <Font name="Berlin Sans FB" size="17.0" />
+               </font></Button>
+            <PasswordField fx:id="haslo" layoutX="1452.0" layoutY="44.0" promptText="Haslo" />
+            <TextField fx:id="login" layoutX="1289.0" layoutY="44.0" promptText="Login" />
+            <Label fx:id="label" layoutX="1512.0" layoutY="90.0" prefHeight="17.0" prefWidth="283.0" textFill="#f51919" />
             </children></Pane>
     </children>
 </AnchorPane>
