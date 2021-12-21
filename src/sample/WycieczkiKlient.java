@@ -104,9 +104,12 @@ public class WycieczkiKlient implements Initializable {
                 String transport = rs.getString("transport");
                 String czasPodrozy =rs.getString("czas");
                 String zakwaterowanie =rs.getString("zakwaterowanie");
+                String wyzywienie =rs.getString("wyzywienie");
                 String premium =rs.getString("premium");
                 String atrakcje =rs.getString("atrakcje");
-                daneDoWycieczek = new DaneDoWycieczek(id1, miejsce,cena,transport,czasPodrozy,zakwaterowanie,premium,atrakcje);
+                String rodzaj = rs.getString("rodzaj");
+                int iloscDni = rs.getInt("iloscDni");
+                daneDoWycieczek = new DaneDoWycieczek(id1, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
 
             }

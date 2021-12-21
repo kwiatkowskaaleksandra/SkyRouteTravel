@@ -21,7 +21,7 @@
             <DropShadow />
          </effect>
       </Label>
-      <Button fx:id="OfertyWycieczek" layoutX="469.0" layoutY="2.0" mnemonicParsing="false" onAction="#WycieczkiOnAction" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
+      <Button fx:id="OfertyWycieczek" layoutX="469.0" layoutY="4.0" mnemonicParsing="false" onAction="#WycieczkiOnAction" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
@@ -45,7 +45,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button layoutX="900.0" layoutY="3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="177.0" style="-fx-background-color: #ffffff;" text="PRZYPISYWANIE" textFill="#160d75">
+      <Button layoutX="886.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="177.0" style="-fx-background-color: #ffffff;" text="PRZYPISYWANIE" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
@@ -57,7 +57,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button layoutX="1129.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="WIADOMOSCI" textFill="#160d75">
+      <Button layoutX="1084.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="WIADOMOSCI" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
