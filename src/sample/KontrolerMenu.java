@@ -90,7 +90,7 @@ public class KontrolerMenu implements Initializable {
 
         if(!IdLogin.getText().isBlank() && !IdHaslo.getText().isBlank())
         {
-            validateLogin();
+            ValidateLogin();
         }
         else
         {
@@ -98,12 +98,12 @@ public class KontrolerMenu implements Initializable {
         }
     }
 
-    public void validateLogin()
+   /* public void validateLogin()
     {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT * FROM uzytkownicy WHERE Login = '" +IdLogin.getText() +"'AND Haslo = '" + IdHaslo.getText() + "'" ;
+        String verifyLogin = "SELECT * FROM pracownik WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
 
         try{
             Statement statement = connectDB.createStatement();
@@ -121,7 +121,7 @@ public class KontrolerMenu implements Initializable {
                         IdLabel.setText("Udalo sie zalogowac!");
                         KontrolerKlient();
                     }
-                    if(queryResult.getString("Login").equals("Pracownik"))
+                    if(queryResult.getString("rola").equals("PracownikInternetowy"))
                     {
                         IdLabel.setText("Udalo sie zalogowac!");
                         KontrolerPracownik();
@@ -146,7 +146,48 @@ public class KontrolerMenu implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    } */
+public void ValidateLogin(){
+    Poloczenie connectNow = new Poloczenie();
+    Connection connectDB = connectNow.getConnection();
+    String verifyLoginKl = "SELECT count(1) FROM klient WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
+    String verifyLoginPr = "SELECT count(1) FROM pracownik WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
+
+        try {
+            Statement statement = connectDB.createStatement();
+            Statement statement2 = connectDB.createStatement();
+            ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
+            ResultSet queryResultPr = statement2.executeQuery(verifyLoginPr);
+
+            while (queryResultKl.next()||queryResultPr.next()) {
+
+                if (queryResultKl.getInt(1) == 1) {
+                    IdLabel.setText("Udalo sie zalogowac!");
+                    KontrolerKlient();
+
+
+                } else if (queryResultPr.next()&&queryResultPr.getInt(1) == 1) {
+                    IdLabel.setText("Udalo sie zalogowac!");
+                    KontrolerPracownik();
+
+                } else {
+                    IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
+                }
+                queryResultKl.close();
+                queryResultPr.close();
+            }
+            Stage stage = (Stage) IdZaloguj.getScene().getWindow();
+            stage.close();
+
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+
     }
+
 
     public void wyszukaj() {
         Poloczenie connectNow = new Poloczenie();
