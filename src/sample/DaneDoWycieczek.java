@@ -7,11 +7,12 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 public class DaneDoWycieczek {
-    String miejsce, zakwaterowanie,transport,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj;
+    String nazwa,miejsce, zakwaterowanie,transport,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj;
     float cena;
     int id, iloscDni;
-    public DaneDoWycieczek(int id,String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String atrakcje, String premium, String rodzaj, int iloscDni){
+    public DaneDoWycieczek(int id,String nazwa, String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String atrakcje, String premium, String rodzaj, int iloscDni){
         this.id=id;
+        this.nazwa=nazwa;
         this.miejsce=miejsce;
         this.zakwaterowanie=zakwaterowanie;
         this.wyzywienie=wyzywienie;
@@ -30,6 +31,13 @@ public class DaneDoWycieczek {
 
     public void setId(int id){
         this.id=id;
+    }
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(String nazwa){
+        this.nazwa=nazwa;
     }
 
     public String getMiejsce() {

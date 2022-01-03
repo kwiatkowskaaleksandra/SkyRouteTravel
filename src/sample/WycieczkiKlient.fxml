@@ -27,13 +27,15 @@
                 <TableView fx:id="Tab1" layoutX="186.0" layoutY="171.0" onMouseClicked="#getSelected" prefHeight="611.0" prefWidth="1280.0">
                     <columns>
                         <TableColumn fx:id="idp" prefWidth="33.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ID" />
+                  <TableColumn fx:id="nzw" minWidth="0.0" prefWidth="139.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="NAZWA" />
                         <TableColumn fx:id="ms" prefWidth="206.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="MIEJSCE" />
                         <TableColumn fx:id="cn" prefWidth="138.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CENA" />
-                        <TableColumn fx:id="tran" minWidth="0.0" prefWidth="202.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="TRANSPORT" />
-                        <TableColumn fx:id="czs" minWidth="0.0" prefWidth="132.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CZAS PODROZY" />
-                        <TableColumn fx:id="zak" minWidth="7.0" prefWidth="205.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ZAKWATEROWANIE" />
-                        <TableColumn fx:id="prem" prefWidth="148.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="OFERTA PREMIUM" />
-                        <TableColumn fx:id="atr" prefWidth="213.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ATRAKCJE" />
+                        <TableColumn fx:id="tran" minWidth="0.0" prefWidth="92.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="TRANSPORT" />
+                        <TableColumn fx:id="czs" minWidth="0.0" prefWidth="105.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CZAS PODROZY" />
+                        <TableColumn fx:id="zak" minWidth="7.0" prefWidth="143.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ZAKWATEROWANIE" />
+                        <TableColumn fx:id="prem" prefWidth="141.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="OFERTA PREMIUM" />
+                        <TableColumn fx:id="atr" prefWidth="111.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ATRAKCJE" />
+                  <TableColumn fx:id="rdw" prefWidth="171.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="RODZAJ WYCIECZKI" />
                     </columns>
                 </TableView>
                 <TextField fx:id="TextK1" layoutX="1526.0" layoutY="171.0" prefHeight="47.0" prefWidth="267.0" promptText="Miejsce" />
@@ -55,6 +57,7 @@
             <TextArea fx:id="TextK7" layoutX="1526.0" layoutY="665.0" prefHeight="105.0" prefWidth="267.0" promptText="Atrakcje" />
                 <ChoiceBox fx:id="RodzajUbezpieczenia" layoutX="1526.0" layoutY="808.0" prefHeight="39.0" prefWidth="154.0" />
                 <TextField fx:id="TextK10" layoutX="1692.0" layoutY="808.0" prefHeight="39.0" prefWidth="121.0" promptText="Cena ubezpieczenia" />
+            <TextField fx:id="TextK11" layoutX="1526.0" layoutY="116.0" promptText="Nazwa" />
             </children></Pane>
     </children>
 </AnchorPane>

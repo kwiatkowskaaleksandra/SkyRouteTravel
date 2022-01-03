@@ -63,11 +63,11 @@ public class Faktury implements Initializable {
     @FXML
     private TableColumn<DaneDoFaktur,Integer> kd;
     @FXML
-    private TableColumn<DaneDoFaktur,String> pln;
+    private TableColumn<DaneDoFaktur,Integer> pln;
     @FXML
     private TableColumn<DaneDoFaktur,Date> dta;
     @FXML
-    private TableColumn<DaneDoFaktur,String> rdz;
+    private TableColumn<DaneDoFaktur,Integer> idw;
     @FXML
     private Button DodajButton;
     @FXML
@@ -92,6 +92,8 @@ public class Faktury implements Initializable {
     private TextField TextK8;
     @FXML
     private TextField TextK9;
+    @FXML
+    private TextField TextK10;
     @FXML
     private ChoiceBox<String> RodzajWycieczki;
     @FXML
@@ -122,7 +124,7 @@ public class Faktury implements Initializable {
         }
         try {
             while (Objects.requireNonNull(rs).next()) {
-                int id1 = rs.getInt("id");
+                int id1 = rs.getInt("id_faktury");
                 String imie = rs.getString("imie");
                 String nazwisko = rs.getString("nazwisko");
                 String email = rs.getString("email");
@@ -130,9 +132,9 @@ public class Faktury implements Initializable {
                 String miejscowosc = rs.getString("miejscowosc");
                 int numer = rs.getInt("numer");
                 int kod = rs.getInt("kod");
-                String platnosc =rs.getString("platnosc");
+                int platnosc =rs.getInt("id_platnosc");
                 Date data=rs.getDate("data");
-                String rodzaj =rs.getString("rodzajWycieczki");
+                int rodzaj =rs.getInt("id_wycieczki");
 
                 daneDoFaktur = new DaneDoFaktur(id1, imie,nazwisko,email,telefon,miejscowosc,numer,kod,platnosc,data,rodzaj);
                 WczTab.add(daneDoFaktur);
@@ -153,7 +155,7 @@ public class Faktury implements Initializable {
         kd.setCellValueFactory(new PropertyValueFactory<>("kod"));
         pln.setCellValueFactory(new PropertyValueFactory<>("platnosc"));
         dta.setCellValueFactory(new PropertyValueFactory<>("data"));
-        rdz.setCellValueFactory(new PropertyValueFactory<>("rodzajWycieczki"));
+        idw.setCellValueFactory(new PropertyValueFactory<>("rodzajWycieczki"));
 
         Tab1.setItems(WczTab);
 
@@ -296,7 +298,7 @@ public class Faktury implements Initializable {
 
     public void EdytujButtonOnActionEvent(){ EdytujFakture();}
 
-    private void ChoiceBoxWycieczki(){
+    /*private void ChoiceBoxWycieczki(){
         listWycieczki.removeAll(listWycieczki);
         String a="Rodzaj wycieczki";
 
@@ -306,7 +308,7 @@ public class Faktury implements Initializable {
         listWycieczki.addAll(b,c,d);
         RodzajWycieczki.getItems().addAll(listWycieczki);
         RodzajWycieczki.setValue(a);
-    }
+    }*/
 
     private void ChoiceBoxPlatnosc(){
         listPlatnosc.removeAll(listPlatnosc);
@@ -332,14 +334,15 @@ public class Faktury implements Initializable {
         TextK6.setText(msc.getCellData(index));
         TextK7.setText(nr.getCellData(index).toString());
         TextK8.setText(kd.getCellData(index).toString());
-        RodzajPlatnosci.setValue(pln.getCellData(index));
+        //RodzajPlatnosci.setValue(pln.getCellData(index));
         TextK9.setText(dta.getCellData(index).toString());
-        RodzajWycieczki.setValue(rdz.getCellData(index));
+        TextK10.setText(idw.getCellData(index).toString());
+        //RodzajWycieczki.setValue(idw.getCellData(index).toString());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ChoiceBoxWycieczki();
+
         ChoiceBoxPlatnosc();
         WyswietlFaktury();
     }

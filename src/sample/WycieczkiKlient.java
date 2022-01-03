@@ -27,7 +27,11 @@ public class WycieczkiKlient implements Initializable {
     @FXML
     private TableColumn<DaneDoWycieczek,Integer> idp;
     @FXML
+    private TableColumn<DaneDoWycieczek,String> nzw;
+    @FXML
     private TableColumn<DaneDoWycieczek,String> ms;
+    @FXML
+    private TableColumn<DaneDoWycieczek,String> rdw;
     @FXML
     private TableColumn<DaneDoWycieczek,String> zak;
     @FXML
@@ -62,6 +66,8 @@ public class WycieczkiKlient implements Initializable {
     @FXML
     private TextField TextK10;
     @FXML
+    private TextField TextK11;
+    @FXML
     private ChoiceBox<String> RodzajUbezpieczenia;
 
     ObservableList rodzajUbezpieczenia= FXCollections.observableArrayList();
@@ -80,7 +86,7 @@ public class WycieczkiKlient implements Initializable {
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT * FROM wycieczki";
+        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_wycieczki=z.id_zakwaterowanie join transport t on w.id_wycieczki=t.id_transport";
 
         Statement st = null;
         try{
@@ -98,7 +104,8 @@ public class WycieczkiKlient implements Initializable {
         }
         try {
             while (Objects.requireNonNull(rs).next()) {
-                int id1 = rs.getInt("id");
+                int id1 = rs.getInt("id_wycieczki");
+                String nazwa = rs.getString("nazwa");
                 String miejsce = rs.getString("miejsce");
                 float cena = rs.getFloat("cena");
                 String transport = rs.getString("transport");
@@ -107,9 +114,9 @@ public class WycieczkiKlient implements Initializable {
                 String wyzywienie =rs.getString("wyzywienie");
                 String premium =rs.getString("premium");
                 String atrakcje =rs.getString("atrakcje");
-                String rodzaj = rs.getString("rodzaj");
+                String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
-                daneDoWycieczek = new DaneDoWycieczek(id1, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
+                daneDoWycieczek = new DaneDoWycieczek(id1, nazwa,miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
 
             }
@@ -119,6 +126,7 @@ public class WycieczkiKlient implements Initializable {
             System.out.println(e.getMessage());
         }
         idp.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nzw.setCellValueFactory(new PropertyValueFactory<>("nazwa"));
         ms.setCellValueFactory(new PropertyValueFactory<>("miejsce"));
         cn.setCellValueFactory(new PropertyValueFactory<>("cena"));
         tran.setCellValueFactory(new PropertyValueFactory<>("transport"));
@@ -126,6 +134,7 @@ public class WycieczkiKlient implements Initializable {
         zak.setCellValueFactory(new PropertyValueFactory<>("zakwaterowanie"));
         prem.setCellValueFactory(new PropertyValueFactory<>("premium"));
         atr.setCellValueFactory(new PropertyValueFactory<>("atrakcje"));
+        rdw.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
 
         Tab1.setItems(WczTab);
 
@@ -168,6 +177,7 @@ public class WycieczkiKlient implements Initializable {
         if (this.index <= -1) {
             return;
         }
+        this.TextK11.setText(this.nzw.getCellData(this.index));
         this.TextK1.setText(this.ms.getCellData(this.index));
         this.TextK2.setText(this.cn.getCellData(this.index).toString());
         this.TextK3.setText(this.tran.getCellData(this.index));
@@ -179,12 +189,12 @@ public class WycieczkiKlient implements Initializable {
 
         Statement stat=null;
         stat=connectDB.createStatement();
-        String dane = "SELECT rodzaj, iloscDni FROM wycieczki WHERE id='" + id + "'";
+        String dane = "SELECT rodzajWycieczki, iloscDni FROM wycieczki WHERE id_wycieczki='" + id + "'";
 
         ResultSet wynik=stat.executeQuery(dane);
         while (wynik.next()){
 
-            if (wynik.getString("rodzaj").equals("Last Minute")) {
+            if (wynik.getString("rodzajWycieczki").equals("Last Minute")) {
                 float cena2 = this.cn.getCellData(this.index);
                 double nowaCena = cena2 - (cena2 * 0.05);
                 nowaCena *= 100;
@@ -208,7 +218,7 @@ public class WycieczkiKlient implements Initializable {
                     this.TextK10.setText(String.valueOf(cenaUbezpieczenia));
                 }
             }
-            else  if (wynik.getString("rodzaj").equals("Egzotyka")) {
+            else  if (wynik.getString("rodzajWycieczki").equals("Egzotyka")) {
                 float cena2 = this.cn.getCellData(this.index);
                 double nowaCena = cena2 - (cena2 * 0.02);
                 nowaCena *= 100;
@@ -232,7 +242,7 @@ public class WycieczkiKlient implements Initializable {
                     this.TextK10.setText(String.valueOf(cenaUbezpieczenia));
                 }
             }
-            else  if (wynik.getString("rodzaj").equals("Promocja")) {
+            else  if (wynik.getString("rodzajWycieczki").equals("Promocja")) {
                 float cena2 = this.cn.getCellData(this.index);
                 double nowaCena = cena2 - (cena2 * 0.30);
                 nowaCena *= 100;

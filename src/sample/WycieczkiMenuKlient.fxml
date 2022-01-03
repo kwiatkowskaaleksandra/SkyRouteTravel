@@ -27,16 +27,18 @@
                 <TableView fx:id="Tab1" layoutX="186.0" layoutY="171.0" onMouseClicked="#getSelected" prefHeight="611.0" prefWidth="1280.0">
                     <columns>
                         <TableColumn fx:id="idp" prefWidth="33.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ID" />
-                        <TableColumn fx:id="ms" prefWidth="206.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="MIEJSCE" />
-                        <TableColumn fx:id="cn" prefWidth="138.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CENA" />
-                        <TableColumn fx:id="tran" minWidth="0.0" prefWidth="202.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="TRANSPORT" />
-                        <TableColumn fx:id="czs" minWidth="0.0" prefWidth="132.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CZAS PODROZY" />
-                        <TableColumn fx:id="zak" minWidth="7.0" prefWidth="205.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ZAKWATEROWANIE" />
-                        <TableColumn fx:id="prem" prefWidth="148.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="OFERTA PREMIUM" />
-                        <TableColumn fx:id="atr" prefWidth="213.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ATRAKCJE" />
+                  <TableColumn fx:id="nzw" prefWidth="164.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="NAZWA" />
+                        <TableColumn fx:id="ms" prefWidth="172.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="MIEJSCE" />
+                        <TableColumn fx:id="cn" prefWidth="83.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CENA" />
+                        <TableColumn fx:id="tran" minWidth="0.0" prefWidth="151.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="TRANSPORT" />
+                        <TableColumn fx:id="czs" minWidth="0.0" prefWidth="111.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CZAS PODROZY" />
+                        <TableColumn fx:id="zak" minWidth="7.0" prefWidth="160.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ZAKWATEROWANIE" />
+                        <TableColumn fx:id="prem" prefWidth="137.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="OFERTA PREMIUM" />
+                        <TableColumn fx:id="atr" prefWidth="137.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ATRAKCJE" />
+                  <TableColumn fx:id="rdw" prefWidth="137.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="RODZAJ WYCIECZKI" />
                     </columns>
                 </TableView>
-                <TextField fx:id="TextK1" layoutX="1526.0" layoutY="171.0" prefHeight="47.0" prefWidth="267.0" promptText="Miejsce" />
+                <TextField fx:id="TextK1" layoutX="1526.0" layoutY="221.0" prefHeight="47.0" prefWidth="267.0" promptText="Miejsce" />
                 <Label alignment="CENTER" layoutY="69.0" prefHeight="59.0" prefWidth="1820.0" text="OFERTY WYCIECZEK" textFill="#2c108a">
                     <font>
                         <Font name="Berlin Sans FB" size="20.0" />
@@ -46,19 +48,21 @@
                     <font>
                         <Font name="Berlin Sans FB" size="17.0" />
                     </font></Button>
-            <TextField fx:id="TextK2" layoutX="1526.0" layoutY="241.0" prefHeight="47.0" prefWidth="267.0" promptText="Cena" />
-            <TextField fx:id="TextK3" layoutX="1526.0" layoutY="311.0" prefHeight="47.0" prefWidth="267.0" promptText="Transport" />
-            <TextField fx:id="TextK4" layoutX="1526.0" layoutY="381.0" prefHeight="47.0" prefWidth="267.0" promptText="Czas podróży" />
-            <TextField fx:id="TextK5" layoutX="1526.0" layoutY="451.0" prefHeight="47.0" prefWidth="267.0" promptText="Zakwaterowanie" />
-            <TextField fx:id="TextK6" layoutX="1526.0" layoutY="521.0" prefHeight="47.0" prefWidth="267.0" promptText="Oferta premium" />
-            <TextArea fx:id="TextK7" layoutX="1526.0" layoutY="591.0" prefHeight="105.0" prefWidth="267.0" promptText="Atrakcje" />
-            <Button fx:id="zalogujButton" layoutX="1621.0" layoutY="33.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" onAction="#zalogujButtonOnAction" prefHeight="47.0" prefWidth="172.0" text="Zaloguj sie" textFill="#160d75">
+            <TextField fx:id="TextK2" layoutX="1526.0" layoutY="271.0" prefHeight="47.0" prefWidth="267.0" promptText="Cena" />
+            <TextField fx:id="TextK3" layoutX="1526.0" layoutY="321.0" prefHeight="47.0" prefWidth="267.0" promptText="Transport" />
+            <TextField fx:id="TextK4" layoutX="1526.0" layoutY="371.0" prefHeight="47.0" prefWidth="267.0" promptText="Czas podróży" />
+            <TextField fx:id="TextK5" layoutX="1526.0" layoutY="421.0" prefHeight="47.0" prefWidth="267.0" promptText="Zakwaterowanie" />
+            <TextField fx:id="TextK6" layoutX="1526.0" layoutY="471.0" prefHeight="47.0" prefWidth="267.0" promptText="Oferta premium" />
+            <TextArea fx:id="TextK7" layoutX="1526.0" layoutY="521.0" prefHeight="92.0" prefWidth="267.0" promptText="Atrakcje" />
+            <Button fx:id="zalogujButton" layoutX="1621.0" layoutY="33.0" mnemonicParsing="false" onAction="#zalogujButtonOnAction" prefHeight="47.0" prefWidth="172.0" style="-fx-background-color: #ffffff;" text="Zaloguj sie" textFill="#160d75">
                <font>
                   <Font name="Berlin Sans FB" size="17.0" />
                </font></Button>
             <PasswordField fx:id="haslo" layoutX="1452.0" layoutY="44.0" promptText="Haslo" />
             <TextField fx:id="login" layoutX="1289.0" layoutY="44.0" promptText="Login" />
             <Label fx:id="label" layoutX="1512.0" layoutY="90.0" prefHeight="17.0" prefWidth="283.0" textFill="#f51919" />
+            <TextField fx:id="TextK11" layoutX="1526.0" layoutY="171.0" prefHeight="47.0" prefWidth="267.0" promptText="Nazwa" />
+            <TextField fx:id="TextK12" layoutX="1526.0" layoutY="617.0" prefHeight="47.0" prefWidth="267.0" promptText="Roddzaj wycieczki" />
             </children></Pane>
     </children>
 </AnchorPane>

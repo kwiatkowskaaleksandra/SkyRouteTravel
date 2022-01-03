@@ -50,9 +50,9 @@
             <TableColumn fx:id="msc" prefWidth="112.0" text="MIEJSCOWOSC" />
             <TableColumn fx:id="nr" prefWidth="106.0" text="NR.DOMU" />
             <TableColumn fx:id="kd" prefWidth="110.0" text="KOD POCZTOWY" />
-            <TableColumn fx:id="pln" prefWidth="146.0" text="RODZAJ PLATNOSCI" />
+            <TableColumn fx:id="pln" prefWidth="146.0" text="ID_PLATNOSCI" />
             <TableColumn fx:id="dta" prefWidth="86.0" text="DATA" />
-            <TableColumn fx:id="rdz" prefWidth="148.0" text="RODZAJ WYCIECZKI" />
+            <TableColumn fx:id="idw" prefWidth="148.0" text="ID_WYCIECZKI" />
         </columns>
       </TableView>
       <Button fx:id="ZamknijButton" layoutX="1443.0" layoutY="883.0" mnemonicParsing="false" onAction="#zamknijButtonOnAction" prefHeight="43.0" prefWidth="173.0" text="ZAMKNIJ" textFill="#2c108a">
@@ -68,7 +68,7 @@
       <TextField fx:id="TextK7" layoutX="1305.0" layoutY="556.0" prefHeight="47.0" prefWidth="267.0" promptText="NUMER DOMU/MIESZKANIA" />
       <TextField fx:id="TextK8" layoutX="1305.0" layoutY="613.0" prefHeight="47.0" prefWidth="267.0" promptText="KOD POCZTOWY" />
       <TextField fx:id="TextK9" layoutX="1305.0" layoutY="722.0" prefHeight="47.0" prefWidth="267.0" promptText="DATA (RRRR-MM-DD) " />
-      <ChoiceBox fx:id="RodzajWycieczki" layoutX="1305.0" layoutY="783.0" prefHeight="43.0" prefWidth="267.0" />
       <ChoiceBox fx:id="RodzajPlatnosci" layoutX="1305.0" layoutY="667.0" prefHeight="39.0" prefWidth="267.0" />
+      <TextField fx:id="TextK10" layoutX="1305.0" layoutY="782.0" prefHeight="43.0" prefWidth="267.0" promptText="id_wycieczki" />
    </children>
 </AnchorPane>

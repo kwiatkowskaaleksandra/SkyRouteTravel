@@ -30,6 +30,8 @@ public class KontrolerMenu implements Initializable {
     @FXML
     private TableColumn<DaneDoWycieczek,Integer> idp;
     @FXML
+    private TableColumn<DaneDoWycieczek,String> nzw;
+    @FXML
     private TableColumn<DaneDoWycieczek,String> ms;
     @FXML
     private TableColumn<DaneDoWycieczek,String> zak;
@@ -98,95 +100,54 @@ public class KontrolerMenu implements Initializable {
         }
     }
 
-   /* public void validateLogin()
-    {
-        Poloczenie connectNow = new Poloczenie();
-        Connection connectDB = connectNow.getConnection();
+   public void ValidateLogin()
+   {
+       Poloczenie connectNow = new Poloczenie();
+       Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT * FROM pracownik WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
+       String verifyLoginPr = "SELECT login , haslo FROM pracownik WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
+       String verifyLoginKl = "SELECT login , haslo FROM klient WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
 
-        try{
-            Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-
-
-
-            while(queryResult.next())
-            {
-
-                System.out.println(queryResult);
-                    if(queryResult.getString("Login").equals("Klient"))
-                    {
-
-                        IdLabel.setText("Udalo sie zalogowac!");
-                        KontrolerKlient();
-                    }
-                    if(queryResult.getString("rola").equals("PracownikInternetowy"))
-                    {
-                        IdLabel.setText("Udalo sie zalogowac!");
-                        KontrolerPracownik();
-                    }
-                    if(queryResult.getString("Login").equals("Admin"))
-                    {
-                        IdLabel.setText("Udalo sie zalogowac!");
-                        KontrolerAdministrator();
-                    }
-
-                else
-                {
-                    IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
-                }
-            }
-            Stage stage = (Stage) IdZaloguj.getScene().getWindow();
-            stage.close();
+       try{
+           Statement statement = connectDB.createStatement();
+           ResultSet queryResult = statement.executeQuery(verifyLoginPr);
 
 
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-            e.getCause();
-        }
-    } */
-public void ValidateLogin(){
-    Poloczenie connectNow = new Poloczenie();
-    Connection connectDB = connectNow.getConnection();
-    String verifyLoginKl = "SELECT count(1) FROM klient WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
-    String verifyLoginPr = "SELECT count(1) FROM pracownik WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
+           while(queryResult.next())
+           {
 
-        try {
-            Statement statement = connectDB.createStatement();
-            Statement statement2 = connectDB.createStatement();
-            ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
-            ResultSet queryResultPr = statement2.executeQuery(verifyLoginPr);
+               if(queryResult.getString("login").equals(IdLogin.getText()) && queryResult.getString("haslo").equals(IdHaslo.getText()))
+               {
 
-            while (queryResultKl.next()||queryResultPr.next()) {
+                   IdLabel.setText("Udalo sie zalogowac!");
+                   KontrolerPracownik();
+               }
 
-                if (queryResultKl.getInt(1) == 1) {
-                    IdLabel.setText("Udalo sie zalogowac!");
-                    KontrolerKlient();
+               else
+               {
+                   IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
+               }
+           }
+           ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
+           while(queryResultKl.next()) {
 
-
-                } else if (queryResultPr.next()&&queryResultPr.getInt(1) == 1) {
-                    IdLabel.setText("Udalo sie zalogowac!");
-                    KontrolerPracownik();
-
-                } else {
-                    IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
-                }
-                queryResultKl.close();
-                queryResultPr.close();
-            }
-            Stage stage = (Stage) IdZaloguj.getScene().getWindow();
-            stage.close();
+               if (queryResultKl.getString("login").equals(IdLogin.getText()) && queryResultKl.getString("haslo").equals(IdHaslo.getText())) {
+                   IdLabel.setText("Udalo sie zalogowac!");
+                   KontrolerKlient();
+               } else {
+                   IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
+               }
+           }
+           Stage stage = (Stage) IdZaloguj.getScene().getWindow();
+           stage.close();
 
 
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-            e.getCause();
-        }
-
-    }
+       }catch(Exception e)
+       {
+           e.printStackTrace();
+           e.getCause();
+       }
+   }
 
 
     public void wyszukaj() {
@@ -216,6 +177,7 @@ public void ValidateLogin(){
         try {
             while (Objects.requireNonNull(rs).next()) {
                 int id1 = rs.getInt("id");
+                String nazwa = rs.getString("nazwa");
                 String miejsce = rs.getString("miejsce");
                 float cena = rs.getFloat("cena");
                 String transport = rs.getString("transport");
@@ -226,7 +188,7 @@ public void ValidateLogin(){
                 String atrakcje =rs.getString("atrakcje");
                 String rodzaj = rs.getString("rodzaj");
                 int iloscDni = rs.getInt("iloscDni");
-                daneDoWycieczek = new DaneDoWycieczek(id1, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
+                daneDoWycieczek = new DaneDoWycieczek(id1,nazwa,miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
             }
 

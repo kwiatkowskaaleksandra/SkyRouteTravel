@@ -29,6 +29,8 @@ public class Wyszukaj implements Initializable {
     @FXML
     private TableColumn<DaneDoWycieczek,Integer> idp;
     @FXML
+    private TableColumn<DaneDoWycieczek,String> nzw;
+    @FXML
     private TableColumn<DaneDoWycieczek,String> ms;
     @FXML
     private TableColumn<DaneDoWycieczek,String> zak;
@@ -93,6 +95,7 @@ public class Wyszukaj implements Initializable {
         try {
             while (Objects.requireNonNull(rs).next()) {
                 int id1 = rs.getInt("id");
+                String nazwa = rs.getString("nazwa");
                 String miejsce = rs.getString("miejsce");
                 float cena = rs.getFloat("cena");
                 String transport = rs.getString("transport");
@@ -103,7 +106,7 @@ public class Wyszukaj implements Initializable {
                 String atrakcje =rs.getString("atrakcje");
                 String rodzaj = rs.getString("rodzaj");
                 int iloscDni = rs.getInt("iloscDni");
-                daneDoWycieczek = new DaneDoWycieczek(id1, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
+                daneDoWycieczek = new DaneDoWycieczek(id1,nazwa,miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
 
             }
