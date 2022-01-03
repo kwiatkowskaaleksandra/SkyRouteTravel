@@ -57,12 +57,13 @@
                <effect>
                   <InnerShadow />
                </effect></Button>
-            <TextField fx:id="TextK1" layoutX="1319.0" layoutY="170.0" prefHeight="47.0" prefWidth="267.0" promptText="ID" />
+            <TextField fx:id="id" layoutX="1319.0" layoutY="170.0" prefHeight="47.0" prefWidth="267.0" promptText="ID" />
+            <TextField fx:id="TextK12" layoutX="1319.0" layoutY="231.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWA" />
             <TextField fx:id="TextK2" layoutX="1319.0" layoutY="290.0" prefHeight="47.0" prefWidth="267.0" promptText="MIEJSCE" />
             <TextField fx:id="TextK3" layoutX="1319.0" layoutY="351.0" prefHeight="47.0" prefWidth="267.0" promptText="CENA" />
-            <TextField fx:id="TextK4" layoutX="1319.0" layoutY="404.0" prefHeight="47.0" prefWidth="267.0" promptText="TRANSPORT" />
+            <ChoiceBox fx:id="RodzajTransportu" layoutX="1319.0" layoutY="417.0" prefHeight="36.0" prefWidth="267.0" />
             <TextField fx:id="TextK5" layoutX="1319.0" layoutY="458.0" prefHeight="47.0" prefWidth="267.0" promptText="CZAS PODROZY" />
-            <TextField fx:id="TextK6" layoutX="1319.0" layoutY="518.0" prefHeight="47.0" prefWidth="267.0" promptText="ZAKWATEROWANIE" />
+            <ChoiceBox fx:id="RodzajZakwaterowania" layoutX="1319.0" layoutY="521.0" prefHeight="47.0" prefWidth="267.0" />
             <CheckBox fx:id="TextK9" layoutX="1427.0" layoutY="570.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="Tak">
                <font> <Font size="14.0" /> </font>
             </CheckBox>
@@ -89,7 +90,8 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="TextK12" layoutX="1319.0" layoutY="231.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWA" />
+
+
 
          </children></Pane>
    </children>

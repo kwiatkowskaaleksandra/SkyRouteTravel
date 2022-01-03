@@ -6,11 +6,11 @@ package sample;/*
 import java.util.Date;
 
 public class DaneDoFaktur {
-    String imie, nazwisko,email,miejscowosc;
-    int id,telefon,numer,kod,platnosc,rodzajWycieczki;
+    String imie, nazwisko,email,miejscowosc,platnosc;
+    int id,telefon,numer,kod,rodzajWycieczki;
     Date data;
 
-    public DaneDoFaktur(int id,String imie, String nazwisko,String email,int telefon,String miejscowosc,int numer,int kod,int platnosc,Date data,int rodzajWycieczki){
+    public DaneDoFaktur(int id, String imie, String nazwisko, String email, int telefon, String miejscowosc, int numer, int kod, String platnosc, Date data, int rodzajWycieczki){
         this.id=id;
         this.imie=imie;
         this.nazwisko=nazwisko;
@@ -88,11 +88,11 @@ public class DaneDoFaktur {
         this.kod=kod;
     }
 
-    public int getPlatnosc(){
+    public String getPlatnosc(){
         return this.platnosc;
     }
 
-    public void setPlatnosc(int platnosc){
+    public void setPlatnosc(String platnosc){
         this.platnosc=platnosc;
     }
 

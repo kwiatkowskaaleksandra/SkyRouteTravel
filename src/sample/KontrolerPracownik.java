@@ -1,10 +1,12 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -14,6 +16,12 @@ public class KontrolerPracownik {
     private Button IdWyloguj;
     public Button OfertyWycieczek;
     public Button Faktury;
+    public ListView <String>listaOgloszen;
+
+    public void Ogloszenia(javafx.event.ActionEvent event){
+       // ObservableList <String> lit= new ObservableList<String>() {};
+        listaOgloszen.getItems().addAll("ashdoasdhuasd","hdsiudsdh");
+    }
 
     public void IdWylogujOnAciotn(javafx.event.ActionEvent event)
     {
@@ -69,4 +77,6 @@ public class KontrolerPracownik {
             e.getCause();
         }
     }
+
+
 }

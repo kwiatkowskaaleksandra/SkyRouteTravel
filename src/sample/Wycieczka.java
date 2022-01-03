@@ -64,7 +64,7 @@ public class Wycieczka implements Initializable {
     @FXML
     private Button EdytujButton;
     @FXML
-    private TextField TextK1;
+    private TextField id;
     @FXML
     private TextField TextK2;
     @FXML
@@ -89,18 +89,24 @@ public class Wycieczka implements Initializable {
     private TextField TextK12;
     @FXML
     private ChoiceBox<String> RodzajWycieczki;
+    @FXML
+    private ChoiceBox<String> RodzajTransportu;
+    @FXML
+    private ChoiceBox<String> RodzajZakwaterowania;
 
     int index=-1;
     Poloczenie connectNow = new Poloczenie();
     Connection connectDB = connectNow.getConnection();
     ObservableList listWycieczki= FXCollections.observableArrayList();
+    ObservableList listTransport= FXCollections.observableArrayList();
+    ObservableList listZakwaterowania= FXCollections.observableArrayList();
 
     public void WyswietlWycieczki(){
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT * FROM wycieczki";
+        String danee = "SELECT id_wycieczki,nazwa,miejsce,w.cena,t.rodzaj,czas, z.rodzaj, wyzywienie, premium, atrakcje, rodzajWycieczki,iloscDni FROM wycieczki w, zakwaterowanie z, transport t WHERE w.id_transport=t.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie";
 
         Statement st = null;
         try{
@@ -121,10 +127,10 @@ public class Wycieczka implements Initializable {
                 int id1 = rs.getInt("id_wycieczki");
                 String nazwa = rs.getString("nazwa");
                 String miejsce = rs.getString("miejsce");
-                float cena = rs.getFloat("cena");
-                String transport = rs.getString("id_transport");
+                float cena = rs.getFloat("w.cena");
+                String transport = rs.getString("t.rodzaj");
                 String czasPodrozy =rs.getString("czas");
-                String zakwaterowanie =rs.getString("id_zakwaterowanie");
+                String zakwaterowanie =rs.getString("z.rodzaj");
                 String wyzywienie=rs.getString("wyzywienie");
                 String premium =rs.getString("premium");
                 String atrakcje =rs.getString("atrakcje");
@@ -163,42 +169,58 @@ public class Wycieczka implements Initializable {
 
         String danee="INSERT INTO wycieczki(id_wycieczki,nazwa,miejsce,cena,id_transport,czas,id_zakwaterowanie,wyzywienie,premium,atrakcje,rodzajWycieczki,iloscDni)values(?,?,?,?,?,?,?,?,?,?,?,?)";
         try{
+
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            pst.setString(1,TextK1.getText());
-            pst.setString(2,TextK2.getText());
-            pst.setString(3,TextK3.getText());
-            pst.setString(4,TextK4.getText());
-            pst.setString(5,TextK6.getText());
+            pst.setString(1,id.getText());
+            pst.setString(2,TextK12.getText());
+            pst.setString(4,TextK3.getText());
+            if(RodzajTransportu.getValue().equals("Samolot")) {
+                pst.setString(5,"1");
+            } else  if(RodzajTransportu.getValue().equals("Prom")) {
+                pst.setString(5,"2");
+            }else  if(RodzajTransportu.getValue().equals("Pociąg")) {
+                pst.setString(5,"3");
+            }else  if(RodzajTransportu.getValue().equals("Autokar")) {
+                pst.setString(5,"4");
+            }
+            if(RodzajZakwaterowania.getValue().equals("Hotel")) {
+                pst.setString(7,"1");
+            }else  if(RodzajZakwaterowania.getValue().equals("Motel")) {
+                pst.setString(7,"2");
+            }else  if(RodzajZakwaterowania.getValue().equals("Kurort")) {
+                pst.setString(7,"3");
+            }else  if(RodzajZakwaterowania.getValue().equals("Domek jednorodzinny")) {
+                pst.setString(7,"4");
+            }
+
             if(TextK9.isSelected() && !TextK10.isSelected()){
                 TextK9.setSelected(true);
                 TextK10.setSelected(false);
-                pst.setString(6,TextK9.getText());
+                pst.setString(8,TextK9.getText());
 
             }
             else if(TextK10.isSelected() && !TextK9.isSelected()){
                 TextK9.setSelected(false);
                 TextK10.setSelected(true);
-                pst.setString(6,TextK10.getText());
+                pst.setString(8,TextK10.getText());
             }
-            pst.setString(7,TextK5.getText());
-            pst.setString(8,TextK7.getText());
-            pst.setString(9,TextK8.getText());
-            pst.setString(10,RodzajWycieczki.getValue());
-            pst.setString(11, TextK11.getText());
-            pst.setString(12, TextK12.getText());
-            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
-                throw new Exception();
-            }
+            pst.setString(6,TextK5.getText());
+            pst.setString(9,TextK7.getText());
+            pst.setString(10,TextK8.getText());
+            pst.setString(11,RodzajWycieczki.getValue());
+            pst.setString(12, TextK11.getText());
+            pst.setString(3,TextK2.getText());
+           if(id.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()|TextK5.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
+               throw new Exception();
+           }
             else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
                 WyswietlWycieczki();
-                TextK1.clear();
+                id.clear();
                 TextK2.clear();
                 TextK3.clear();
-                TextK4.clear();
                 TextK5.clear();
-                TextK6.clear();
                 TextK7.clear();
                 TextK8.clear();
                 TextK9.setSelected(false);
@@ -206,7 +228,9 @@ public class Wycieczka implements Initializable {
                 TextK11.clear();
                 TextK12.clear();
                 RodzajWycieczki.setValue("Rodzaj wycieczki");
-            }
+                RodzajTransportu.setValue("Rodzaj transportu");
+                RodzajZakwaterowania.setValue("Rodzaj zakwaterowania");
+           }
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Blad dodawania! "+e);
@@ -220,16 +244,14 @@ public class Wycieczka implements Initializable {
         String danee="DELETE FROM wycieczki WHERE id_wycieczki=?";
         try {
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            pst.setString(1,TextK1.getText());
+            pst.setString(1,id.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null,"Usunieto pomyslnie!");
             WyswietlWycieczki();
-            TextK1.clear();
+            id.clear();
             TextK2.clear();
             TextK3.clear();
-            TextK4.clear();
             TextK5.clear();
-            TextK6.clear();
             TextK7.clear();
             TextK8.clear();
             TextK9.setSelected(false);
@@ -237,6 +259,8 @@ public class Wycieczka implements Initializable {
             TextK11.clear();
             TextK12.clear();
             RodzajWycieczki.setValue("Rodzaj wycieczki");
+            RodzajTransportu.setValue("Rodzaj transportu");
+            RodzajZakwaterowania.setValue("Rodzaj zakwaterowania");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Blad przy usuwaniu! "+e);
         }
@@ -246,53 +270,74 @@ public class Wycieczka implements Initializable {
     String danee;
         try{
 
-            String val1=TextK1.getText();
-            String val2=TextK2.getText();
-            String val3=TextK3.getText();
-            String val4=TextK4.getText();
-            String val5=TextK5.getText();
-            String val6=TextK6.getText();
-            String val7=TextK7.getText();
+            String val1=id.getText();
+            String val2=TextK12.getText();
+            String val3=TextK2.getText();
+            String val4=TextK3.getText();
+            String val5 = null;
+            if(RodzajTransportu.getValue().equals("Samolot")) {
+                val5="1";
+            } else  if(RodzajTransportu.getValue().equals("Prom")) {
+                 val5="2";
+            }else  if(RodzajTransportu.getValue().equals("Pociąg")) {
+                val5="3";
+            }else  if(RodzajTransportu.getValue().equals("Autokar")) {
+                val5="4";
+            }
+            String val6=TextK5.getText();
+            String val7 = null;
+            if(RodzajZakwaterowania.getValue().equals("Hotel")) {
+                 val7="1";
+            }else  if(RodzajZakwaterowania.getValue().equals("Motel")) {
+               val7="2";
+            }else  if(RodzajZakwaterowania.getValue().equals("Kurort")) {
+               val7="3";
+            }else  if(RodzajZakwaterowania.getValue().equals("Domek jednorodzinny")) {
+                 val7="4";
+            }
             String val8=TextK8.getText();
             String val9=TextK9.getText();
             String val10=TextK10.getText();
             String val12=RodzajWycieczki.getValue();
             String val11=TextK11.getText();
-            String val13=TextK12.getText();
+            String val13=TextK7.getText();
 
             if(TextK9.isSelected() && !TextK10.isSelected()){
                 TextK9.setSelected(true);
                 TextK10.setSelected(false);
-                danee = "UPDATE wycieczki SET id_wycieczki='"+val13+"',nazwa='" + val1 + "',miejsce='" + val2 + "',cena='" + val3 + "',id_transport='" + val4 + "',czas='" + val5 + "',id_zakwaterowanie='" + val6 + "',wyzywienie='" + val9 + "',premium='" + val7 + "',atrakcje='" + val8 +"',rodzajWycieczki='"+val12+"',iloscDni='"+ val11+"'WHERE id_wycieczki='" + val1 + "'";
+                danee = "UPDATE wycieczki SET id_wycieczki='"+val1+"',nazwa='" + val2 + "',miejsce='" + val3 + "',cena='"
+                        + val4 + "',id_transport='" + val5 + "',czas='" + val6 + "',id_zakwaterowanie='" + val7 + "',wyzywienie='" + val9 + "',premium='" + val13 + "',atrakcje='" + val8 +
+                        "',rodzajWycieczki='"+val12+"',iloscDni='"+ val11+"'WHERE id_wycieczki='" + val1 + "'";
                 pst = (PreparedStatement) connectDB.prepareStatement(danee);
 
             }
             else if(TextK10.isSelected() && !TextK9.isSelected()){
                 TextK9.setSelected(false);
                 TextK10.setSelected(true);
-                danee = "UPDATE wycieczki SET id_wycieczki='"+val13+"',nazwa='" + val1 + "',miejsce='" + val2 + "',cena='" + val3 + "',transport='" + val4 + "',czas='" + val5 + "',zakwaterowanie='" + val6 + "',wyzywienie='" + val10 + "',premium='" + val7 + "',atrakcje='" + val8 + "',rodzaj='"+val12+"',iloscDni='"+ val11+"' WHERE id_wycieczki" +
-                        "='" + val1 + "'";
+                danee = "UPDATE wycieczki SET id_wycieczki='"+val1+"',nazwa='" + val2 + "',miejsce='" + val3 + "',cena='"
+                        + val4 + "',id_transport='" + val5 + "',czas='" + val6 + "',id_zakwaterowanie='" + val7 + "',wyzywienie='" + val10 + "',premium='" + val13 + "',atrakcje='" + val8 +
+                        "',rodzajWycieczki='"+val12+"',iloscDni='"+ val11+"' WHERE id_wycieczki" + "='" + val1 + "'";
                 pst = (PreparedStatement) connectDB.prepareStatement(danee);
             }
 
-            if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK5.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
+            if(id.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK5.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
                 throw new Exception();
             }else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Edycja zakonczona pomyslnie!");
                 WyswietlWycieczki();
-                /*TextK1.clear();
+                id.clear();
                 TextK2.clear();
                 TextK3.clear();
-                TextK4.clear();
                 TextK5.clear();
-                TextK6.clear();
                 TextK7.clear();
                 TextK8.clear();
                 TextK9.setSelected(false);
                 TextK10.setSelected(false);
                 TextK11.clear();
-                RodzajWycieczki.setValue("Rodzaj wycieczki");*/
+                RodzajWycieczki.setValue("Rodzaj wycieczki");
+                RodzajTransportu.setValue("Rodzaj transportu");
+                RodzajZakwaterowania.setValue("Rodzaj zakwaterowania");
             }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Blad przy edycji! "+e);
@@ -328,6 +373,32 @@ public class Wycieczka implements Initializable {
         RodzajWycieczki.setValue(a);
     }
 
+    private void ChoiceBoxTransport(){
+        listTransport.removeAll(listTransport);
+        String a="Rodzaj transportu";
+
+        String b="Samolot";
+        String c="Prom";
+        String d="Pociąg";
+        String e="Autokar";
+        listTransport.addAll(b,c,d,e);
+        RodzajTransportu.getItems().addAll(listTransport);
+        RodzajTransportu.setValue(a);
+    }
+
+    private void ChoiceBoxZakwaterowania(){
+        listZakwaterowania.removeAll(listZakwaterowania);
+        String a="Rodzaj zakwaterowania";
+
+        String b="Hotel";
+        String c="Motel";
+        String d="Kurort";
+        String e="Domek jednorodzinny";
+        listZakwaterowania.addAll(b,c,d,e);
+        RodzajZakwaterowania.getItems().addAll(listZakwaterowania);
+        RodzajZakwaterowania.setValue(a);
+    }
+
     public void DodajButtonOnActionEvent(){ DodajWycieczke();}
 
     public void UsunButtonOnActionEvent(){ UsunWycieczke();}
@@ -339,13 +410,11 @@ public class Wycieczka implements Initializable {
         if(index<=-1){
             return;
         }
-        TextK1.setText(idp.getCellData(index).toString());
+        id.setText(idp.getCellData(index).toString());
         TextK12.setText(nzw.getCellData(index));
         TextK2.setText(ms.getCellData(index));
         TextK3.setText(cn.getCellData(index).toString());
-        TextK4.setText(tran.getCellData(index));
         TextK5.setText(czs.getCellData(index));
-        TextK6.setText(zak.getCellData(index));
         TextK9.setText(wyz.getCellData(index));
         TextK10.setText(wyz.getCellData(index));
         if(TextK9.getText().equals("Tak"))
@@ -364,6 +433,8 @@ public class Wycieczka implements Initializable {
         TextK7.setText(atr.getCellData(index));
         TextK11.setText(ilDn.getCellData(index).toString());
         RodzajWycieczki.setValue(rodz.getCellData(index));
+        RodzajTransportu.setValue(tran.getCellData(index));
+        RodzajZakwaterowania.setValue(zak.getCellData(index));
     }
 
 
@@ -371,6 +442,8 @@ public class Wycieczka implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         WyswietlWycieczki();
         ChoiceBoxWycieczki();
+        ChoiceBoxZakwaterowania();
+        ChoiceBoxTransport();
     }
 }
 

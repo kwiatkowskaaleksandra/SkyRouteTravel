@@ -9,7 +9,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerPracownik">
    <children>
-      <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('56776.jpg');" />
+      <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('56776.jpg');">
+         <children>
+            <Label layoutX="58.0" layoutY="70.0" prefHeight="41.0" prefWidth="211.0" text="OGŁOSZENIA" textFill="#22008a">
+               <font>
+                  <Font name="Broadway" size="24.0" />
+               </font>
+            </Label>
+            <DatePicker layoutX="157.0" layoutY="213.0" />
+         </children></Pane>
       <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">
          <font>
             <Font name="Symbol" size="36.0" />
