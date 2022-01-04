@@ -13,7 +13,8 @@ public class KontrolerKlient {
     @FXML
     private Button IdWyloguj;
     public Button WycieczkiKlient;
-    public Button WycieczkiMenu;
+    public Button Profil;
+    public Button Konto;
 
     public void IdWylogujOnAciotn(javafx.event.ActionEvent event)
     {
@@ -50,16 +51,16 @@ public class KontrolerKlient {
             e.getCause();
         }
     }
-    public void WycieczkiMenuOnAction(javafx.event.ActionEvent event){
-        Stage stage = (Stage) WycieczkiKlient.getScene().getWindow();
-        stage.close();
+    public void ProfilOnAction(javafx.event.ActionEvent event){
+        Stage stage = (Stage) Profil.getScene().getWindow();
+
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("WycieczkiKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Profil.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1820,980));
+            menuStage.setScene(new Scene(root, 1220,740));
             menuStage.show();
         }catch(Exception e)
         {

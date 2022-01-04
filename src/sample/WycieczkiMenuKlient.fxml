@@ -24,18 +24,18 @@
                     <font>
                         <Font name="Berlin Sans FB" size="17.0" />
                     </font></Button>
-                <TableView fx:id="Tab1" layoutX="186.0" layoutY="171.0" onMouseClicked="#getSelected" prefHeight="611.0" prefWidth="1280.0">
+                <TableView fx:id="Tab1" layoutX="186.0" layoutY="171.0" onMouseClicked="#getSelected" prefHeight="611.0" prefWidth="1280.0" stylesheets="@WycieczkiMenu.css">
                     <columns>
-                        <TableColumn fx:id="idp" prefWidth="33.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ID" />
-                  <TableColumn fx:id="nzw" prefWidth="164.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="NAZWA" />
-                        <TableColumn fx:id="ms" prefWidth="172.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="MIEJSCE" />
-                        <TableColumn fx:id="cn" prefWidth="83.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CENA" />
-                        <TableColumn fx:id="tran" minWidth="0.0" prefWidth="151.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="TRANSPORT" />
-                        <TableColumn fx:id="czs" minWidth="0.0" prefWidth="111.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CZAS PODROZY" />
-                        <TableColumn fx:id="zak" minWidth="7.0" prefWidth="160.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ZAKWATEROWANIE" />
-                        <TableColumn fx:id="prem" prefWidth="137.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="OFERTA PREMIUM" />
-                        <TableColumn fx:id="atr" prefWidth="137.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ATRAKCJE" />
-                  <TableColumn fx:id="rdw" prefWidth="137.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="RODZAJ WYCIECZKI" />
+                        <TableColumn fx:id="idp" prefWidth="33.0" text="ID" />
+                  <TableColumn fx:id="nzw" prefWidth="164.0" text="NAZWA" />
+                        <TableColumn fx:id="ms" prefWidth="172.0" text="MIEJSCE" />
+                        <TableColumn fx:id="cn" prefWidth="83.0" text="CENA" />
+                        <TableColumn fx:id="tran" minWidth="0.0" prefWidth="151.0" text="TRANSPORT" />
+                        <TableColumn fx:id="czs" minWidth="0.0" prefWidth="111.0" text="CZAS PODROZY" />
+                        <TableColumn fx:id="zak" minWidth="7.0" prefWidth="160.0" text="ZAKWATEROWANIE" />
+                        <TableColumn fx:id="prem" prefWidth="137.0" text="OFERTA PREMIUM" />
+                        <TableColumn fx:id="atr" prefWidth="137.0" text="ATRAKCJE" />
+                  <TableColumn fx:id="rdw" prefWidth="130.0" text="RODZAJ WYCIECZKI" />
                     </columns>
                 </TableView>
                 <TextField fx:id="TextK1" layoutX="1526.0" layoutY="221.0" prefHeight="47.0" prefWidth="267.0" promptText="Miejsce" />

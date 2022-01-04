@@ -111,7 +111,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button fx:id="Konto" layoutX="1630.0" layoutY="8.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="MOJE KONTO" textFill="#090875">
+      <Button fx:id="Profil" layoutX="1630.0" layoutY="8.0" mnemonicParsing="false" prefHeight="39.0" onAction="#ProfilOnAction" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="MOJE KONTO" textFill="#090875">
          <effect>
             <InnerShadow>
                <color>
