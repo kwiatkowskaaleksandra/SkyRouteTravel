@@ -102,8 +102,6 @@ public class Wycieczka implements Initializable {
     ObservableList listZakwaterowania= FXCollections.observableArrayList();
 
     public void WyswietlWycieczki(){
-        Poloczenie connectNow = new Poloczenie();
-        Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
         String danee = "SELECT id_wycieczki,nazwa,miejsce,w.cena,t.rodzaj,czas, z.rodzaj, wyzywienie, premium, atrakcje, rodzajWycieczki,iloscDni FROM wycieczki w, zakwaterowanie z, transport t WHERE w.id_transport=t.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie";
