@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerMenu">
+   <children>
+      <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../obrazy/56776.jpg');">
+         <children>
+            <TableView fx:id="Tab1" layoutX="478.0" layoutY="359.0" prefHeight="522.0" prefWidth="964.0" stylesheets="@../css/WycieczkiMenu.css">
+              <columns>
+                <TableColumn fx:id="idp" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nzw" prefWidth="75.0" text="NAZWA" />
+                  <TableColumn fx:id="ms" prefWidth="75.0" text="MIEJSCE" />
+                  <TableColumn fx:id="cn" prefWidth="75.0" text="CENA" />
+                  <TableColumn fx:id="tran" prefWidth="75.0" text="TRANSPORT" />
+                  <TableColumn fx:id="czs" prefWidth="110.0" text="CZAS PODRÓŻY" />
+                  <TableColumn fx:id="zak" prefWidth="128.0" text="ZAKWATEROWANIE" />
+                  <TableColumn fx:id="prem" prefWidth="134.0" text="OFERTA PREMIUM" />
+                  <TableColumn fx:id="atr" prefWidth="86.0" text="ATRAKCJE" />
+                  <TableColumn fx:id="rdw" prefWidth="128.0" text="RODZAJ WYCIECZKI" />
+              </columns>
+            </TableView>
+         </children></Pane>
+      <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
+      <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">
+         <font>
+            <Font name="Symbol" size="36.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Button fx:id="IdZaloguj" layoutX="1828.0" layoutY="6.0" mnemonicParsing="false" onAction="#IdZalogujOnAction" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="ZALOGUJ" textFill="#090875">
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="IdLogin" layoutX="1575.0" layoutY="6.0" prefHeight="31.0" prefWidth="116.0" promptText="Login" />
+      <TextField fx:id="IdKraj" layoutX="278.0" layoutY="275.0" prefHeight="31.0" prefWidth="200.0" promptText="KRAJ" />
+      <TextField fx:id="IdMiejsce" layoutX="509.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="MIEJSCE" />
+      <TextField fx:id="IdZakwaterowanie" layoutX="739.0" layoutY="276.0" prefHeight="31.0" prefWidth="299.0" promptText="ZAKWATEROWANIE" />
+      <TextField fx:id="IdTransport" layoutX="1070.0" layoutY="274.0" prefHeight="31.0" prefWidth="163.0" promptText="TRANSPORT" />
+      <Button fx:id="IdSzukaj" layoutX="1250.0" layoutY="209.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="48.0" />
+         </font>
+      </Button>
+      <Label layoutX="282.0" layoutY="189.0" prefHeight="80.0" prefWidth="200.0" text="GDZIE CHCESZ JECHAĆ?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="509.0" layoutY="188.0" prefHeight="80.0" prefWidth="200.0" text="W JAKIE MIEJSCE?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="739.0" layoutY="187.0" prefHeight="80.0" prefWidth="299.0" text="JAKIE CHCESZ ZAKWATEROWANIE ?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="1070.0" layoutY="189.0" prefHeight="80.0" prefWidth="163.0" text="JAKI TRANSPORT?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="WycieczkiKlient" layoutX="469.0" layoutY="4.0" mnemonicParsing="false" onAction="#WycieczkiMenuOnAction" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="Promocja" layoutX="926.0" layoutY="4.0" mnemonicParsing="false" onAction="#WycieczkiMenuOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="PROMOCJE" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="LastMinute" layoutX="719.0" layoutY="3.0" mnemonicParsing="false" onAction="#WycieczkiMenuOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="LAST MINUTE" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="Egzotyka" layoutX="1139.0" layoutY="4.0" mnemonicParsing="false" onAction="#WycieczkiMenuOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="EGZOTYKA" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <PasswordField fx:id="IdHaslo" layoutX="1698.0" layoutY="6.0" prefHeight="31.0" prefWidth="116.0" promptText="Hasło" />
+      <Label fx:id="IdLabel" layoutX="1595.0" layoutY="40.0" prefHeight="11.0" prefWidth="322.0" textFill="#f50101">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+
+</AnchorPane>

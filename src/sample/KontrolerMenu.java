@@ -14,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -370,7 +369,7 @@ this.Tab1.setItems(posortowane);
     public void KontrolerKlient(){
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Klient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Klient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1920,1080));
@@ -385,7 +384,7 @@ this.Tab1.setItems(posortowane);
     public void KontrolerPracownik(){
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Pracownik.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1720,880));
@@ -400,7 +399,7 @@ this.Tab1.setItems(posortowane);
     public void KontrolerAdministrator(){
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Administrator.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Administrator.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1720,880));
@@ -418,7 +417,7 @@ this.Tab1.setItems(posortowane);
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("WycieczkiMenuKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiMenuKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -436,7 +435,7 @@ this.Tab1.setItems(posortowane);
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("WycieczkiMenuKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiMenuKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -453,7 +452,7 @@ this.Tab1.setItems(posortowane);
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("WycieczkiMenuKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiMenuKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -470,7 +469,7 @@ this.Tab1.setItems(posortowane);
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("WycieczkiMenuKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiMenuKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));

@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -39,7 +38,7 @@ public class KontrolerPracownik implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -58,7 +57,7 @@ public class KontrolerPracownik implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("OfertyWycieczek.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/OfertyWycieczek.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -77,7 +76,7 @@ public class KontrolerPracownik implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Faktury.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Faktury.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -95,7 +94,7 @@ public class KontrolerPracownik implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Wiadomosci.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Wiadomosci.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1250,650));

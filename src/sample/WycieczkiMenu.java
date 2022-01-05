@@ -210,7 +210,7 @@ public class WycieczkiMenu implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1720.0D, 880.0D));
@@ -224,7 +224,7 @@ public class WycieczkiMenu implements Initializable {
     public void WycieczkiKlient(){
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("WycieczkiKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1920,1080));
@@ -238,7 +238,7 @@ public class WycieczkiMenu implements Initializable {
     public void Wycieczka(){
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("OfertyWycieczek.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/OfertyWycieczek.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1920,1080));

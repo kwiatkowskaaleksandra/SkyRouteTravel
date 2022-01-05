@@ -11,16 +11,13 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumnBase;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.*;
 import java.util.Objects;
@@ -348,7 +345,7 @@ public class Wycieczka implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Pracownik.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1720.0D, 880.0D));

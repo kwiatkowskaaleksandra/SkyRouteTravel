@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerPracownik">
+   <children>
+      <Pane layoutY="54.0" opacity="0.74" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../obrazy/56776.jpg');">
+         <children>
+            <Label layoutX="604.0" layoutY="70.0" prefHeight="41.0" prefWidth="211.0" text="OGŁOSZENIA" textFill="#22008a">
+               <font>
+                  <Font name="Broadway" size="24.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listaOgloszen" layoutX="604.0" layoutY="117.0" prefHeight="674.0" prefWidth="419.0" />
+         </children></Pane>
+      <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">
+         <font>
+            <Font name="Symbol" size="36.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Button fx:id="OfertyWycieczek" layoutX="469.0" layoutY="4.0" mnemonicParsing="false" onAction="#WycieczkiOnAction" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="Faktury" layoutX="698.0" layoutY="4.0" mnemonicParsing="false" onAction="#FakturyOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="FAKTURY" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button layoutX="886.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="177.0" style="-fx-background-color: #ffffff;" text="PRZYPISYWANIE" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="Wiadomosci" layoutX="1084.0" layoutY="4.0" mnemonicParsing="false" onAction="#WiadomosciOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="WIADOMOSCI" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="IdWyloguj" layoutX="1762.0" layoutY="5.0" mnemonicParsing="false" onAction="#IdWylogujOnAciotn" prefHeight="41.0" prefWidth="154.0" style="-fx-background-color: #ffffff;" text="WYLOGUJ" textFill="#0c007c">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+
+</AnchorPane>

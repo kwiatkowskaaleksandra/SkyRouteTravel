@@ -9,11 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import static java.lang.StrictMath.round;
-import javax.swing.*;
+
 import java.net.URL;
 import java.sql.*;
 import java.util.Objects;
@@ -148,7 +147,7 @@ public class WycieczkiKlient implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Klient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Klient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1720.0D, 880.0D));

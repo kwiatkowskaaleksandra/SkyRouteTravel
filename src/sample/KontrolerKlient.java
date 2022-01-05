@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -23,7 +22,7 @@ public class KontrolerKlient {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -40,7 +39,7 @@ public class KontrolerKlient {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("WycieczkiKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -57,7 +56,7 @@ public class KontrolerKlient {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("Profil.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/Profil.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1220,740));
