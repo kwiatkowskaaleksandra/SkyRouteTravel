@@ -156,7 +156,7 @@ WyswietlWycieczki();
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_wycieczki=z.id_zakwaterowanie join transport t on w.id_wycieczki=t.id_transport";
+        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport";
 
         Statement st = null;
         try{

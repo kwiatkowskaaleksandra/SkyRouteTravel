@@ -115,41 +115,23 @@ public class WycieczkiMenu implements Initializable {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT * FROM uzytkownicy WHERE Login = '" +login.getText() +"'AND Haslo = '" + haslo.getText() + "'" ;
+        String verifyLoginKl = "SELECT login , haslo FROM klient WHERE login = '" +login.getText() +"'AND haslo = '" + haslo.getText() + "'" ;
 
         try{
             Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
 
 
+            ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
+            while(queryResultKl.next()) {
 
-            while(queryResult.next())
-            {
+                if (queryResultKl.getString("login").equals(login.getText()) && queryResultKl.getString("haslo").equals(haslo.getText())) {
+                    KontrolerMenu k=new KontrolerMenu();
+                   k.KontrolerKlient();
+                } else {
 
-                System.out.println(queryResult);
-                if(queryResult.getString("Login").equals("Klient"))
-                {
-
-                    label.setText("Udalo sie zalogowac!");
-                     WycieczkiKlient();
-                }
-                if(queryResult.getString("Login").equals("Pracownik"))
-                {
-                    label.setText("Udalo sie zalogowac!");
-                    Wycieczka();
-                }
-                if(queryResult.getString("Login").equals("Admin"))
-                {
-                    label.setText("Udalo sie zalogowac!");
-                    WycieczkiKlient();
-                }
-
-                else
-                {
-                    label.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
                 }
             }
-            Stage stage = (Stage) login.getScene().getWindow();
+            Stage stage = (Stage) zalogujButton.getScene().getWindow();
             stage.close();
 
 
@@ -166,7 +148,7 @@ public class WycieczkiMenu implements Initializable {
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_wycieczki=z.id_zakwaterowanie join transport t on w.id_wycieczki=t.id_transport";
+        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport";
 
         Statement st = null;
         try{

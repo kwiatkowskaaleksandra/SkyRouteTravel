@@ -11,7 +11,7 @@
    <children>
       <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('56776.jpg');">
          <children>
-            <TableView fx:id="Tab1" layoutX="478.0" layoutY="359.0" prefHeight="522.0" prefWidth="964.0">
+            <TableView fx:id="Tab1" layoutX="478.0" layoutY="359.0" prefHeight="522.0" prefWidth="964.0" stylesheets="@WycieczkiMenu.css">
               <columns>
                 <TableColumn fx:id="idp" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="nzw" prefWidth="75.0" text="NAZWA" />

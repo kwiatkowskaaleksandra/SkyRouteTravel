@@ -23,7 +23,7 @@ public class KontrolerKlient {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("HOME.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));

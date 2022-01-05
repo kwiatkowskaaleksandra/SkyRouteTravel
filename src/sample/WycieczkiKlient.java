@@ -160,7 +160,6 @@ public class WycieczkiKlient implements Initializable {
     }
 
 
-
     private void ChoiceBoxWycieczki(){
         rodzajUbezpieczenia.removeAll(rodzajUbezpieczenia);
         String a="Rodzaj ubezpieczenia";

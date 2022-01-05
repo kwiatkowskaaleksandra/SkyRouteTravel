@@ -3,6 +3,7 @@ package sample;/*
  * @author kola
  */
 
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -24,6 +25,7 @@ public class DaneDoWycieczek {
         this.rodzaj=rodzaj;
         this.iloscDni=iloscDni;
     }
+
 
     public int getId(){
         return id;
