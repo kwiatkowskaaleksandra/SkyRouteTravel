@@ -15,10 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -82,11 +79,11 @@ public class KontrolerMenu implements Initializable {
     public Button Egzotyka;
     //public Button IdSzukaj;
     public Button Konto;
-ObservableList<DaneDoWycieczek> szukanie = FXCollections.observableArrayList();
+    ObservableList<DaneDoWycieczek> szukanie = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-WyswietlWycieczki();
+        WyswietlWycieczki();
     }
 
     public void IdZalogujOnAction(javafx.event.ActionEvent event)
@@ -94,6 +91,18 @@ WyswietlWycieczki();
 
         if(!IdLogin.getText().isBlank() && !IdHaslo.getText().isBlank())
         {
+            Poloczenie connectNow = new Poloczenie();
+            Connection connectDB = connectNow.getConnection();
+            String dane="DELETE FROM zalogowany WHERE id_zalogowanego=1";
+            try{
+                PreparedStatement pst=null;
+                pst=(PreparedStatement) connectDB.prepareStatement(dane);
+                pst.execute();
+            }catch(Exception e)
+            {
+                e.printStackTrace();
+                e.getCause();
+            }
             ValidateLogin();
         }
         else
@@ -102,54 +111,85 @@ WyswietlWycieczki();
         }
     }
 
-   public void ValidateLogin()
-   {
-       Poloczenie connectNow = new Poloczenie();
-       Connection connectDB = connectNow.getConnection();
 
-       String verifyLoginPr = "SELECT login , haslo FROM pracownik WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
-       String verifyLoginKl = "SELECT login , haslo FROM klient WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
+    public void ValidateLogin()
+    {
+        Poloczenie connectNow = new Poloczenie();
+        Connection connectDB = connectNow.getConnection();
 
-       try{
-           Statement statement = connectDB.createStatement();
-           ResultSet queryResult = statement.executeQuery(verifyLoginPr);
+        String verifyLoginPr = "SELECT id_pracownika,login , haslo FROM pracownik WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
+        String verifyLoginKl = "SELECT id_klienta,login , haslo FROM klient WHERE login = '" +IdLogin.getText() +"'AND haslo = '" + IdHaslo.getText() + "'" ;
+
+        String dane="INSERT INTO zalogowany(id_zalogowanego,id_klienta,id_pracownika,login,haslo)values(?,?,?,?,?)";
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLoginPr);
+
+            while(queryResult.next())
+            {
+
+                if(queryResult.getString("login").equals(IdLogin.getText()) && queryResult.getString("haslo").equals(IdHaslo.getText()))
+                {
+                    String id=queryResult.getString("id_pracownika");
+
+                    try{
+                        PreparedStatement pst=null;
+                        pst=(PreparedStatement) connectDB.prepareStatement(dane);
+                        pst.setString(1,"1");
+                        pst.setString(2,null);
+                        pst.setString(3,id);
+                        pst.setString(4,IdLogin.getText());
+                        pst.setString(5,IdHaslo.getText());
+                        pst.execute();
+                    }catch(Exception e)
+                    {
+                        e.printStackTrace();
+                        e.getCause();
+                    }
+                    IdLabel.setText("Udalo sie zalogowac!");
+                    KontrolerPracownik();
+                }
+
+                else
+                {
+                    IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
+                }
+            }
+            ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
+            while(queryResultKl.next()) {
+
+                if (queryResultKl.getString("login").equals(IdLogin.getText()) && queryResultKl.getString("haslo").equals(IdHaslo.getText())) {
+                    String id=queryResultKl.getString("id_klienta");
+                    try{
+                        PreparedStatement pst=null;
+                        pst=(PreparedStatement) connectDB.prepareStatement(dane);
+                        pst.setString(1,"1");
+                        pst.setString(2,id);
+                        pst.setString(3, null);
+                        pst.setString(4,IdLogin.getText());
+                        pst.setString(5,IdHaslo.getText());
+                        pst.execute();
+                    }catch(Exception e)
+                    {
+                        e.printStackTrace();
+                        e.getCause();
+                    }
+                    IdLabel.setText("Udalo sie zalogowac!");
+                    KontrolerKlient();
+                } else {
+                    IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
+                }
+            }
+            Stage stage = (Stage) IdZaloguj.getScene().getWindow();
+            stage.close();
 
 
-           while(queryResult.next())
-           {
-
-               if(queryResult.getString("login").equals(IdLogin.getText()) && queryResult.getString("haslo").equals(IdHaslo.getText()))
-               {
-
-                   IdLabel.setText("Udalo sie zalogowac!");
-                   KontrolerPracownik();
-               }
-
-               else
-               {
-                   IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
-               }
-           }
-           ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
-           while(queryResultKl.next()) {
-
-               if (queryResultKl.getString("login").equals(IdLogin.getText()) && queryResultKl.getString("haslo").equals(IdHaslo.getText())) {
-                   IdLabel.setText("Udalo sie zalogowac!");
-                   KontrolerKlient();
-               } else {
-                   IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
-               }
-           }
-           Stage stage = (Stage) IdZaloguj.getScene().getWindow();
-           stage.close();
-
-
-       }catch(Exception e)
-       {
-           e.printStackTrace();
-           e.getCause();
-       }
-   }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
     public void WyswietlWycieczki(){
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
@@ -208,24 +248,24 @@ WyswietlWycieczki();
         Tab1.setItems(WczTab);
 
         FilteredList<DaneDoWycieczek>filtrowanie = new FilteredList<>(WczTab, b -> true);
-this.IdKraj.textProperty().addListener(((observable, oldValue, newValue)->{
+        this.IdKraj.textProperty().addListener(((observable, oldValue, newValue)->{
 
-    filtrowanie.setPredicate(DaneDoWycieczek->{
-        if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
-        {
-            return true;
-        }
-        String szukaneSlowo = newValue.toLowerCase();
-        if(DaneDoWycieczek.getNazwa().toLowerCase().indexOf(szukaneSlowo) > -1)
-        {
-            return true;
-        }else
-            return false;
+            filtrowanie.setPredicate(DaneDoWycieczek->{
+                if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
+                {
+                    return true;
+                }
+                String szukaneSlowo = newValue.toLowerCase();
+                if(DaneDoWycieczek.getNazwa().toLowerCase().indexOf(szukaneSlowo) > -1)
+                {
+                    return true;
+                }else
+                    return false;
 
 
-    });
+            });
 
-}));
+        }));
         this.IdMiejsce.textProperty().addListener(((observable, oldValue, newValue)->{
 
             filtrowanie.setPredicate(DaneDoWycieczek->{
@@ -280,9 +320,9 @@ this.IdKraj.textProperty().addListener(((observable, oldValue, newValue)->{
             });
 
         }));
-SortedList<DaneDoWycieczek> posortowane = new SortedList<>(filtrowanie);
-posortowane.comparatorProperty().bind(Tab1.comparatorProperty());
-this.Tab1.setItems(posortowane);
+        SortedList<DaneDoWycieczek> posortowane = new SortedList<>(filtrowanie);
+        posortowane.comparatorProperty().bind(Tab1.comparatorProperty());
+        this.Tab1.setItems(posortowane);
 
     }
 

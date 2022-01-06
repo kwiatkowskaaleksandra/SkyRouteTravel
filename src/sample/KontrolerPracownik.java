@@ -20,7 +20,7 @@ import java.sql.Statement;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class KontrolerPracownik implements Initializable {
+public class KontrolerPracownik implements Initializable  {
 
     @FXML
     private Button IdWyloguj;

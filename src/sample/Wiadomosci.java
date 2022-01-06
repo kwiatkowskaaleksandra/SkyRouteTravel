@@ -57,11 +57,16 @@ public class Wiadomosci implements Initializable {
     Poloczenie connectNow = new Poloczenie();
     Connection connectDB = connectNow.getConnection();
 
-    public void WyswietlWiadomosci() {
+    public void WyswietlWiadomosci() throws SQLException {
         final ObservableList WczTab = FXCollections.observableArrayList();
+        Statement statement = connectDB.createStatement();
 
-        String danee = "SELECT w.id_wiadomosci,temat,adresat,tresc,data , imie, nazwisko FROM wiadomosci w , pracownik p WHERE w.id_pracownika=p.id_pracownika and  p.id_pracownika='" + 1 + "'";
-
+        String dane="SELECT id_pracownika FROM zalogowany;";
+        ResultSet queryResult = statement.executeQuery(dane);
+        int idZal=0;
+        while (queryResult.next()) {
+            idZal = queryResult.getInt("id_pracownika");
+        }
         Statement st = null;
         try{
             st = connectDB.createStatement();
@@ -69,6 +74,25 @@ public class Wiadomosci implements Initializable {
             e.printStackTrace();
         }
         DaneDoWiadomosci daneDoWiadomosci;
+        String dane3 = "SELECT imie, nazwisko FROM pracownik p WHERE p.id_pracownika='" + idZal + "'";
+        ResultSet rs2 = null;
+        try {
+            rs2 = Objects.requireNonNull(st).executeQuery(dane3);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            while (Objects.requireNonNull(rs2).next()) {
+                String imie = rs2.getString("imie");
+                String nazwisko = rs2.getString("nazwisko");
+                DanePrac.setText(imie+" "+nazwisko);
+            }
+
+        } catch (Exception e) {
+            System.out.println("There is an Exception.");
+            System.out.println(e.getMessage());
+        }
+        String danee = "SELECT w.id_wiadomosci,temat,adresat,tresc,data , imie, nazwisko FROM wiadomosci w , pracownik p WHERE w.id_pracownika=p.id_pracownika and  p.id_pracownika='" + idZal + "'";
 
         ResultSet rs = null;
         try {
@@ -208,6 +232,10 @@ public class Wiadomosci implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        WyswietlWiadomosci();
+        try {
+            WyswietlWiadomosci();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
