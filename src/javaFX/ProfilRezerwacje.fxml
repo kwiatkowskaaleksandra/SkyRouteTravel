@@ -34,14 +34,24 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="312.0" prefWidth="340.0" spacing="15.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0" stylesheets="@../css/profil.css">
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0" styleClass="selected" stylesheets="@../css/profil.css">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../obrazy/avatarr.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="prof" mnemonicParsing="false" onAction="#ProfilOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="PROFIL" textFill="#c6c1c1" />
+                        <Button fx:id="prof" onAction="#ProfilOnAction" mnemonicParsing="false" prefWidth="165.0" text="PROFIL" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../obrazy/notyfikacja.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="rez" onAction="#RezerwacjaOnAction" mnemonicParsing="false" prefWidth="165.0" text="REZERWACJE" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
                      <styleClass>
                         <String fx:value="selected" />
@@ -52,20 +62,10 @@
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../obrazy/notyfikacja.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="rez" mnemonicParsing="false" onAction="#RezerwacjaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="REZERWACJE" textFill="#c6c1c1" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
-                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
                               <Image url="@../obrazy/haslo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="hsl" mnemonicParsing="false" onAction="#HasloOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="ZMIEŃ HASŁO" textFill="#c6c1c1" />
+                        <Button fx:id="hsl" onAction="#HasloOnAction" mnemonicParsing="false" prefWidth="165.0" text="ZMIEŃ HASŁO" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
@@ -75,7 +75,7 @@
                               <Image url="@../obrazy/ustawienia.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="ust" mnemonicParsing="false" onAction="#UstawieniaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="USTAWIENIA" textFill="#c6c1c1" />
+                        <Button fx:id="ust" onAction="#UstawieniaOnAction" mnemonicParsing="false" prefWidth="165.0" text="USTAWIENIA" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
@@ -85,7 +85,7 @@
                               <Image url="@../obrazy/prywatnosc.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="plt" mnemonicParsing="false" onAction="#PolitykaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="POLITYKA PRYWATNOŚCI" textFill="#c6c1c1" />
+                        <Button fx:id="plt" onAction="#PolitykaOnAction" mnemonicParsing="false" prefWidth="165.0" text="POLITYKA PRYWATNOŚCI" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
                      <opaqueInsets>
                         <Insets top="15.0" />
@@ -108,9 +108,9 @@
                <padding>
                   <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
                </padding></Label>
-            <VBox alignment="TOP_CENTER" prefHeight="306.0" prefWidth="880.0" spacing="30.0">
+            <VBox alignment="TOP_CENTER" prefHeight="474.0" prefWidth="880.0" spacing="30.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="880.0" text="Szczegóły konta" textFill="WHITE">
+                  <Label prefHeight="20.0" prefWidth="880.0" text="Rezerwacje" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -118,75 +118,30 @@
                         <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                      </padding>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="880.0">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="70.0" prefWidth="158.0" text="Imie" textFill="WHITE">
+                        <TableView prefHeight="372.0" prefWidth="518.0" stylesheets="@../css/WycieczkiMenu.css">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="ID" />
+                            <TableColumn prefWidth="75.0" text="TERMIN" />
+                              <TableColumn prefWidth="75.0" text="ILOŚĆ OSÓB" />
+                              <TableColumn prefWidth="87.0" text="ILOŚĆ DZIECI" />
+                              <TableColumn prefWidth="63.0" text="CENA" />
+                              <TableColumn prefWidth="141.0" text="RODZAJ PŁATNOŚCI" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="685.0" layoutY="44.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Zaakceptuj" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="12.0" />
                            </font>
-                           <padding>
-                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane prefHeight="70.0" prefWidth="145.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
-                     </children></HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="94.0" prefWidth="880.0">
-                     <children>
-                        <Label prefHeight="61.0" prefWidth="180.0" text="Nazwisko" textFill="WHITE">
+                        </Button>
+                        <Button layoutX="685.0" layoutY="166.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Odrzuć" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="12.0" />
                            </font>
-                           <padding>
-                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane prefHeight="70.0" prefWidth="125.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        </Button>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
-                     <children>
-                        <Label prefHeight="70.0" prefWidth="158.0" text="E-mail" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane prefHeight="70.0" prefWidth="145.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
-                     <children>
-                        <Label prefHeight="70.0" prefWidth="158.0" text="Login" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane prefHeight="70.0" prefWidth="145.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
-                     <children>
-                        <Label prefHeight="61.0" prefWidth="213.0" text="Data założenia" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
-                           </padding>
-                        </Label>
-                        <Pane prefHeight="53.0" prefWidth="90.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
-                     </children>
-                  </HBox>
+                  </AnchorPane>
                </children>
             </VBox>
          </children>

@@ -10,10 +10,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.*;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.*;
 import java.util.Objects;
@@ -43,6 +50,8 @@ public class KontrolerMenu implements Initializable {
     private TableColumn<DaneDoWycieczek,String> czs;
     @FXML
     private TableColumn<DaneDoWycieczek,Float> cn;
+    @FXML
+    private TableColumn<DaneDoWycieczek, ImageView> obr;
     @FXML
     public Button IdZaloguj;
     @FXML
@@ -225,6 +234,7 @@ public class KontrolerMenu implements Initializable {
                 String atrakcje =rs.getString("atrakcje");
                 String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
+
                 daneDoWycieczek = new DaneDoWycieczek(id1, nazwa,miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
 
@@ -244,6 +254,7 @@ public class KontrolerMenu implements Initializable {
         prem.setCellValueFactory(new PropertyValueFactory<>("premium"));
         atr.setCellValueFactory(new PropertyValueFactory<>("atrakcje"));
         rdw.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
+        obr.setCellValueFactory(new PropertyValueFactory<>("Obraz"));
 
         Tab1.setItems(WczTab);
 
@@ -364,6 +375,7 @@ public class KontrolerMenu implements Initializable {
                 String atrakcje =rs.getString("atrakcje");
                 String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
+
                 daneDoWycieczek = new DaneDoWycieczek(id1,nazwa, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
             }

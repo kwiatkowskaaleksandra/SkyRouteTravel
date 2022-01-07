@@ -3,6 +3,8 @@ package sample;/*
  * @author kola
  */
 
+import javax.swing.text.html.ImageView;
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -11,6 +13,7 @@ public class DaneDoWycieczek {
     String nazwa,miejsce, zakwaterowanie,transport,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj;
     float cena;
     int id, iloscDni;
+
     public DaneDoWycieczek(int id,String nazwa, String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String atrakcje, String premium, String rodzaj, int iloscDni){
         this.id=id;
         this.nazwa=nazwa;
@@ -24,6 +27,7 @@ public class DaneDoWycieczek {
         this.cena=cena;
         this.rodzaj=rodzaj;
         this.iloscDni=iloscDni;
+
     }
 
 
@@ -109,4 +113,6 @@ public class DaneDoWycieczek {
     public String getRodzaj() { return rodzaj; }
 
     public void setRodzaj(String rodzaj) { this.rodzaj = rodzaj; }
+
+
 }

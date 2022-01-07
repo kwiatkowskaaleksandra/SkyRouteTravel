@@ -34,19 +34,15 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="312.0" prefWidth="340.0" spacing="15.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0" stylesheets="@../css/profil.css">
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0" styleClass="selected" stylesheets="@../css/profil.css">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../obrazy/avatarr.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="prof" mnemonicParsing="false" onAction="#ProfilOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="PROFIL" textFill="#c6c1c1" />
+                        <Button fx:id="prof" mnemonicParsing="false" onAction="#ProfilOnAction" prefWidth="165.0" text="PROFIL" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
-                     <styleClass>
-                        <String fx:value="selected" />
-                        <String fx:value="selected-border" />
-                     </styleClass>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
                      <children>
@@ -55,7 +51,7 @@
                               <Image url="@../obrazy/notyfikacja.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="rez" mnemonicParsing="false" onAction="#RezerwacjaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="REZERWACJE" textFill="#c6c1c1" />
+                        <Button fx:id="rez" mnemonicParsing="false" onAction="#RezerwacjaOnAction" prefWidth="165.0" text="REZERWACJE" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
@@ -65,18 +61,22 @@
                               <Image url="@../obrazy/haslo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="hsl" mnemonicParsing="false" onAction="#HasloOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="ZMIEŃ HASŁO" textFill="#c6c1c1" />
+                        <Button fx:id="hsl" mnemonicParsing="false" onAction="#HasloOnAction" prefWidth="165.0" text="ZMIEŃ HASŁO" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../obrazy/ustawienia.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="ust" mnemonicParsing="false" onAction="#UstawieniaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="USTAWIENIA" textFill="#c6c1c1" />
+                        <Button fx:id="ust" mnemonicParsing="false" onAction="#UstawieniaOnAction" prefWidth="165.0" text="USTAWIENIA" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
+                     <styleClass>
+                        <String fx:value="selected" />
+                        <String fx:value="selected-border" />
+                     </styleClass>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
                      <children>
@@ -85,7 +85,7 @@
                               <Image url="@../obrazy/prywatnosc.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="plt" mnemonicParsing="false" onAction="#PolitykaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="POLITYKA PRYWATNOŚCI" textFill="#c6c1c1" />
+                        <Button fx:id="plt" onAction="#PolitykaOnAction" mnemonicParsing="false" prefWidth="165.0" text="POLITYKA PRYWATNOŚCI" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
                      </children>
                      <opaqueInsets>
                         <Insets top="15.0" />
@@ -110,7 +110,7 @@
                </padding></Label>
             <VBox alignment="TOP_CENTER" prefHeight="306.0" prefWidth="880.0" spacing="30.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="880.0" text="Szczegóły konta" textFill="WHITE">
+                  <Label prefHeight="20.0" prefWidth="880.0" text="Edycja konta" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -189,6 +189,11 @@
                   </HBox>
                </children>
             </VBox>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Zapisz zmiany" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
    </center>
