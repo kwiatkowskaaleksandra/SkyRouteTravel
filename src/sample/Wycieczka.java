@@ -45,6 +45,8 @@ public class Wycieczka implements Initializable {
     @FXML
     private TableColumn<DaneDoWycieczek,String> prem;
     @FXML
+    private TableColumn<DaneDoWycieczek,Float> cP;
+    @FXML
     private TableColumn<DaneDoWycieczek,String> czs;
     @FXML
     private TableColumn<DaneDoWycieczek,Float> cn;
@@ -61,7 +63,7 @@ public class Wycieczka implements Initializable {
     @FXML
     private Button EdytujButton;
     @FXML
-    private TextField id;
+    private TextField cnPr;
     @FXML
     private TextField TextK2;
     @FXML
@@ -101,7 +103,7 @@ public class Wycieczka implements Initializable {
     public void WyswietlWycieczki(){
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT id_wycieczki,nazwa,miejsce,w.cena,t.rodzaj,czas, z.rodzaj, wyzywienie, premium, atrakcje, rodzajWycieczki,iloscDni FROM wycieczki w, zakwaterowanie z, transport t WHERE w.id_transport=t.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie";
+        String danee = "SELECT id_wycieczki,nazwa,miejsce,w.cena,t.rodzaj,czas, z.rodzaj, wyzywienie, premium, w.cenaPrem, atrakcje, rodzajWycieczki,iloscDni FROM wycieczki w, zakwaterowanie z, transport t WHERE w.id_transport=t.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie ORDER BY id_wycieczki ASC";
 
         Statement st = null;
         try{
@@ -128,11 +130,12 @@ public class Wycieczka implements Initializable {
                 String zakwaterowanie =rs.getString("z.rodzaj");
                 String wyzywienie=rs.getString("wyzywienie");
                 String premium =rs.getString("premium");
+                float cenaPrem=rs.getFloat("w.cenaPrem");
                 String atrakcje =rs.getString("atrakcje");
                 String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
 
-                daneDoWycieczek = new DaneDoWycieczek(id1,nazwa, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
+                daneDoWycieczek = new DaneDoWycieczek(id1,nazwa, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,cenaPrem,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
 
             }
@@ -141,7 +144,7 @@ public class Wycieczka implements Initializable {
             System.out.println("There is an Exception.");
             System.out.println(e.getMessage());
         }
-        idp.setCellValueFactory(new PropertyValueFactory<>("id"));
+
         nzw.setCellValueFactory(new PropertyValueFactory<>("nazwa"));
         ms.setCellValueFactory(new PropertyValueFactory<>("miejsce"));
         cn.setCellValueFactory(new PropertyValueFactory<>("cena"));
@@ -150,6 +153,7 @@ public class Wycieczka implements Initializable {
         zak.setCellValueFactory(new PropertyValueFactory<>("zakwaterowanie"));
         wyz.setCellValueFactory(new PropertyValueFactory<>("wyzywienie"));
         prem.setCellValueFactory(new PropertyValueFactory<>("premium"));
+        cP.setCellValueFactory(new PropertyValueFactory<>("cenaP"));
         atr.setCellValueFactory(new PropertyValueFactory<>("atrakcje"));
         rodz.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
         ilDn.setCellValueFactory(new PropertyValueFactory<>("iloscDni"));
@@ -158,16 +162,23 @@ public class Wycieczka implements Initializable {
 
     }
 
-    public void DodajWycieczke(){
+    public void DodajWycieczke() throws SQLException {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
+        Statement stat2=null;
+        stat2=connectDB.createStatement();
+        String maxID="SELECT id_wycieczki FROM wycieczki ORDER BY  id_wycieczki ASC";
+        ResultSet max=stat2.executeQuery(maxID);
+        int idw = 0;
+        while (max.next()){
+            idw=max.getInt("id_wycieczki");
+        }
 
-        String danee="INSERT INTO wycieczki(id_wycieczki,nazwa,miejsce,cena,id_transport,czas,id_zakwaterowanie,wyzywienie,premium,atrakcje,rodzajWycieczki,iloscDni)values(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String danee="INSERT INTO wycieczki(id_wycieczki,nazwa,miejsce,cena,id_transport,czas,id_zakwaterowanie,wyzywienie,premium,cenaPrem, atrakcje,rodzajWycieczki,iloscDni)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try{
-
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            pst.setString(1,id.getText());
+            pst.setString(1, String.valueOf(idw+1));
             pst.setString(2,TextK12.getText());
             pst.setString(4,TextK3.getText());
             if(RodzajTransportu.getValue().equals("Samolot")) {
@@ -201,19 +212,19 @@ public class Wycieczka implements Initializable {
                 pst.setString(8,TextK10.getText());
             }
             pst.setString(6,TextK5.getText());
-            pst.setString(9,TextK7.getText());
-            pst.setString(10,TextK8.getText());
-            pst.setString(11,RodzajWycieczki.getValue());
-            pst.setString(12, TextK11.getText());
+            pst.setString(11,TextK7.getText());
+            pst.setString(10,cnPr.getText());
+            pst.setString(9,TextK8.getText());
+            pst.setString(12,RodzajWycieczki.getValue());
+            pst.setString(13, TextK11.getText());
             pst.setString(3,TextK2.getText());
-           if(id.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()|TextK5.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
+           if(TextK2.getText().isEmpty()||cnPr.getText().isEmpty()||TextK3.getText().isEmpty()|TextK5.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
                throw new Exception();
            }
             else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
                 WyswietlWycieczki();
-                id.clear();
                 TextK2.clear();
                 TextK3.clear();
                 TextK5.clear();
@@ -223,6 +234,7 @@ public class Wycieczka implements Initializable {
                 TextK10.setSelected(false);
                 TextK11.clear();
                 TextK12.clear();
+                cnPr.clear();
                 RodzajWycieczki.setValue("Rodzaj wycieczki");
                 RodzajTransportu.setValue("Rodzaj transportu");
                 RodzajZakwaterowania.setValue("Rodzaj zakwaterowania");
@@ -237,14 +249,15 @@ public class Wycieczka implements Initializable {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
-        String danee="DELETE FROM wycieczki WHERE id_wycieczki=?";
+        String danee="DELETE FROM wycieczki WHERE nazwa= ? AND miejsce=? AND cena= ?";
         try {
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            pst.setString(1,id.getText());
+            pst.setString(1,TextK12.getText());
+            pst.setString(2,TextK2.getText());
+            pst.setString(3,TextK3.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null,"Usunieto pomyslnie!");
             WyswietlWycieczki();
-            id.clear();
             TextK2.clear();
             TextK3.clear();
             TextK5.clear();
@@ -254,6 +267,7 @@ public class Wycieczka implements Initializable {
             TextK10.setSelected(false);
             TextK11.clear();
             TextK12.clear();
+            cnPr.clear();
             RodzajWycieczki.setValue("Rodzaj wycieczki");
             RodzajTransportu.setValue("Rodzaj transportu");
             RodzajZakwaterowania.setValue("Rodzaj zakwaterowania");
@@ -262,67 +276,91 @@ public class Wycieczka implements Initializable {
         }
     }
 
-    public void EdytujWycieczke(){
+    public int pobierzDane() throws SQLException {
+        Statement stat2=null;
+        stat2=connectDB.createStatement();
+        String n=TextK12.getText();
+        String m=TextK2.getText();
+        String c=TextK5.getText();
+        System.out.println(n+" "+m);
+        String ID="SELECT id_wycieczki FROM wycieczki WHERE nazwa='"+n+"' AND miejsce='"+m+"'";
+        ResultSet max=stat2.executeQuery(ID);
+        int id=0;
+        while (max.next()){
+            id=max.getInt("id_wycieczki");
+            System.out.println(id);
+        }
+        return id;
+    }
+
+    public void EdytujWycieczke() throws SQLException {
     String danee;
+       // int id=pobierzDane();
+
         try{
 
-            String val1=id.getText();
-            String val2=TextK12.getText();
-            String val3=TextK2.getText();
-            String val4=TextK3.getText();
-            String val5 = null;
+            String nz=TextK12.getText();
+            String ms=TextK2.getText();
+            String cn=TextK3.getText();
+            String rT = null;
             if(RodzajTransportu.getValue().equals("Samolot")) {
-                val5="1";
+                rT="1";
             } else  if(RodzajTransportu.getValue().equals("Prom")) {
-                 val5="2";
+                rT="2";
             }else  if(RodzajTransportu.getValue().equals("Pociąg")) {
-                val5="3";
+                rT="3";
             }else  if(RodzajTransportu.getValue().equals("Autokar")) {
-                val5="4";
+                rT="4";
             }
-            String val6=TextK5.getText();
-            String val7 = null;
+            String czs=TextK5.getText();
+            String rZ = null;
             if(RodzajZakwaterowania.getValue().equals("Hotel")) {
-                 val7="1";
+                 rZ="1";
             }else  if(RodzajZakwaterowania.getValue().equals("Motel")) {
-               val7="2";
+                rZ="2";
             }else  if(RodzajZakwaterowania.getValue().equals("Kurort")) {
-               val7="3";
+                rZ="3";
             }else  if(RodzajZakwaterowania.getValue().equals("Domek jednorodzinny")) {
-                 val7="4";
+                rZ="4";
             }
-            String val8=TextK8.getText();
-            String val9=TextK9.getText();
-            String val10=TextK10.getText();
-            String val12=RodzajWycieczki.getValue();
-            String val11=TextK11.getText();
-            String val13=TextK7.getText();
+            String cT=TextK9.getText();
+            String cN=TextK10.getText();
+            String rW=RodzajWycieczki.getValue();
+            String ilD=TextK11.getText();
+            String atr=TextK7.getText();
+            String cP=cnPr.getText();
+            String pr=TextK8.getText();
+
 
             if(TextK9.isSelected() && !TextK10.isSelected()){
                 TextK9.setSelected(true);
                 TextK10.setSelected(false);
-                danee = "UPDATE wycieczki SET id_wycieczki='"+val1+"',nazwa='" + val2 + "',miejsce='" + val3 + "',cena='"
-                        + val4 + "',id_transport='" + val5 + "',czas='" + val6 + "',id_zakwaterowanie='" + val7 + "',wyzywienie='" + val9 + "',premium='" + val13 + "',atrakcje='" + val8 +
-                        "',rodzajWycieczki='"+val12+"',iloscDni='"+ val11+"'WHERE id_wycieczki='" + val1 + "'";
-                pst = (PreparedStatement) connectDB.prepareStatement(danee);
 
+
+                danee = "UPDATE wycieczki SET id_wycieczki='"+12+"' ,nazwa='" + nz + "',miejsce='" + ms + "',cena='"
+                        + cn + "',id_transport='" + rT + "',czas='" + czs + "',id_zakwaterowanie='" + rZ + "',wyzywienie='" + cT + "',premium='" + pr+"',cenaPrem='"+cP + "',atrakcje='" + atr +
+                        "',rodzajWycieczki='"+rW+"',iloscDni='"+ ilD+"'WHERE id_wycieczki='"+12+"'";
+                pst = (PreparedStatement) connectDB.prepareStatement(danee);
+                System.out.println(TextK12.getText());
             }
             else if(TextK10.isSelected() && !TextK9.isSelected()){
                 TextK9.setSelected(false);
                 TextK10.setSelected(true);
-                danee = "UPDATE wycieczki SET id_wycieczki='"+val1+"',nazwa='" + val2 + "',miejsce='" + val3 + "',cena='"
-                        + val4 + "',id_transport='" + val5 + "',czas='" + val6 + "',id_zakwaterowanie='" + val7 + "',wyzywienie='" + val10 + "',premium='" + val13 + "',atrakcje='" + val8 +
-                        "',rodzajWycieczki='"+val12+"',iloscDni='"+ val11+"' WHERE id_wycieczki" + "='" + val1 + "'";
+
+
+                danee = "UPDATE wycieczki SET id_wycieczki='"+12+"' ,nazwa='" + nz + "',miejsce='" + ms + "',cena='"
+                        + cn + "',id_transport='" + rT + "',czas='" + czs + "',id_zakwaterowanie='" + rZ + "',wyzywienie='" + cN + "',premium='" + pr+"',cenaPrem='"+cP + "',atrakcje='" + atr +
+                        "',rodzajWycieczki='"+rW+"',iloscDni='"+ ilD+"'WHERE id_wycieczki='"+12+"'";
                 pst = (PreparedStatement) connectDB.prepareStatement(danee);
+                System.out.println(TextK12.getText());
             }
 
-            if(id.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK5.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
+            if(TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK5.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
                 throw new Exception();
             }else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Edycja zakonczona pomyslnie!");
                 WyswietlWycieczki();
-                id.clear();
                 TextK2.clear();
                 TextK3.clear();
                 TextK5.clear();
@@ -331,6 +369,8 @@ public class Wycieczka implements Initializable {
                 TextK9.setSelected(false);
                 TextK10.setSelected(false);
                 TextK11.clear();
+                cnPr.clear();
+                TextK12.clear();
                 RodzajWycieczki.setValue("Rodzaj wycieczki");
                 RodzajTransportu.setValue("Rodzaj transportu");
                 RodzajZakwaterowania.setValue("Rodzaj zakwaterowania");
@@ -395,18 +435,18 @@ public class Wycieczka implements Initializable {
         RodzajZakwaterowania.setValue(a);
     }
 
-    public void DodajButtonOnActionEvent(){ DodajWycieczke();}
+    public void DodajButtonOnActionEvent() throws SQLException { DodajWycieczke();}
 
     public void UsunButtonOnActionEvent(){ UsunWycieczke();}
 
-    public void EdytujButtonOnActionEvent(){ EdytujWycieczke();}
+    public void EdytujButtonOnActionEvent() throws SQLException { EdytujWycieczke();}
 
     public void getSelected(){
         index=Tab1.getSelectionModel().getSelectedIndex();
         if(index<=-1){
             return;
         }
-        id.setText(idp.getCellData(index).toString());
+
         TextK12.setText(nzw.getCellData(index));
         TextK2.setText(ms.getCellData(index));
         TextK3.setText(cn.getCellData(index).toString());
@@ -426,6 +466,7 @@ public class Wycieczka implements Initializable {
             TextK10.setSelected(true);
         }
         TextK8.setText(prem.getCellData(index));
+        cnPr.setText(cP.getCellData(index).toString());
         TextK7.setText(atr.getCellData(index));
         TextK11.setText(ilDn.getCellData(index).toString());
         RodzajWycieczki.setValue(rodz.getCellData(index));

@@ -11,10 +11,10 @@ import java.sql.Timestamp;
 
 public class DaneDoWycieczek {
     String nazwa,miejsce, zakwaterowanie,transport,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj;
-    float cena;
+    float cena, cenaP;
     int id, iloscDni;
 
-    public DaneDoWycieczek(int id,String nazwa, String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String atrakcje, String premium, String rodzaj, int iloscDni){
+    public DaneDoWycieczek(int id,String nazwa, String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String premium, float cenaP,String atrakcje, String rodzaj, int iloscDni){
         this.id=id;
         this.nazwa=nazwa;
         this.miejsce=miejsce;
@@ -23,6 +23,7 @@ public class DaneDoWycieczek {
         this.transport=transport;
         this.atrakcje=atrakcje;
         this.premium=premium;
+        this.cenaP=cenaP;
         this.czasPodrozy=czasPodrozy;
         this.cena=cena;
         this.rodzaj=rodzaj;
@@ -30,6 +31,13 @@ public class DaneDoWycieczek {
 
     }
 
+    public float getCenaP() {
+        return cenaP;
+    }
+
+    public void setCenaP(float cenaP) {
+        this.cenaP = cenaP;
+    }
 
     public int getId(){
         return id;

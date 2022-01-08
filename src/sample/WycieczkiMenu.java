@@ -148,7 +148,7 @@ public class WycieczkiMenu implements Initializable {
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport";
+        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport  ORDER BY id_wycieczki ASC";
 
         Statement st = null;
         try{
@@ -175,11 +175,12 @@ public class WycieczkiMenu implements Initializable {
                 String zakwaterowanie =rs.getString("zakwaterowanie");
                 String wyzywienie =rs.getString("wyzywienie");
                 String premium =rs.getString("premium");
+                float cenaPrem=rs.getFloat("cenaPrem");
                 String atrakcje =rs.getString("atrakcje");
                 String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
 
-                daneDoWycieczek = new DaneDoWycieczek(id1, nazwa,miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,atrakcje,rodzaj,iloscDni);
+                daneDoWycieczek = new DaneDoWycieczek(id1,nazwa, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,cenaPrem,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
 
             }
