@@ -137,28 +137,29 @@ public class KontrolerMenu implements Initializable {
             while(queryResult.next())
             {
 
-                if(queryResult.getString("login").equals(IdLogin.getText()) && queryResult.getString("haslo").equals(IdHaslo.getText()))
-                {
-                    String id=queryResult.getString("id_pracownika");
+                if(queryResult.getString("login").equals(IdLogin.getText()) && queryResult.getString("haslo").equals(IdHaslo.getText()) ) {
+                    if (IdLogin.getText().equals("admin")) {
+                        KontrolerAdministrator();
+                    } else {
+                        String id = queryResult.getString("id_pracownika");
 
-                    try{
-                        PreparedStatement pst=null;
-                        pst=(PreparedStatement) connectDB.prepareStatement(dane);
-                        pst.setString(1,"1");
-                        pst.setString(2,null);
-                        pst.setString(3,id);
-                        pst.setString(4,IdLogin.getText());
-                        pst.setString(5,IdHaslo.getText());
-                        pst.execute();
-                    }catch(Exception e)
-                    {
-                        e.printStackTrace();
-                        e.getCause();
+                        try {
+                            PreparedStatement pst = null;
+                            pst = (PreparedStatement) connectDB.prepareStatement(dane);
+                            pst.setString(1, "1");
+                            pst.setString(2, null);
+                            pst.setString(3, id);
+                            pst.setString(4, IdLogin.getText());
+                            pst.setString(5, IdHaslo.getText());
+                            pst.execute();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            e.getCause();
+                        }
+                        IdLabel.setText("Udalo sie zalogowac!");
+                        KontrolerPracownik();
                     }
-                    IdLabel.setText("Udalo sie zalogowac!");
-                    KontrolerPracownik();
                 }
-
                 else
                 {
                     IdLabel.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");

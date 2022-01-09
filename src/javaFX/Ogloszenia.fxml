@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="510.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Ogloszenia">
+   <children>
+      <TableView fx:id="Tab1" layoutX="37.0" layoutY="14.0" onMouseClicked="#getSelected" prefHeight="223.0" prefWidth="285.0">
+        <columns>
+          <TableColumn fx:id="dat" prefWidth="99.0" text="DATA" />
+          <TableColumn fx:id="ogl" prefWidth="180.0" text="OGLOSZENIE" />
+            <TableColumn fx:id="ido" prefWidth="164.0" text="id" visible="false" />
+        </columns>
+      </TableView>
+      <Button fx:id="dodaj" layoutX="336.0" layoutY="80.0" mnemonicParsing="false" onAction="#dodajOgloszenieOnAction" style="-fx-background-color: #ffffff;" prefHeight="36.0" prefWidth="117.0" text="ZATWIERDZ" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Button fx:id="edytuj" layoutX="336.0" layoutY="24.0" mnemonicParsing="false" onAction="#edytujOgloszenieOnAction" style="-fx-background-color: #ffffff;" prefHeight="36.0" prefWidth="117.0" text="EDYTUJ" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Button fx:id="usun" layoutX="336.0" layoutY="136.0" mnemonicParsing="false" onAction="#usunOgloszenieOnAction" style="-fx-background-color: #ffffff;" prefHeight="36.0" prefWidth="117.0" text="USUN" textFill="#160d75">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB" size="18.0" />
+         </font></Button>
+      <TextArea fx:id="tresc" layoutX="37.0" layoutY="336.0" prefHeight="145.0" prefWidth="398.0" promptText="TESC OGLOSZENIA" />
+      <TextField fx:id="ide" layoutX="262.0" layoutY="281.0" promptText="id" visible="false" />
+      <TextField fx:id="data" layoutX="37.0" layoutY="281.0" prefHeight="43.0" prefWidth="202.0" promptText="RRRR-MM-DD" />
+   </children>
+</AnchorPane>

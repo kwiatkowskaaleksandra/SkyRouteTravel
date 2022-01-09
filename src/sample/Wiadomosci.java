@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javax.swing.*;
+import javax.swing.text.html.ImageView;
+import java.io.*;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -52,12 +54,13 @@ public class Wiadomosci implements Initializable {
     private Label forma;
 
 
+
     PreparedStatement pst = null;
     int index=-1;
     Poloczenie connectNow = new Poloczenie();
     Connection connectDB = connectNow.getConnection();
 
-    public void WyswietlWiadomosci() throws SQLException {
+    public void WyswietlWiadomosci() throws SQLException, IOException {
         final ObservableList WczTab = FXCollections.observableArrayList();
         Statement statement = connectDB.createStatement();
 
@@ -166,7 +169,7 @@ public class Wiadomosci implements Initializable {
             WyswietlWiadomosci();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Blad przy usuwaniu! "+e);
+            JOptionPane.showMessageDialog(null,"Blad przy usuwaniu!  "+e);
         }
     }
 
@@ -234,8 +237,10 @@ public class Wiadomosci implements Initializable {
 
         try {
             WyswietlWiadomosci();
-        } catch (SQLException throwables) {
+        } catch (SQLException | FileNotFoundException throwables) {
             throwables.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

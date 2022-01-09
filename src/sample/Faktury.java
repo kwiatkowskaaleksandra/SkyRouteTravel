@@ -149,14 +149,24 @@ public class Faktury implements Initializable {
 
     }
 
-    public void DodajFakture(){
+    public void DodajFakture() throws SQLException {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
+
+
+        Statement stat2=null;
+        stat2=connectDB.createStatement();
+        String maxID="SELECT id_faktury FROM faktury ORDER BY  id_faktury ASC";
+        ResultSet max=stat2.executeQuery(maxID);
+        int idf = 0;
+        while (max.next()){
+            idf=max.getInt("id_faktury");
+        }
 
         String danee="INSERT INTO faktury(id_faktury,imie,nazwisko,email,telefon,miejscowosc,numer,kod,id_platnosc,data,id_wycieczki)values(?,?,?,?,?,?,?,?,?,?,?)";
         try{
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            pst.setString(1,TextK1.getText());
+            pst.setString(1, String.valueOf(idf+1));
             pst.setString(2,TextK2.getText());
             pst.setString(3,TextK3.getText());
             pst.setString(4,TextK4.getText());
@@ -296,7 +306,7 @@ public class Faktury implements Initializable {
         }
     }
 
-    public void DodajButtonOnActionEvent(){ DodajFakture();}
+    public void DodajButtonOnActionEvent() throws SQLException { DodajFakture();}
 
     public void UsunButtonOnActionEvent(){ UsunFakture();}
 

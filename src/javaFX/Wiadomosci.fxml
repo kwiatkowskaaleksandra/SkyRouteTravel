@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="650.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Wiadomosci">
@@ -15,8 +16,8 @@
                   <TableColumn fx:id="dat" prefWidth="157.0" text="Odebrano:" />
               </columns>
             </TableView>
-            <Button fx:id="UsunButton" layoutX="414.0" layoutY="23.0" onAction="#UsunWiadomoscOnActionEvent" mnemonicParsing="false" text="USUN" />
-            <Button fx:id="WyjdzButton" layoutX="523.0" layoutY="23.0" onAction="#wyjdzButtonOnAction" mnemonicParsing="false" text="WYJDZ" />
+            <Button fx:id="UsunButton" layoutX="414.0" layoutY="23.0" mnemonicParsing="false" onAction="#UsunWiadomoscOnActionEvent" text="USUN" />
+            <Button fx:id="WyjdzButton" layoutX="523.0" layoutY="23.0" mnemonicParsing="false" onAction="#wyjdzButtonOnAction" text="WYJDZ" />
             <TextField fx:id="DanePrac" editable="false" layoutX="14.0" layoutY="23.0" prefHeight="32.0" prefWidth="242.0" />
          </children>
       </Pane>
@@ -29,7 +30,7 @@
             <TextField fx:id="adres" editable="false" layoutX="57.0" layoutY="25.0" prefHeight="25.0" prefWidth="493.0" />
             <TextField fx:id="subject" editable="false" layoutX="57.0" layoutY="53.0" prefHeight="25.0" prefWidth="493.0" />
          </children></Pane>
-      <Button fx:id="WyslijButton" layoutX="1130.0" layoutY="29.0" onAction="#WyslijWiadomoscOnActionEvent" mnemonicParsing="false" text="WYSLIJ" />
-      <Button fx:id="OdpowiedzButton" layoutX="1019.0" layoutY="29.0" onAction="#OdpowiedzOnActionEvent" mnemonicParsing="false" text="ODPOWIEDZ" />
+      <Button fx:id="WyslijButton" layoutX="1130.0" layoutY="29.0" mnemonicParsing="false" onAction="#WyslijWiadomoscOnActionEvent" text="WYSLIJ" />
+      <Button fx:id="OdpowiedzButton" layoutX="1019.0" layoutY="29.0" mnemonicParsing="false" onAction="#OdpowiedzOnActionEvent" text="ODPOWIEDZ" />
    </children>
 </AnchorPane>

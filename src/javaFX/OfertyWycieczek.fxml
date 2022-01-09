@@ -24,6 +24,7 @@
                   <TableColumn fx:id="atr" prefWidth="148.0" text="ATRAKCJE" />
                   <TableColumn fx:id="rodz" prefWidth="76.0" text="RODZAJ" />
                   <TableColumn fx:id="ilDn" prefWidth="70.0" text="ILOSC DNI" />
+                  <TableColumn fx:id="idw" prefWidth="75.0" text="Column X" visible="false" />
               </columns>
             </TableView>
             <Label alignment="TOP_CENTER" layoutX="14.0" layoutY="10.0" prefHeight="70.0" prefWidth="1803.0" text="SKY ROUTE TRAVEL" textAlignment="JUSTIFY" textFill="#1e0d79">
@@ -90,6 +91,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
+            <TextField fx:id="id" layoutX="1320.0" layoutY="184.0" promptText="id" visible="false" />
 
 
 

@@ -27,6 +27,7 @@ public class KontrolerPracownik implements Initializable  {
     public Button OfertyWycieczek;
     public Button Faktury;
     public Button Wiadomosci;
+    public Button Akceptacja;
     public ListView <String>listaOgloszen;
 
 
@@ -99,6 +100,25 @@ public class KontrolerPracownik implements Initializable  {
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1250,650));
             menuStage.setTitle("Wiadomości");
+            menuStage.show();
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void AkceptacjaOnAction(javafx.event.ActionEvent event){
+        Stage stage = (Stage) Akceptacja.getScene().getWindow();
+
+        try{
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("../javaFX/AkceptacjaRezerwacji.fxml"));
+            Stage menuStage = new Stage();
+            menuStage.initStyle(StageStyle.DECORATED);
+            menuStage.setScene(new Scene(root, 1250,650));
+            menuStage.setTitle("Akceptacja Rezerwacji");
             menuStage.show();
 
         }catch(Exception e)

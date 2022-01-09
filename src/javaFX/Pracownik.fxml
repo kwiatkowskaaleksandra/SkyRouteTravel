@@ -53,7 +53,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button layoutX="886.0" layoutY="4.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="177.0" style="-fx-background-color: #ffffff;" text="PRZYPISYWANIE" textFill="#160d75">
+      <Button fx:id="Akceptacja" layoutX="886.0" layoutY="4.0" mnemonicParsing="false" onAction="#AkceptacjaOnAction" prefHeight="49.0" prefWidth="177.0" style="-fx-background-color: #ffffff;" text="PRZYPISYWANIE" textFill="#160d75">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
