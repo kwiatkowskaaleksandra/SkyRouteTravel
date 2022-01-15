@@ -20,7 +20,7 @@
                     <effect>
                         <DropShadow />
                     </effect></Label>
-                <Button fx:id="ZarezerwujButton" layoutX="1466.0" layoutY="901.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="172.0" text="ZAREZERWUJ" textFill="#160d75">
+                <Button fx:id="ZarezerwujButton" layoutX="1466.0" onAction="#ZarezerwujButtonOnAction" layoutY="901.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="172.0" text="ZAREZERWUJ" textFill="#160d75">
                     <font>
                         <Font name="Berlin Sans FB" size="17.0" />
                     </font></Button>

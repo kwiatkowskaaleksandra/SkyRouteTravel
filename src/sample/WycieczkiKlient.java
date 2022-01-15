@@ -45,6 +45,8 @@ public class WycieczkiKlient implements Initializable {
     private TableColumn<DaneDoWycieczek,Float> cn;
     @FXML
     private Button ZamknijButton;
+    @FXML
+    private Button ZarewerwujButton;
 
     @FXML
     private TextField TextK1;
@@ -112,12 +114,12 @@ public class WycieczkiKlient implements Initializable {
                 String zakwaterowanie =rs.getString("zakwaterowanie");
                 String wyzywienie =rs.getString("wyzywienie");
                 String premium =rs.getString("premium");
-                float cenaPrem=rs.getFloat("cenaPrem");
+                float cenaP=rs.getFloat("cenaPrem");
                 String atrakcje =rs.getString("atrakcje");
                 String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
 
-                daneDoWycieczek = new DaneDoWycieczek(id1,nazwa, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,cenaPrem,atrakcje,rodzaj,iloscDni);
+                daneDoWycieczek = new DaneDoWycieczek(id1,nazwa, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,cenaP,atrakcje,rodzaj,iloscDni);
                 WczTab.add(daneDoWycieczek);
 
             }
@@ -153,6 +155,22 @@ public class WycieczkiKlient implements Initializable {
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1720.0D, 880.0D));
+            menuStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    public void ZarezerwujButtonOnAction() {
+        Stage stage = (Stage) ZamknijButton.getScene().getWindow();
+        stage.close();
+
+        try {
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("../javaFX/RezerwacjaKlient.fxml"));
+            Stage menuStage = new Stage();
+            menuStage.initStyle(StageStyle.DECORATED);
+            menuStage.setScene(new Scene(root, 600, 800.0D));
             menuStage.show();
         } catch (Exception e) {
             e.printStackTrace();

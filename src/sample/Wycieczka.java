@@ -29,7 +29,7 @@ public class Wycieczka implements Initializable {
     @FXML
     private TableView<DaneDoWycieczek> Tab1;
     @FXML
-    private TableColumn<DaneDoWycieczek,Integer> idw;
+    private TableColumn<DaneDoWycieczek,Integer> idp;
     @FXML
     private TableColumn<DaneDoWycieczek,String> nzw;
     @FXML
@@ -65,13 +65,15 @@ public class Wycieczka implements Initializable {
     @FXML
     private TextField cnPr;
     @FXML
-    private TextField id;
-    @FXML
     private TextField TextK2;
     @FXML
     private TextField TextK3;
     @FXML
+    private TextField TextK4;
+    @FXML
     private TextField TextK5;
+    @FXML
+    private TextField TextK6;
     @FXML
     private TextField TextK8;
     @FXML
@@ -142,7 +144,7 @@ public class Wycieczka implements Initializable {
             System.out.println("There is an Exception.");
             System.out.println(e.getMessage());
         }
-        idw.setCellValueFactory(new PropertyValueFactory<>("id"));
+
         nzw.setCellValueFactory(new PropertyValueFactory<>("nazwa"));
         ms.setCellValueFactory(new PropertyValueFactory<>("miejsce"));
         cn.setCellValueFactory(new PropertyValueFactory<>("cena"));
@@ -247,10 +249,12 @@ public class Wycieczka implements Initializable {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
-        String danee="DELETE FROM wycieczki WHERE id_wycieczki=?";
+        String danee="DELETE FROM wycieczki WHERE nazwa= ? AND miejsce=? AND cena= ?";
         try {
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            pst.setString(1,id.getText());
+            pst.setString(1,TextK12.getText());
+            pst.setString(2,TextK2.getText());
+            pst.setString(3,TextK3.getText());
             pst.execute();
             JOptionPane.showMessageDialog(null,"Usunieto pomyslnie!");
             WyswietlWycieczki();
@@ -272,11 +276,29 @@ public class Wycieczka implements Initializable {
         }
     }
 
+    public int pobierzDane() throws SQLException {
+        Statement stat2=null;
+        stat2=connectDB.createStatement();
+        String n=TextK12.getText();
+        String m=TextK2.getText();
+        String c=TextK5.getText();
+        System.out.println(n+" "+m);
+        String ID="SELECT id_wycieczki FROM wycieczki WHERE nazwa='"+n+"' AND miejsce='"+m+"'";
+        ResultSet max=stat2.executeQuery(ID);
+        int id=0;
+        while (max.next()){
+            id=max.getInt("id_wycieczki");
+            System.out.println(id);
+        }
+        return id;
+    }
+
     public void EdytujWycieczke() throws SQLException {
     String danee;
+       // int id=pobierzDane();
 
         try{
-            String id1= id.getText();
+
             String nz=TextK12.getText();
             String ms=TextK2.getText();
             String cn=TextK3.getText();
@@ -315,20 +337,22 @@ public class Wycieczka implements Initializable {
                 TextK10.setSelected(false);
 
 
-                danee = "UPDATE wycieczki SET id_wycieczki='"+id1+"' ,nazwa='" + nz + "',miejsce='" + ms + "',cena='"
+                danee = "UPDATE wycieczki SET id_wycieczki='"+12+"' ,nazwa='" + nz + "',miejsce='" + ms + "',cena='"
                         + cn + "',id_transport='" + rT + "',czas='" + czs + "',id_zakwaterowanie='" + rZ + "',wyzywienie='" + cT + "',premium='" + pr+"',cenaPrem='"+cP + "',atrakcje='" + atr +
-                        "',rodzajWycieczki='"+rW+"',iloscDni='"+ ilD+"'WHERE id_wycieczki='"+id1+"'";
+                        "',rodzajWycieczki='"+rW+"',iloscDni='"+ ilD+"'WHERE id_wycieczki='"+12+"'";
                 pst = (PreparedStatement) connectDB.prepareStatement(danee);
+                System.out.println(TextK12.getText());
             }
             else if(TextK10.isSelected() && !TextK9.isSelected()){
                 TextK9.setSelected(false);
                 TextK10.setSelected(true);
 
 
-                danee = "UPDATE wycieczki SET id_wycieczki='"+id1+"' ,nazwa='" + nz + "',miejsce='" + ms + "',cena='"
+                danee = "UPDATE wycieczki SET id_wycieczki='"+12+"' ,nazwa='" + nz + "',miejsce='" + ms + "',cena='"
                         + cn + "',id_transport='" + rT + "',czas='" + czs + "',id_zakwaterowanie='" + rZ + "',wyzywienie='" + cN + "',premium='" + pr+"',cenaPrem='"+cP + "',atrakcje='" + atr +
-                        "',rodzajWycieczki='"+rW+"',iloscDni='"+ ilD+"'WHERE id_wycieczki='"+id1+"'";
+                        "',rodzajWycieczki='"+rW+"',iloscDni='"+ ilD+"'WHERE id_wycieczki='"+12+"'";
                 pst = (PreparedStatement) connectDB.prepareStatement(danee);
+                System.out.println(TextK12.getText());
             }
 
             if(TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK5.getText().isEmpty()||TextK8.getText().isEmpty()||((!TextK9.isSelected()) && !TextK10.isSelected())||((TextK9.isSelected()) && TextK10.isSelected())){
@@ -422,7 +446,7 @@ public class Wycieczka implements Initializable {
         if(index<=-1){
             return;
         }
-        id.setText(idw.getCellData(index).toString());
+
         TextK12.setText(nzw.getCellData(index));
         TextK2.setText(ms.getCellData(index));
         TextK3.setText(cn.getCellData(index).toString());
