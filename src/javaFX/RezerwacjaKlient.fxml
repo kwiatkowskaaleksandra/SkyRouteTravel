@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerRezeracjiKlient">
    <content>
       <Pane prefHeight="1300.0" prefWidth="600.0">
          <children>
@@ -13,7 +13,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="cenaR" layoutX="181.0" layoutY="190.0" prefHeight="23.0" prefWidth="150.0" promptText="cena" />
+            <TextField fx:id="cenaR" editable="false" layoutX="181.0" layoutY="190.0" prefHeight="23.0" prefWidth="150.0" promptText="cena" />
             <TextField fx:id="iloscDR" layoutX="181.0" layoutY="230.0" prefWidth="150.0" promptText="ilość dzieci" />
             <TextField fx:id="iloscOR" layoutX="181.0" layoutY="270.0" prefWidth="150.0" promptText="ilość osób" />
             <Label layoutX="187.0" layoutY="24.0" text="REZERWACJA">
@@ -23,7 +23,7 @@
             </Label>
             <ChoiceBox fx:id="terminR" layoutX="181.0" layoutY="150.0" prefWidth="150.0" />
             <Label layoutX="42.0" layoutY="150.0" text="TERMIN" />
-            <Label layoutX="42.0" layoutY="270.0" text="ILOŚĆ OSÓB" />
+            <Label layoutX="42.0" layoutY="270.0" text="ILOŚĆ DOROSŁYCH" />
             <Label layoutX="42.0" layoutY="230.0" text="ILOŚĆ DZIECI" />
             <Label layoutX="42.0" layoutY="190.0" prefHeight="17.0" prefWidth="45.0" text="CENA" />
             <Label layoutX="42.0" layoutY="310.0" text="RODZAJ PŁATNOŚCI" />
@@ -69,7 +69,7 @@
                </font>
             </Label>
             <Button fx:id="zaplac" layoutX="70.0" layoutY="1220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="ZAPŁAĆ" />
-            <Button fx:id="anuluj" layoutX="394.0" layoutY="1220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="ANULUJ" />
+            <Button fx:id="anuluj" layoutX="394.0" layoutY="1220.0" mnemonicParsing="false" onAction="#anulujRezerwacje" prefHeight="30.0" prefWidth="100.0" text="ANULUJ" />
             <ChoiceBox fx:id="rodzajPR" layoutX="181.0" layoutY="310.0" prefWidth="150.0" />
             <Label layoutX="419.0" layoutY="709.0" text="150zł" />
             <Label layoutX="419.0" layoutY="750.0" text="300zł" />
@@ -80,10 +80,13 @@
             <Label layoutX="419.0" layoutY="529.0" text="80zł na osobe" />
             <Label layoutX="419.0" layoutY="950.0" text="4%" />
             <Label layoutX="419.0" layoutY="990.0" text="6%" />
-            <Label layoutX="419.0" layoutY="1070.0" text="30zł" />
+            <Label layoutX="419.0" layoutY="1070.0" text="30zł na osobe" />
             <Label layoutX="419.0" layoutY="1110.0" text="25zł" />
-            <TextField fx:id="calosc" layoutX="125.0" layoutY="1150.0" promptText="całość" />
+            <TextField fx:id="calosc" editable="false" layoutX="125.0" layoutY="1150.0" promptText="całość" />
             <Label layoutX="42.0" layoutY="1150.0" text="Pełna kwota" />
+            <Button fx:id="kwota" layoutX="203.0" layoutY="1223.0" mnemonicParsing="false" onMouseClicked="#wyliczCene" text="Policz pelna kwote" />
+            <TextField fx:id="ilD" editable="false" layoutX="220.0" layoutY="385.0" promptText="ilD" visible="false" />
+            <TextField fx:id="idK" editable="false" layoutX="274.0" layoutY="385.0" promptText="id" visible="false" />
          </children>
       </Pane>
    </content>

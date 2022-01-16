@@ -20,7 +20,7 @@
                     <effect>
                         <DropShadow />
                     </effect></Label>
-                <Button fx:id="ZarezerwujButton" layoutX="1466.0" onAction="#ZarezerwujButtonOnAction" layoutY="901.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="172.0" text="ZAREZERWUJ" textFill="#160d75">
+                <Button fx:id="ZarezerwujButton" layoutX="1466.0" layoutY="901.0" mnemonicParsing="false" onAction="#ZarezerwujButtonOnAction" prefHeight="47.0" prefWidth="172.0" text="ZAREZERWUJ" textFill="#160d75">
                     <font>
                         <Font name="Berlin Sans FB" size="17.0" />
                     </font></Button>
@@ -55,8 +55,6 @@
             <TextField fx:id="TextK5" layoutX="1526.0" layoutY="521.0" prefHeight="47.0" prefWidth="267.0" promptText="Zakwaterowanie" />
             <TextField fx:id="TextK6" layoutX="1526.0" layoutY="591.0" prefHeight="47.0" prefWidth="267.0" promptText="Oferta premium" />
             <TextArea fx:id="TextK7" layoutX="1526.0" layoutY="665.0" prefHeight="105.0" prefWidth="267.0" promptText="Atrakcje" />
-                <ChoiceBox fx:id="RodzajUbezpieczenia" layoutX="1526.0" layoutY="808.0" prefHeight="39.0" prefWidth="154.0" />
-                <TextField fx:id="TextK10" layoutX="1692.0" layoutY="808.0" prefHeight="39.0" prefWidth="121.0" promptText="Cena ubezpieczenia" />
             <TextField fx:id="TextK11" layoutX="1526.0" layoutY="116.0" promptText="Nazwa" />
             </children></Pane>
     </children>

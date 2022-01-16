@@ -87,7 +87,7 @@ public class WycieczkiKlient implements Initializable {
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_wycieczki=z.id_zakwaterowanie join transport t on w.id_wycieczki=t.id_transport  ORDER BY id_wycieczki ASC";
+        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium, w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport  ORDER BY id_wycieczki ASC";
 
         Statement st = null;
         try{
@@ -108,13 +108,13 @@ public class WycieczkiKlient implements Initializable {
                 int id1 = rs.getInt("id_wycieczki");
                 String nazwa = rs.getString("nazwa");
                 String miejsce = rs.getString("miejsce");
-                float cena = rs.getFloat("cena");
+                float cena = rs.getFloat("w.cena");
                 String transport = rs.getString("transport");
                 String czasPodrozy =rs.getString("czas");
                 String zakwaterowanie =rs.getString("zakwaterowanie");
-                String wyzywienie =rs.getString("wyzywienie");
+                String wyzywienie=rs.getString("wyzywienie");
                 String premium =rs.getString("premium");
-                float cenaP=rs.getFloat("cenaPrem");
+                float cenaP=rs.getFloat("w.cenaPrem");
                 String atrakcje =rs.getString("atrakcje");
                 String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
@@ -161,10 +161,37 @@ public class WycieczkiKlient implements Initializable {
             e.getCause();
         }
     }
-    public void ZarezerwujButtonOnAction() {
+    public void ZarezerwujButtonOnAction() throws SQLException {
         Stage stage = (Stage) ZamknijButton.getScene().getWindow();
-        stage.close();
+       // stage.close();
 
+        int id = this.idp.getCellData(this.index);
+        Statement statement = connectDB.createStatement();
+        String daneKl="SELECT id_klienta FROM zalogowany;";
+        ResultSet queryResult = statement.executeQuery(daneKl);
+        int idZal=0;
+        while (queryResult.next()) {
+            idZal = queryResult.getInt("id_klienta");
+        }
+
+        Statement statement2 = connectDB.createStatement();
+        String daneID="SELECT id FROM wycieczki_klient;";
+        ResultSet queryResult2 = statement.executeQuery(daneID);
+        int idWK=0;
+        while (queryResult2.next()) {
+            idWK = queryResult2.getInt("id");
+        }
+
+        String danew = "INSERT INTO wycieczki_klient(id,id_klienta,id_wycieczki,TwojaCena,status)values(?,?,?,?,?)";
+        pst = (PreparedStatement) connectDB.prepareStatement(danew);
+        pst.setString(1, String.valueOf(idWK+1));
+        pst.setString(2, String.valueOf(idZal));
+        pst.setString(3, String.valueOf(id));
+        pst.setString(4, TextK9.getText());
+        pst.setString(5, "Nie");
+        pst.execute();
+
+        queryResult.close();
         try {
             Parent root;
             root = FXMLLoader.load(getClass().getResource("../javaFX/RezerwacjaKlient.fxml"));
@@ -178,17 +205,6 @@ public class WycieczkiKlient implements Initializable {
         }
     }
 
-
-    private void ChoiceBoxWycieczki(){
-        rodzajUbezpieczenia.removeAll(rodzajUbezpieczenia);
-        String a="Rodzaj ubezpieczenia";
-
-        String b="Standardowe";
-        String c="Optymalne";
-        rodzajUbezpieczenia.addAll(b,c);
-        RodzajUbezpieczenia.getItems().addAll(rodzajUbezpieczenia);
-        RodzajUbezpieczenia.setValue(a);
-    }
 
     public void getSelected() throws SQLException {
         this.index = this.Tab1.getSelectionModel().getSelectedIndex();
@@ -204,6 +220,14 @@ public class WycieczkiKlient implements Initializable {
         this.TextK6.setText(this.prem.getCellData(this.index));
         this.TextK7.setText(this.atr.getCellData(this.index));
         int id = this.idp.getCellData(this.index);
+        Statement stat2=null;
+        stat2=connectDB.createStatement();
+        int liczba = 0;
+        String daneK ="SELECT wk.id_klienta FROM zalogowany z , wycieczki_klient wk where z.id_klienta=wk.id_klienta";
+        ResultSet wynikK=stat2.executeQuery(daneK);
+        while (wynikK.next()){
+            liczba+=1;
+        }
 
         Statement stat=null;
         stat=connectDB.createStatement();
@@ -213,84 +237,93 @@ public class WycieczkiKlient implements Initializable {
         while (wynik.next()){
 
             if (wynik.getString("rodzajWycieczki").equals("Last Minute")) {
+                if(liczba>=10){
                 float cena2 = this.cn.getCellData(this.index);
-                double nowaCena = cena2 - (cena2 * 0.05);
+                double nowaCena = cena2 - (cena2 * 0.15);
                 nowaCena *= 100;
                 nowaCena = round(nowaCena);
                 nowaCena /= 100;
                 this.TextK9.setText(String.valueOf(nowaCena));
-                if(RodzajUbezpieczenia.getValue().equals("Standardowe")){
-                    int iloscDni=wynik.getInt("iloscDni");
-                    double cenaUbezpieczenia=iloscDni*20.64;
-                    cenaUbezpieczenia*=100;
-                    cenaUbezpieczenia=round(cenaUbezpieczenia);
-                    cenaUbezpieczenia/=100;
-                    this.TextK10.setText(String.valueOf(cenaUbezpieczenia));
                 }
-                else if(RodzajUbezpieczenia.getValue().equals("Optymalne")){
-                    int iloscDni=wynik.getInt("iloscDni");
-                    double cenaUbezpieczenia=iloscDni*30.98;
-                    cenaUbezpieczenia*=100;
-                    cenaUbezpieczenia=round(cenaUbezpieczenia);
-                    cenaUbezpieczenia/=100;
-                    this.TextK10.setText(String.valueOf(cenaUbezpieczenia));
+                else if(liczba<10 && liczba>=5) {
+                    float cena2 = this.cn.getCellData(this.index);
+                    double nowaCena = cena2 - (cena2 * 0.07);
+                    nowaCena *= 100;
+                    nowaCena = round(nowaCena);
+                    nowaCena /= 100;
+                    this.TextK9.setText(String.valueOf(nowaCena));
                 }
+                else if (liczba<5 || liczba==0){
+                    float cena2 = this.cn.getCellData(this.index);
+                    double nowaCena = cena2 - (cena2 * 0.02);
+                    nowaCena *= 100;
+                    nowaCena = round(nowaCena);
+                    nowaCena /= 100;
+                    this.TextK9.setText(String.valueOf(nowaCena));
+                }
+
             }
+
             else  if (wynik.getString("rodzajWycieczki").equals("Egzotyka")) {
-                float cena2 = this.cn.getCellData(this.index);
-                double nowaCena = cena2 - (cena2 * 0.02);
-                nowaCena *= 100;
-                nowaCena = round(nowaCena);
-                nowaCena /= 100;
-                this.TextK9.setText(String.valueOf(nowaCena));
-                if(RodzajUbezpieczenia.getValue().equals("Standardowe")){
-                    int iloscDni=wynik.getInt("iloscDni");
-                    double cenaUbezpieczenia=iloscDni*20.64;
-                    cenaUbezpieczenia*=100;
-                    cenaUbezpieczenia=round(cenaUbezpieczenia);
-                    cenaUbezpieczenia/=100;
-                    this.TextK10.setText(String.valueOf(cenaUbezpieczenia));
+                if(liczba>10){
+                    float cena2 = this.cn.getCellData(this.index);
+                    double nowaCena = cena2 - (cena2 * 0.15);
+                    nowaCena *= 100;
+                    nowaCena = round(nowaCena);
+                    nowaCena /= 100;
+                    this.TextK9.setText(String.valueOf(nowaCena));
                 }
-                else if(RodzajUbezpieczenia.getValue().equals("Optymalne")){
-                    int iloscDni=wynik.getInt("iloscDni");
-                    double cenaUbezpieczenia=iloscDni*30.98;
-                    cenaUbezpieczenia*=100;
-                    cenaUbezpieczenia=round(cenaUbezpieczenia);
-                    cenaUbezpieczenia/=100;
-                    this.TextK10.setText(String.valueOf(cenaUbezpieczenia));
+                else if(liczba<10 && liczba>5) {
+                    float cena2 = this.cn.getCellData(this.index);
+                    double nowaCena = cena2 - (cena2 * 0.07);
+                    nowaCena *= 100;
+                    nowaCena = round(nowaCena);
+                    nowaCena /= 100;
+                    this.TextK9.setText(String.valueOf(nowaCena));
+                }
+                else if (liczba<5){
+                    float cena2 = this.cn.getCellData(this.index);
+                    double nowaCena = cena2 - (cena2 * 0.02);
+                    nowaCena *= 100;
+                    nowaCena = round(nowaCena);
+                    nowaCena /= 100;
+                    this.TextK9.setText(String.valueOf(nowaCena));
                 }
             }
             else  if (wynik.getString("rodzajWycieczki").equals("Promocja")) {
-                float cena2 = this.cn.getCellData(this.index);
-                double nowaCena = cena2 - (cena2 * 0.30);
-                nowaCena *= 100;
-                nowaCena = round(nowaCena);
-                nowaCena /= 100;
-                this.TextK9.setText(String.valueOf(nowaCena));
-                if(RodzajUbezpieczenia.getValue().equals("Standardowe")){
-                    int iloscDni=wynik.getInt("iloscDni");
-                    double cenaUbezpieczenia=iloscDni*20.64;
-                    cenaUbezpieczenia*=100;
-                    cenaUbezpieczenia=round(cenaUbezpieczenia);
-                    cenaUbezpieczenia/=100;
-                    this.TextK10.setText(String.valueOf(cenaUbezpieczenia));
+                if(liczba>10){
+                    float cena2 = this.cn.getCellData(this.index);
+                    double nowaCena = cena2 - (cena2 * 0.15);
+                    nowaCena *= 100;
+                    nowaCena = round(nowaCena);
+                    nowaCena /= 100;
+                    this.TextK9.setText(String.valueOf(nowaCena));
                 }
-                else if(RodzajUbezpieczenia.getValue().equals("Optymalne")){
-                    int iloscDni=wynik.getInt("iloscDni");
-                    double cenaUbezpieczenia=iloscDni*30.98;
-                    cenaUbezpieczenia*=100;
-                    cenaUbezpieczenia=round(cenaUbezpieczenia);
-                    cenaUbezpieczenia/=100;
-                    this.TextK10.setText(String.valueOf(cenaUbezpieczenia));
+                else if(liczba<10 && liczba>5) {
+                    float cena2 = this.cn.getCellData(this.index);
+                    double nowaCena = cena2 - (cena2 * 0.07);
+                    nowaCena *= 100;
+                    nowaCena = round(nowaCena);
+                    nowaCena /= 100;
+                    this.TextK9.setText(String.valueOf(nowaCena));
                 }
+                else if (liczba<5){
+                    float cena2 = this.cn.getCellData(this.index);
+                    double nowaCena = cena2 - (cena2 * 0.02);
+                    nowaCena *= 100;
+                    nowaCena = round(nowaCena);
+                    nowaCena /= 100;
+                    this.TextK9.setText(String.valueOf(nowaCena));
+                }
+
             }
         }
-        wynik.close();
+
+            wynik.close();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ChoiceBoxWycieczki();
         WyswietlWycieczki();
     }
     }
