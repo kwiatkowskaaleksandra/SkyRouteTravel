@@ -74,24 +74,33 @@ class FakturyTest {
         while (max.next()){
             idf=max.getInt("id_faktury");
         }
+        Statement stat3=null;
+        stat3=connectDB.createStatement();
 
-        String danee="INSERT INTO faktury(id_faktury,imie,nazwisko,email,id_platnosc,data,kwota,id_wycieczki)values(?,?,?,?,?,?,?,?)";
+        String danee="INSERT INTO faktury(id_faktury,imie,nazwisko,email,id_platnosc,data,kwota,id_wycieczki)values(1,'jarek','kot','jarek@wp.pl',4,'1999-04-04',1444,5)";
+        stat3.executeUpdate(danee);
 
     }
 
     @Test
-    void usunFakture() {
+    void usunFakture() throws SQLException {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
-
+        Statement stat2=null;
+        stat2=connectDB.createStatement();
         String danee="DELETE FROM faktury WHERE id_faktury=2";
+        stat2.executeUpdate(danee);
     }
 
     @Test
-    void edytujFakture() {
+    void edytujFakture() throws SQLException {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
+        Statement stat2=null;
+        stat2=connectDB.createStatement();
 
-        String danee="DELETE FROM faktury WHERE id_faktury=?";
+
+        String danee="DELETE FROM faktury WHERE id_faktury=6";
+        stat2.executeUpdate(danee);
     }
 }

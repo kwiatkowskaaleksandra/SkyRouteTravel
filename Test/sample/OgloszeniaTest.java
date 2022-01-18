@@ -64,14 +64,10 @@ class OgloszeniaTest {
         Statement stat2 = null;
         stat2 = connectDB.createStatement();
         String danee = "SELECT * FROM ogloszenia";
-        ResultSet wynik = stat2.executeQuery(danee);
+        stat2.executeQuery(danee);
 
-        int idw = 0;
-        while (wynik.next()) {
-            idw = wynik.getInt("id_ogloszenia");
-        }
-
-        String dane = "INSERT INTO ogloszenia(id_ogloszenia,data,tresc)values(?,?,?)";
+        String dane = "INSERT INTO ogloszenia(id_ogloszenia,data,tresc)values(6,'1999-02-02','ok')";
+        stat2.executeUpdate(dane);
     }
 
     @Test
@@ -81,7 +77,7 @@ class OgloszeniaTest {
         Statement stat2 = null;
         stat2 = connectDB.createStatement();
         String danee = "DELETE FROM ogloszenia WHERE id_ogloszenia=?";
-        ResultSet wynik = stat2.executeQuery(danee);
+        stat2.executeUpdate(danee);
 
 
     }
@@ -93,8 +89,8 @@ class OgloszeniaTest {
         Connection connectDB = connectNow.getConnection();
         Statement stat2 = null;
         stat2 = connectDB.createStatement();
-        String danee = "UPDATE ogloszenia SET id_ogloszenia=1 ,data='24.04.1999',tresc='ok' WHERE id_ogloszenia=1";
-        ResultSet wynik = stat2.executeQuery(danee);
+        String danee = "UPDATE ogloszenia SET id_ogloszenia='1' ,data='1999-04-05',tresc='ok' WHERE id_ogloszenia=1";
+        stat2.executeUpdate(danee);
 
     }
 }

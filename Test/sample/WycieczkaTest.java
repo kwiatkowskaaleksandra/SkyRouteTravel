@@ -42,7 +42,7 @@ Wycieczka wycieczka;
         stat2=connectDB.createStatement();
 
             String danee="DELETE FROM wycieczki WHERE id_wycieczki=4";
-        ResultSet wynik=stat2.executeQuery(danee);
+       stat2.executeUpdate(danee);
     }
 
 }
