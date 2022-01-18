@@ -3,13 +3,17 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerKlient">
    <children>
-      <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../obrazy/56776.jpg');" />
+      <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../obrazy/56776.jpg');">
+         <children>
+            <ImageView fx:id="image"  fitHeight="341.0" fitWidth="364.0" layoutX="104.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+         </children></Pane>
       <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
       <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">
          <font>
@@ -111,7 +115,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button fx:id="Profil" layoutX="1630.0" layoutY="8.0" mnemonicParsing="false" prefHeight="39.0" onAction="#ProfilOnAction" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="MOJE KONTO" textFill="#090875">
+      <Button fx:id="Profil" layoutX="1630.0" layoutY="8.0" mnemonicParsing="false" onAction="#ProfilOnAction" prefHeight="39.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="MOJE KONTO" textFill="#090875">
          <effect>
             <InnerShadow>
                <color>

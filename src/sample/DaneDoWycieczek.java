@@ -10,11 +10,11 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 public class DaneDoWycieczek {
-    String nazwa,miejsce, zakwaterowanie,transport,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj;
+    String nazwa,miejsce, zakwaterowanie,transport,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj,zdjecie;
     float cena, cenaP;
     int id, iloscDni;
 
-    public DaneDoWycieczek(int id,String nazwa, String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String premium, float cenaP,String atrakcje, String rodzaj, int iloscDni){
+    public DaneDoWycieczek(int id,String nazwa, String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String premium, float cenaP,String atrakcje, String rodzaj, int iloscDni, String zdjecie){
         this.id=id;
         this.nazwa=nazwa;
         this.miejsce=miejsce;
@@ -28,7 +28,7 @@ public class DaneDoWycieczek {
         this.cena=cena;
         this.rodzaj=rodzaj;
         this.iloscDni=iloscDni;
-
+        this.zdjecie=zdjecie;
     }
 
     public float getCenaP() {
@@ -122,5 +122,11 @@ public class DaneDoWycieczek {
 
     public void setRodzaj(String rodzaj) { this.rodzaj = rodzaj; }
 
+    public String getZdjecie() {
+        return zdjecie;
+    }
 
+    public void setZdjecie(String zdjecie) {
+        this.zdjecie = zdjecie;
+    }
 }

@@ -19,7 +19,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="150.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../obrazy/logo.PNG" />
+                        <Image url="@../obrazy/logo1.PNG" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />

@@ -24,7 +24,8 @@
                   <TableColumn fx:id="atr" prefWidth="148.0" text="ATRAKCJE" />
                   <TableColumn fx:id="rodz" prefWidth="76.0" text="RODZAJ" />
                   <TableColumn fx:id="ilDn" prefWidth="70.0" text="ILOSC DNI" />
-                  <TableColumn fx:id="idw" prefWidth="75.0" text="Column X" visible="false" />
+                  <TableColumn fx:id="idw" prefWidth="75.0" text="idWyc" visible="false" />
+                 <TableColumn fx:id="idZ" prefWidth="75.0" text="Column X" visible="false" />
               </columns>
             </TableView>
             <Label alignment="TOP_CENTER" layoutX="14.0" layoutY="10.0" prefHeight="70.0" prefWidth="1803.0" text="SKY ROUTE TRAVEL" textAlignment="JUSTIFY" textFill="#1e0d79">
@@ -58,23 +59,23 @@
                <effect>
                   <InnerShadow />
                </effect></Button>
-            <TextField fx:id="TextK12" layoutX="1319.0" layoutY="231.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWA" />
-            <TextField fx:id="TextK2" layoutX="1319.0" layoutY="290.0" prefHeight="47.0" prefWidth="267.0" promptText="MIEJSCE" />
-            <TextField fx:id="TextK3" layoutX="1319.0" layoutY="351.0" prefHeight="47.0" prefWidth="267.0" promptText="CENA" />
-            <ChoiceBox fx:id="RodzajTransportu" layoutX="1319.0" layoutY="417.0" prefHeight="36.0" prefWidth="267.0" />
-            <TextField fx:id="TextK5" layoutX="1319.0" layoutY="458.0" prefHeight="47.0" prefWidth="267.0" promptText="CZAS PODROZY" />
-            <ChoiceBox fx:id="RodzajZakwaterowania" layoutX="1319.0" layoutY="521.0" prefHeight="47.0" prefWidth="267.0" />
-            <CheckBox fx:id="TextK9" layoutX="1427.0" layoutY="570.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="Tak">
+            <TextField fx:id="TextK12" layoutX="1319.0" layoutY="173.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWA" />
+            <TextField fx:id="TextK2" layoutX="1319.0" layoutY="231.0" prefHeight="47.0" prefWidth="267.0" promptText="MIEJSCE" />
+            <TextField fx:id="TextK3" layoutX="1319.0" layoutY="288.0" prefHeight="47.0" prefWidth="267.0" promptText="CENA" />
+            <ChoiceBox fx:id="RodzajTransportu" layoutX="1319.0" layoutY="348.0" prefHeight="36.0" prefWidth="267.0" />
+            <TextField fx:id="TextK5" layoutX="1319.0" layoutY="397.0" prefHeight="47.0" prefWidth="267.0" promptText="CZAS PODROZY" />
+            <ChoiceBox fx:id="RodzajZakwaterowania" layoutX="1319.0" layoutY="458.0" prefHeight="47.0" prefWidth="267.0" />
+            <CheckBox fx:id="TextK9" layoutX="1432.0" layoutY="527.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="Tak">
                <font> <Font size="14.0" /> </font>
             </CheckBox>
-            <CheckBox fx:id="TextK10" layoutX="1526.0" layoutY="573.0" mnemonicParsing="false" text="Nie">
+            <CheckBox fx:id="TextK10" layoutX="1521.0" layoutY="530.0" mnemonicParsing="false" text="Nie">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <TextField fx:id="TextK8" layoutX="1319.0" layoutY="615.0" prefHeight="47.0" prefWidth="267.0" promptText="OFERTA PREMIUM" />
-            <TextField fx:id="cnPr" layoutX="1598.0" layoutY="615.0" prefHeight="47.0" prefWidth="123.0" promptText="CENA PREMIUM" />
-            <TextArea fx:id="TextK7" layoutX="1320.0" layoutY="678.0" prefHeight="152.0" prefWidth="449.0" promptText="ATRAKCJE" />
+            <TextField fx:id="TextK8" layoutX="1319.0" layoutY="573.0" prefHeight="47.0" prefWidth="267.0" promptText="OFERTA PREMIUM" />
+            <TextField fx:id="cnPr" layoutX="1604.0" layoutY="573.0" prefHeight="47.0" prefWidth="123.0" promptText="CENA PREMIUM" />
+            <TextArea fx:id="TextK7" layoutX="1320.0" layoutY="635.0" prefHeight="152.0" prefWidth="449.0" promptText="ATRAKCJE" />
             <ChoiceBox fx:id="RodzajWycieczki" layoutX="1319.0" layoutY="845.0" prefHeight="36.0" prefWidth="206.0" />
             <TextField fx:id="TextK11" layoutX="1544.0" layoutY="845.0" prefHeight="36.0" prefWidth="183.0" promptText="ILOSC DNI" />
             <Label alignment="CENTER" layoutY="69.0" prefHeight="59.0" prefWidth="1820.0" text="OFERTY WYCIECZEK" textFill="#2c108a">
@@ -86,12 +87,15 @@
                <font>
                   <Font name="Berlin Sans FB" size="17.0" />
                </font></Button>
-            <Label layoutX="1319.0" layoutY="565.0" prefHeight="36.0" prefWidth="115.0" text=" WYZYWIENIE">
+            <Label layoutX="1319.0" layoutY="522.0" prefHeight="36.0" prefWidth="115.0" text=" WYZYWIENIE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <TextField fx:id="id" layoutX="1320.0" layoutY="184.0" promptText="id" visible="false" />
+            <Button fx:id="zdjecie" layoutX="1320.0" layoutY="797.0" mnemonicParsing="false" onAction="#WybierzZdjecie" prefHeight="36.0" prefWidth="149.0" text="Dodaj zdjęcie" />
+            <TextField fx:id="nazwZdj" editable="false" layoutX="1493.0" layoutY="797.0" prefHeight="36.0" prefWidth="267.0" promptText="NAZWA PLIKU" />
+
 
 
 
