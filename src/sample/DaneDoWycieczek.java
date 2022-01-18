@@ -3,18 +3,13 @@ package sample;/*
  * @author kola
  */
 
-import javax.swing.text.html.ImageView;
-import java.sql.Blob;
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
+import javafx.scene.image.Image;
 
 public class DaneDoWycieczek {
     String nazwa,miejsce, zakwaterowanie,transport,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj,zdjecie;
     float cena, cenaP;
     int id, iloscDni;
-
-    public DaneDoWycieczek(int id,String nazwa, String miejsce, float cena,  String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String premium, float cenaP,String atrakcje, String rodzaj, int iloscDni, String zdjecie){
+    public DaneDoWycieczek(int id, String nazwa, String miejsce, float cena, String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String premium, float cenaP, String atrakcje, String rodzaj, int iloscDni, String zdjecie){
         this.id=id;
         this.nazwa=nazwa;
         this.miejsce=miejsce;

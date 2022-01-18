@@ -6,21 +6,20 @@ package sample;/*
 import java.util.Date;
 
 public class DaneDoFaktur {
-    String imie, nazwisko,email,miejscowosc,platnosc;
-    int id,telefon,numer,kod,rodzajWycieczki;
+    String imie, nazwisko,email,nazwa,platnosc,rodzajWycieczki;
+    int id;
     Date data;
+    float kwota;
 
-    public DaneDoFaktur(int id, String imie, String nazwisko, String email, int telefon, String miejscowosc, int numer, int kod, String platnosc, Date data, int rodzajWycieczki){
+    public DaneDoFaktur(int id, String imie, String nazwisko, String email, String platnosc, Date data, float kwota, String nazwa, String rodzajWycieczki){
         this.id=id;
         this.imie=imie;
         this.nazwisko=nazwisko;
         this.email=email;
-        this.telefon=telefon;
-        this.miejscowosc=miejscowosc;
-        this.numer=numer;
-        this.kod=kod;
         this.platnosc=platnosc;
         this.data=data;
+        this.kwota=kwota;
+        this.nazwa=nazwa;
         this.rodzajWycieczki=rodzajWycieczki;
     }
 
@@ -56,38 +55,6 @@ public class DaneDoFaktur {
         this.email=email;
     }
 
-    public int getTelefon(){
-        return this.telefon;
-    }
-
-    public void setTelefon(int telefon){
-        this.telefon=telefon;
-    }
-
-    public String getMiejscowosc(){
-        return this.miejscowosc;
-    }
-
-    public void setMiejscowosc(String miejscowosc){
-        this.miejscowosc=miejscowosc;
-    }
-
-    public int getNumer(){
-        return this.numer;
-    }
-
-    public void setNumer(int numer){
-        this.numer=numer;
-    }
-
-    public int getKod(){
-        return this.kod;
-    }
-
-    public void setKod(int kod){
-        this.kod=kod;
-    }
-
     public String getPlatnosc(){
         return this.platnosc;
     }
@@ -104,11 +71,27 @@ public class DaneDoFaktur {
         this.data=data;
     }
 
-    public int getRodzajWycieczki(){
+    public String getRodzajWycieczki(){
         return this.rodzajWycieczki;
     }
 
-    public void setRodzajWycieczki(int rodzajWycieczki){
+    public void setRodzajWycieczki(String rodzajWycieczki){
         this.rodzajWycieczki=rodzajWycieczki;
+    }
+
+    public float getKwota() {
+        return kwota;
+    }
+
+    public void setKwota(float kwota) {
+        this.kwota = kwota;
+    }
+
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
+    public String getNazwa() {
+        return nazwa;
     }
 }

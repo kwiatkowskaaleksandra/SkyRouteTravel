@@ -44,6 +44,8 @@ public class WycieczkiKlient implements Initializable {
     @FXML
     private TableColumn<DaneDoWycieczek,Float> cn;
     @FXML
+    private TableColumn<DaneDoWycieczek,Float> cenaprem;
+    @FXML
     private Button ZamknijButton;
     @FXML
     private Button ZarewerwujButton;
@@ -68,6 +70,11 @@ public class WycieczkiKlient implements Initializable {
     private TextField TextK10;
     @FXML
     private TextField TextK11;
+    @FXML
+    private TextField cenaPr;
+    @FXML
+    private CheckBox wyborPrem;
+
     @FXML
     private ChoiceBox<String> RodzajUbezpieczenia;
 
@@ -138,6 +145,7 @@ public class WycieczkiKlient implements Initializable {
         prem.setCellValueFactory(new PropertyValueFactory<>("premium"));
         atr.setCellValueFactory(new PropertyValueFactory<>("atrakcje"));
         rdw.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
+        cenaprem.setCellValueFactory(new PropertyValueFactory<>("cenaP"));
 
         Tab1.setItems(WczTab);
 
@@ -182,15 +190,21 @@ public class WycieczkiKlient implements Initializable {
             idWK = queryResult2.getInt("id");
         }
 
-        String danew = "INSERT INTO wycieczki_klient(id,id_klienta,id_wycieczki,TwojaCena,status)values(?,?,?,?,?)";
+        String danew = "INSERT INTO wycieczki_klient(id,id_klienta,id_wycieczki,TwojaCena,status,premium, cenaPrem)values(?,?,?,?,?,?,?)";
         pst = (PreparedStatement) connectDB.prepareStatement(danew);
         pst.setString(1, String.valueOf(idWK+1));
         pst.setString(2, String.valueOf(idZal));
         pst.setString(3, String.valueOf(id));
         pst.setString(4, TextK9.getText());
         pst.setString(5, "Nie");
-        pst.execute();
 
+        if(wyborPrem.isSelected()) {
+            pst.setString(6, TextK6.getText());
+        }else {
+            pst.setString(6, "");
+        }
+        pst.setString(7, cenaPr.getText());
+        pst.execute();
         queryResult.close();
         try {
             Parent root;
@@ -219,6 +233,7 @@ public class WycieczkiKlient implements Initializable {
         this.TextK5.setText(this.zak.getCellData(this.index));
         this.TextK6.setText(this.prem.getCellData(this.index));
         this.TextK7.setText(this.atr.getCellData(this.index));
+        this.cenaPr.setText(this.cenaprem.getCellData(this.index).toString());
         int id = this.idp.getCellData(this.index);
         Statement stat2=null;
         stat2=connectDB.createStatement();

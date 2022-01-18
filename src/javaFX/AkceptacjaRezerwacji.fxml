@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.AkceptacjaRezerwacji"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="541.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AkceptacjaRezerwacji">
+   <children>
+      <TableView fx:id="Tab1" layoutY="10.0" onMouseClicked="#getSelected" prefHeight="533.0" prefWidth="868.0">
+        <columns>
+            <TableColumn fx:id="idR" prefWidth="155.0" text="NAZWISKO" visible="false" />
+          <TableColumn fx:id="nazwisko" prefWidth="155.0" text="NAZWISKO" />
+          <TableColumn fx:id="wycieczka" prefWidth="99.0" text="WYCIECZKA" />
+            <TableColumn fx:id="termin" minWidth="0.0" prefWidth="93.0" text="TERMIN" />
+            <TableColumn fx:id="dzieci" prefWidth="100.0" text="DZIECI" />
+            <TableColumn fx:id="dorosli" prefWidth="108.0" text="DOROŚLI" />
+            <TableColumn fx:id="cena" prefWidth="95.0" text="CENA" />
+            <TableColumn fx:id="platnosc" prefWidth="90.0" text="PŁATNOŚĆ" />
+            <TableColumn fx:id="status" prefWidth="127.0" text="STATUS" />
+        </columns>
+      </TableView>
+      <Button fx:id="akc" layoutX="885.0" layoutY="120.0" mnemonicParsing="false" onAction="#akceptujRezerwacje" prefHeight="37.0" prefWidth="105.0" text="Akceptuj" />
+      <Button fx:id="odrz" layoutX="885.0" layoutY="174.0" mnemonicParsing="false" onAction="#odzrucRezerwacje" prefHeight="37.0" prefWidth="105.0" text="Odrzuć" />
+      <TextField fx:id="idRezrw" editable="false" layoutX="875.0" layoutY="35.0" prefHeight="25.0" prefWidth="105.0" promptText="idRezerwacji" visible="false" />
+   </children>
 </AnchorPane>

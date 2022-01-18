@@ -17,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -152,6 +153,7 @@ public class Wycieczka implements Initializable {
                 String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
                 zdj = rs.getString("zdjecie");
+
                 daneDoWycieczek = new DaneDoWycieczek(id1,nazwa, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,cenaPrem,atrakcje,rodzaj,iloscDni,zdj);
                 WczTab.add(daneDoWycieczek);
             }
@@ -175,12 +177,8 @@ public class Wycieczka implements Initializable {
         rodz.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
         ilDn.setCellValueFactory(new PropertyValueFactory<>("iloscDni"));
         idZ.setCellValueFactory(new PropertyValueFactory<>("zdjecie"));
+
         Tab1.setItems(WczTab);
-
-
-
-
-
     }
 
     public void WybierzZdjecie() {

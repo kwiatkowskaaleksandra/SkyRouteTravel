@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="980.0" prefWidth="1820.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Faktury">
+<AnchorPane prefHeight="996.0" prefWidth="1426.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Faktury">
    <children>
-      <Label alignment="CENTER" layoutX="694.0" layoutY="14.0" prefHeight="61.0" prefWidth="425.0" text="SKY ROUTE TRAVEL" textFill="#2c108a">
+      <Label alignment="CENTER" layoutX="531.0" layoutY="14.0" prefHeight="61.0" prefWidth="425.0" text="SKY ROUTE TRAVEL" textFill="#2c108a">
          <font>
             <Font name="Symbol" size="45.0" />
          </font>
          <effect>
             <DropShadow />
          </effect></Label>
-      <Label alignment="CENTER" layoutX="827.0" layoutY="89.0" prefHeight="43.0" prefWidth="132.0" text="FAKTURY" textFill="#2c108a">
+      <Label alignment="CENTER" layoutX="664.0" layoutY="89.0" prefHeight="43.0" prefWidth="132.0" text="FAKTURY" textFill="#2c108a">
          <font>
             <Font name="Berlin Sans FB" size="25.0" />
          </font>
@@ -40,35 +40,33 @@
          <effect>
             <InnerShadow />
          </effect></Button>
-      <TableView fx:id="Tab1" layoutX="14.0" layoutY="209.0" onMouseClicked="#getSelected" prefHeight="823.0" prefWidth="1154.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="652.0" AnchorPane.topAnchor="209.0">
+      <TableView fx:id="Tab1" layoutX="14.0" layoutY="209.0" onMouseClicked="#getSelected" prefHeight="780.0" prefWidth="990.0">
         <columns>
           <TableColumn fx:id="idp" prefWidth="54.0" text="ID" visible="false" />
           <TableColumn fx:id="im" prefWidth="104.0" text="IMIE" />
             <TableColumn fx:id="naz" prefWidth="107.0" text="NAZWISKO" />
-            <TableColumn fx:id="mail" prefWidth="105.0" text="ADRES E-MAIL" />
-            <TableColumn fx:id="tel" prefWidth="75.0" text="TELEFON" />
-            <TableColumn fx:id="msc" prefWidth="112.0" text="MIEJSCOWOSC" />
-            <TableColumn fx:id="nr" prefWidth="106.0" text="NR.DOMU" />
-            <TableColumn fx:id="kd" prefWidth="110.0" text="KOD POCZTOWY" />
-            <TableColumn fx:id="pln" prefWidth="178.0" text="ID_PLATNOSCI" />
+            <TableColumn fx:id="mail" prefWidth="129.0" text="ADRES E-MAIL" />
+            <TableColumn fx:id="pln" prefWidth="154.0" text="PŁATNOSC" />
             <TableColumn fx:id="dta" prefWidth="109.0" text="DATA" />
-            <TableColumn fx:id="idw" prefWidth="147.0" text="ID_WYCIECZKI" />
+            <TableColumn fx:id="kwot" prefWidth="109.0" text="KWOTA" />
+            <TableColumn fx:id="nazw" prefWidth="109.0" text="NAZWA" />
+            <TableColumn fx:id="rodz" prefWidth="167.0" resizable="false" text="RODZAJ" />
+            <TableColumn fx:id="idw" prefWidth="165.0" text="ID_WYCIECZKI" visible="false" />
         </columns>
       </TableView>
-      <Button fx:id="ZamknijButton" layoutX="1443.0" layoutY="883.0" mnemonicParsing="false" onAction="#zamknijButtonOnAction" prefHeight="43.0" prefWidth="173.0" text="ZAMKNIJ" textFill="#2c108a">
+      <Button fx:id="ZamknijButton" layoutX="1081.0" layoutY="865.0" mnemonicParsing="false" onAction="#zamknijButtonOnAction" prefHeight="43.0" prefWidth="173.0" text="ZAMKNIJ" textFill="#2c108a">
          <font>
             <Font name="Berlin Sans FB" size="17.0" />
          </font></Button>
-      <TextField fx:id="TextK1" layoutX="1305.0" layoutY="229.0" prefHeight="47.0" prefWidth="267.0" promptText="ID" visible="false" />
-      <TextField fx:id="TextK2" layoutX="1305.0" layoutY="288.0" prefHeight="47.0" prefWidth="267.0" promptText="IMIE" />
-      <TextField fx:id="TextK3" layoutX="1305.0" layoutY="346.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWISKO" />
-      <TextField fx:id="TextK4" layoutX="1305.0" layoutY="398.0" prefHeight="47.0" prefWidth="267.0" promptText="ADRES E-MAIL" />
-      <TextField fx:id="TextK5" layoutX="1305.0" layoutY="448.0" prefHeight="47.0" prefWidth="267.0" promptText="TELEFON" />
-      <TextField fx:id="TextK6" layoutX="1305.0" layoutY="500.0" prefHeight="47.0" prefWidth="267.0" promptText="MIEJSCOWOSC" />
-      <TextField fx:id="TextK7" layoutX="1305.0" layoutY="556.0" prefHeight="47.0" prefWidth="267.0" promptText="NUMER DOMU/MIESZKANIA" />
-      <TextField fx:id="TextK8" layoutX="1305.0" layoutY="613.0" prefHeight="47.0" prefWidth="267.0" promptText="KOD POCZTOWY" />
-      <TextField fx:id="TextK9" layoutX="1305.0" layoutY="722.0" prefHeight="47.0" prefWidth="267.0" promptText="DATA (RRRR-MM-DD) " />
-      <ChoiceBox fx:id="RodzajPlatnosci" layoutX="1305.0" layoutY="667.0" prefHeight="39.0" prefWidth="267.0" />
-      <TextField fx:id="TextK10" layoutX="1305.0" layoutY="782.0" prefHeight="43.0" prefWidth="267.0" promptText="id_wycieczki" />
+      <TextField fx:id="TextK1" layoutX="1048.0" layoutY="209.0" prefHeight="47.0" prefWidth="267.0" promptText="ID" visible="false" />
+      <TextField fx:id="TextK2" layoutX="1048.0" layoutY="268.0" prefHeight="47.0" prefWidth="267.0" promptText="IMIE" />
+      <TextField fx:id="TextK3" layoutX="1048.0" layoutY="326.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWISKO" />
+      <TextField fx:id="TextK4" layoutX="1048.0" layoutY="378.0" prefHeight="47.0" prefWidth="267.0" promptText="ADRES E-MAIL" />
+      <TextField fx:id="TextK6" layoutX="1048.0" layoutY="480.0" prefHeight="47.0" prefWidth="267.0" promptText="DATA (RRRR-MM-DD)" />
+      <TextField fx:id="TextK7" layoutX="1048.0" layoutY="536.0" prefHeight="47.0" prefWidth="267.0" promptText="KWOTA" />
+      <TextField fx:id="TextK8" layoutX="1048.0" layoutY="593.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWA" />
+      <TextField fx:id="TextK9" layoutX="1048.0" layoutY="656.0" prefHeight="47.0" prefWidth="267.0" promptText="RODZAJ" />
+      <ChoiceBox fx:id="RodzajPlatnosci" layoutX="1048.0" layoutY="433.0" prefHeight="39.0" prefWidth="267.0" />
+      <TextField fx:id="TextK10" editable="false" layoutX="1048.0" layoutY="716.0" prefHeight="43.0" prefWidth="267.0" promptText="id_wycieczki" visible="false" />
    </children>
 </AnchorPane>

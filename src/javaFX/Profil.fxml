@@ -55,7 +55,7 @@
                               <Image url="@../obrazy/notyfikacja.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="rez" mnemonicParsing="false" onAction="#RezerwacjaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="REZERWACJE" textFill="#c6c1c1" />
+                        <Button fx:id="rez" mnemonicParsing="false" onAction="#RezerwacjaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="REZERWACJE" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
@@ -65,7 +65,7 @@
                               <Image url="@../obrazy/haslo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="hsl" mnemonicParsing="false" onAction="#HasloOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="ZMIEŃ HASŁO" textFill="#c6c1c1" />
+                        <Button fx:id="hsl" mnemonicParsing="false" onAction="#HasloOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="ZMIEŃ HASŁO" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
@@ -75,7 +75,7 @@
                               <Image url="@../obrazy/ustawienia.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="ust" mnemonicParsing="false" onAction="#UstawieniaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="USTAWIENIA" textFill="#c6c1c1" />
+                        <Button fx:id="ust" mnemonicParsing="false" onAction="#UstawieniaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="USTAWIENIA" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
@@ -85,7 +85,7 @@
                               <Image url="@../obrazy/prywatnosc.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="plt" mnemonicParsing="false" onAction="#PolitykaOnAction" style="-fx-background-color: #13123A;" prefWidth="165.0" text="POLITYKA PRYWATNOŚCI" textFill="#c6c1c1" />
+                        <Button fx:id="plt" mnemonicParsing="false" onAction="#PolitykaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="POLITYKA PRYWATNOŚCI" textFill="#c6c1c1" />
                      </children>
                      <opaqueInsets>
                         <Insets top="15.0" />
@@ -118,7 +118,7 @@
                         <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                      </padding>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="880.0">
+                  <HBox  alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="880.0">
                      <children>
                         <Label prefHeight="70.0" prefWidth="158.0" text="Imie" textFill="WHITE">
                            <font>
@@ -129,7 +129,7 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="70.0" prefWidth="145.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        <TextField fx:id="imieKl" prefHeight="25.0" prefWidth="368.0" />
                      </children></HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="94.0" prefWidth="880.0">
                      <children>
@@ -142,7 +142,7 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="70.0" prefWidth="125.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        <TextField fx:id="nazwKl" prefHeight="25.0" prefWidth="368.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
@@ -156,7 +156,7 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="70.0" prefWidth="145.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        <TextField fx:id="emailKl" prefHeight="25.0" prefWidth="368.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
@@ -170,7 +170,7 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="70.0" prefWidth="145.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        <TextField fx:id="loginKl" prefHeight="25.0" prefWidth="368.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
@@ -184,7 +184,7 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="53.0" prefWidth="90.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        <TextField fx:id="dataKl" prefHeight="25.0" prefWidth="368.0" />
                      </children>
                   </HBox>
                </children>

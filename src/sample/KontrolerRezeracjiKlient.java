@@ -32,6 +32,8 @@ public class KontrolerRezeracjiKlient implements Initializable {
     @FXML
     private TextField idK;
     @FXML
+    private TextField idWyc;
+    @FXML
     private TextField iloscDR;
     @FXML
     private TextField iloscOR;
@@ -60,6 +62,10 @@ public class KontrolerRezeracjiKlient implements Initializable {
     @FXML
     private CheckBox plmR;
     @FXML
+    private CheckBox wyborPrem;
+    @FXML
+    private Label cenaPrem;
+    @FXML
     private ChoiceBox<String> rodzajPR;
     @FXML
     private ChoiceBox<String> terminR;
@@ -67,6 +73,8 @@ public class KontrolerRezeracjiKlient implements Initializable {
     private Button kwota;
     @FXML
     private Button anuluj;
+    @FXML
+    private Button zaplac;
 
     int index=-1;
     Poloczenie connectNow = new Poloczenie();
@@ -89,9 +97,10 @@ public class KontrolerRezeracjiKlient implements Initializable {
             e.printStackTrace();
         }
 
-        String danee = "SELECT * FROM wycieczki w , wycieczki_klient wk where wk.id_klienta='"+idZal+"'AND w.id_wycieczki=wk.id_wycieczki";
-        float cena=0;
-        int ilDni=0,id=0;
+        String danee = "SELECT wk.TwojaCena, w.iloscDni,wk.id,wk.cenaPrem, wk.premium, wk.id_wycieczki FROM wycieczki w , wycieczki_klient wk where wk.id_klienta='"+idZal+"'AND w.id_wycieczki=wk.id_wycieczki";
+        float cena=0,cenaPr=0;
+        int ilDni=0,id=0, idWcie=0;
+        String prem=null;
         ResultSet rs = null;
         try {
             rs = Objects.requireNonNull(st).executeQuery(danee);
@@ -104,7 +113,9 @@ public class KontrolerRezeracjiKlient implements Initializable {
                  cena= rs.getFloat("TwojaCena");
                  ilDni=rs.getInt("iloscDni");
                  id=rs.getInt("id");
-
+                 cenaPr=rs.getFloat("cenaPrem");
+                 prem=rs.getString("premium");
+                 idWcie=rs.getInt("wk.id_wycieczki");
             }
             st.close();
         } catch (Exception e) {
@@ -114,7 +125,15 @@ public class KontrolerRezeracjiKlient implements Initializable {
         cenaR.setText(String.valueOf(cena));
         ilD.setText(String.valueOf(ilDni));
         idK.setText(String.valueOf(id));
+        idWyc.setText(String.valueOf(idWcie));
 
+        if(!prem.equals("")){
+            cenaPrem.setText(String.valueOf(cenaPr));
+            wyborPrem.setSelected(true);
+        }else if(prem.equals("")){
+            cenaPrem.setText(String.valueOf(cenaPr));
+            wyborPrem.setSelected(false);
+        }
     }
 
     @FXML
@@ -127,6 +146,7 @@ public class KontrolerRezeracjiKlient implements Initializable {
             float cena = Float.parseFloat(cenaR.getText());
             int ilDz = Integer.parseInt(iloscDR.getText());
             int ilDor = Integer.parseInt(iloscOR.getText());
+            float cnPr=Float.parseFloat(cenaPrem.getText());
             float calaW = (float) (cena * ilDz * 0.5 + cena * ilDor);
             calaW *= 100;
             calaW = round(calaW);
@@ -151,43 +171,48 @@ public class KontrolerRezeracjiKlient implements Initializable {
                 cenaU /= 100;
             } else JOptionPane.showMessageDialog(null,"Wybierz jeden rodzaj ubezpiczenia!");
 
-            int cenaPrem=0;
+            int cenaPremium=0;
             if(bzrSR.isSelected() && !bzrKR.isSelected() && !bzrPR.isSelected() ){
-                cenaPrem+=150;
+                cenaPremium+=150;
             }else if(bzrKR.isSelected() && !bzrSR.isSelected() && !bzrPR.isSelected() ){
-                cenaPrem+=300;
+                cenaPremium+=300;
             }else if(bzrPR.isSelected() && !bzrSR.isSelected()&& !bzrKR.isSelected()){
-                cenaPrem+=400;
+                cenaPremium+=400;
             }else if(bzrSR.isSelected() && bzrPR.isSelected() && bzrKR.isSelected()){
                 JOptionPane.showMessageDialog(null,"Wybierz jeden rodzaj zmiany rezerwacji!");
             }
 
             if(upsR.isSelected()){
-                cenaPrem+=50;
+                cenaPremium+=50;
             }
 
             if(ukrR.isSelected() && !ukrCR.isSelected()){
-                cenaPrem+=cena*0.04;
-                cenaPrem *= 100;
-                cenaPrem = round(cenaPrem);
-                cenaPrem /= 100;
+                cenaPremium+=cena*0.04;
+                cenaPremium *= 100;
+                cenaPremium = round(cenaPremium);
+                cenaPremium /= 100;
             }else if(ukrCR.isSelected() && !ukrR.isSelected()){
-                cenaPrem+=cena*0.06;
-                cenaPrem *= 100;
-                cenaPrem = round(cenaPrem);
-                cenaPrem /= 100;
+                cenaPremium+=cena*0.06;
+                cenaPremium *= 100;
+                cenaPremium = round(cenaPremium);
+                cenaPremium /= 100;
             }else if(ukrCR.isSelected() && ukrR.isSelected()){
                 JOptionPane.showMessageDialog(null,"Wybierz jeden rodzaj ubezpieczenia od rezygnacji!");
             }
 
             if(dmtR.isSelected()){
-                cenaPrem+=30*ilDor+30*0.5*ilDz;
+                cenaPremium+=30*ilDor+30*0.5*ilDz;
             }
 
             if(plmR.isSelected()){
-                cenaPrem+=25;
+                cenaPremium+=25;
             }
-            float calaCena = calaW+cenaU+cenaPrem;
+
+            if(wyborPrem.isSelected()){
+                cenaPremium+=cnPr;
+            }
+
+            float calaCena = calaW+cenaU+cenaPremium;
             calaCena *= 100;
             calaCena = round(calaCena);
             calaCena /= 100;
@@ -213,6 +238,55 @@ void anulujRezerwacje() throws SQLException {
     Stage stage = (Stage) anuluj.getScene().getWindow();
     stage.close();
 }
+
+@FXML
+void zaplac() throws SQLException {
+    Poloczenie connectNow = new Poloczenie();
+    Connection connectDB = connectNow.getConnection();
+    Statement statement = connectDB.createStatement();
+
+    String daneID="SELECT id_rezerwacji FROM rezerwacje ORDER BY id_rezerwacji ASC;";
+    ResultSet queryResult = statement.executeQuery(daneID);
+    int idWK=0;
+    while (queryResult.next()) {
+        idWK = queryResult.getInt("id_rezerwacji");
+    }
+
+    Statement statement2 = connectDB.createStatement();
+    String daneKl="SELECT id_klienta FROM zalogowany;";
+    ResultSet queryResult2 = statement2.executeQuery(daneKl);
+    int idZal=0;
+    while (queryResult2.next()) {
+        idZal = queryResult2.getInt("id_klienta");
+    }
+
+    String daneRez="INSERT INTO rezerwacje (id_rezerwacji,id_klienta,id_wycieczki,termin, cena,ileDoroslych, ileDzieci,id_platnosc,statusPotwierdzenia) VALUES (?,?,?,?,?,?,?,?,?)";
+    try{
+        pst=(PreparedStatement) connectDB.prepareStatement(daneRez);
+        pst.setString(1, String.valueOf(idWK+1));
+        pst.setString(2,String.valueOf(idZal));
+        pst.setString(3, String.valueOf(idWyc.getText()));
+      //  pst.setString(4, String.valueOf(terminR.getValue()));
+        pst.setString(4, "2020-09-09");
+        pst.setString(5,calosc.getText());
+        pst.setString(6,iloscOR.getText());
+        pst.setString(7,iloscDR.getText());
+
+        if(rodzajPR.getValue().equals("Blik")){
+            pst.setString(8,"1");
+        }else  if(rodzajPR.getValue().equals("Karta kredytowa")){
+            pst.setString(8,"2");
+        }else if(rodzajPR.getValue().equals("Przelew")){
+            pst.setString(8,"3");
+        }else if(rodzajPR.getValue().equals("PayPal")){
+            pst.setString(8,"4");
+        }
+        pst.setString(9,"Niezaakceptowana");
+        pst.execute();
+    }catch (Exception e){
+        JOptionPane.showMessageDialog(null,"Błędne dane! "+e);
+    }
+    }
 
 
     private void ChoiceBoxrodzajPR(){

@@ -111,6 +111,7 @@ public class KontrolerPracownik implements Initializable  {
 
     public void AkceptacjaOnAction(javafx.event.ActionEvent event){
         Stage stage = (Stage) Akceptacja.getScene().getWindow();
+        stage.close();
 
         try{
             Parent root;

@@ -12,7 +12,17 @@
    <children>
       <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../obrazy/56776.jpg');">
          <children>
-            <ImageView fx:id="image"  fitHeight="341.0" fitWidth="364.0" layoutX="104.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image1" fitHeight="304.0" fitWidth="509.0" layoutX="26.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="image2" fitHeight="391.0" fitWidth="560.0" layoutX="1020.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true"/>
+            <Label fx:id="wyc1" layoutX="38.0" layoutY="585.0" prefHeight="49.0" prefWidth="422.0">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font></Label>
+            <Label fx:id="wyc2" layoutX="1049.0" layoutY="680.0" prefHeight="58.0" prefWidth="592.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
          </children></Pane>
       <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
       <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">

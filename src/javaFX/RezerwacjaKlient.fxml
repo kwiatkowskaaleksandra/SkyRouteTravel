@@ -68,7 +68,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="zaplac" layoutX="70.0" layoutY="1220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="ZAPŁAĆ" />
+            <Button fx:id="zaplac" layoutX="70.0" layoutY="1220.0" mnemonicParsing="false" onAction="#zaplac" prefHeight="30.0" prefWidth="100.0" text="ZAPŁAĆ" />
             <Button fx:id="anuluj" layoutX="394.0" layoutY="1220.0" mnemonicParsing="false" onAction="#anulujRezerwacje" prefHeight="30.0" prefWidth="100.0" text="ANULUJ" />
             <ChoiceBox fx:id="rodzajPR" layoutX="181.0" layoutY="310.0" prefWidth="150.0" />
             <Label layoutX="419.0" layoutY="709.0" text="150zł" />
@@ -87,6 +87,9 @@
             <Button fx:id="kwota" layoutX="203.0" layoutY="1223.0" mnemonicParsing="false" onMouseClicked="#wyliczCene" text="Policz pelna kwote" />
             <TextField fx:id="ilD" editable="false" layoutX="220.0" layoutY="385.0" promptText="ilD" visible="false" />
             <TextField fx:id="idK" editable="false" layoutX="274.0" layoutY="385.0" promptText="id" visible="false" />
+            <TextField fx:id="idWyc" editable="false" layoutX="274.0" layoutY="385.0" promptText="idwyc" visible="false" />
+            <CheckBox fx:id="wyborPrem" layoutX="41.0" layoutY="635.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="148.0" text="Dodatkowe atrakcje" />
+            <Label fx:id="cenaPrem" layoutX="405.0" layoutY="637.0" prefHeight="20.0" prefWidth="45.0" />
          </children>
       </Pane>
    </content>
