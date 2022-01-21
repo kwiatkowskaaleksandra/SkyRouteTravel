@@ -1,7 +1,4 @@
-package sample;/*
- * @project BiuroPodróży.iml
- * @author kola
- */
+package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,11 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -75,11 +68,13 @@ public class Faktury implements Initializable {
     @FXML
     private TextField TextK8;
     @FXML
-    private TextField TextK9;
-    @FXML
     private TextField TextK10;
     @FXML
+    private Label konto;
+    @FXML
     private ChoiceBox<String> RodzajPlatnosci;
+    @FXML
+    private ChoiceBox<String> RodzajWycieczki;
 
     int index=-1;
 
@@ -88,7 +83,7 @@ public class Faktury implements Initializable {
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT id_faktury, imie, nazwisko, email, p.rodzaj,f.data,kwota, w.nazwa,w.rodzajWycieczki FROM faktury f, platnosc p,wycieczki w WHERE  f.id_platnosc=p.id_platnosc AND w.id_wycieczki=f.id_wycieczki";
+        String danee = "SELECT id_faktury, imie, nazwisko, email, p.rodzaj,f.data,kwota, w.nazwa,w.rodzajWycieczki FROM faktury f, platnosc p,wycieczki w WHERE  f.id_platnosc=p.id_platnosc AND w.id_wycieczki=f.id_wycieczki ORDER BY id_faktury ASC";
 
         Statement st = null;
         try{
@@ -139,48 +134,52 @@ public class Faktury implements Initializable {
 
     }
 
-    public void DodajFakture() throws SQLException {
+    public void DodajFakture() throws Exception {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
-
-        Statement stat2=null;
-        stat2=connectDB.createStatement();
-        String maxID="SELECT id_faktury FROM faktury ORDER BY  id_faktury ASC";
-        ResultSet max=stat2.executeQuery(maxID);
+        Statement stat2 = null;
+        stat2 = connectDB.createStatement();
+        String maxID = "SELECT id_faktury FROM faktury ORDER BY  id_faktury ASC";
+        ResultSet max = stat2.executeQuery(maxID);
         int idf = 0;
-        while (max.next()){
-            idf=max.getInt("id_faktury");
+        while (max.next()) {
+            idf = max.getInt("id_faktury");
+        }
+        int idw = 0;
+        Statement stat3 = null;
+        stat3 = connectDB.createStatement();
+        String maxW = "SELECT id_wycieczki FROM wycieczki WHERE nazwa='" + TextK8.getText() + "' AND rodzajWycieczki='" + RodzajWycieczki.getValue() + "'";
+        ResultSet maxw = stat3.executeQuery(maxW);
+        while (maxw.next()) {
+            idw = maxw.getInt("id_wycieczki");
         }
 
-        String danee="INSERT INTO faktury(id_faktury,imie,nazwisko,email,id_platnosc,data,kwota,id_wycieczki)values(?,?,?,?,?,?,?,?)";
-        try{
-            pst=(PreparedStatement) connectDB.prepareStatement(danee);
-            pst.setString(1, String.valueOf(idf+1));
-            pst.setString(2,TextK2.getText());
-            pst.setString(3,TextK3.getText());
-            pst.setString(4,TextK4.getText());
-            pst.setString(6,TextK6.getText());
-            pst.setString(7,TextK7.getText());
-            pst.setString(8,"1");
-            if(RodzajPlatnosci.getValue().equals("BLIK")) {
-                pst.setString(5,"1");
-            } else  if(RodzajPlatnosci.getValue().equals("Karta kredytowa")) {
-                pst.setString(5,"2");
-            }else  if(RodzajPlatnosci.getValue().equals("Przelew bankowy")) {
-                pst.setString(5,"3");
-            }else  if(RodzajPlatnosci.getValue().equals("PayPal")) {
-                pst.setString(5,"4");
+        String danee = "INSERT INTO faktury(id_faktury,imie,nazwisko,email,id_platnosc,data,kwota,id_wycieczki)values(?,?,?,?,?,?,?,?)";
+        try {
+            pst = (PreparedStatement) connectDB.prepareStatement(danee);
+            pst.setString(1, String.valueOf(idf + 1));
+            pst.setString(2, TextK2.getText());
+            pst.setString(3, TextK3.getText());
+            pst.setString(4, TextK4.getText());
+            if (RodzajPlatnosci.getValue().equals("BLIK")) {
+                pst.setString(5, "1");
+            } else if (RodzajPlatnosci.getValue().equals("Karta kredytowa")) {
+                pst.setString(5, "2");
+            } else if (RodzajPlatnosci.getValue().equals("Przelew bankowy")) {
+                pst.setString(5, "3");
+            } else if (RodzajPlatnosci.getValue().equals("PayPal")) {
+                pst.setString(5, "4");
             }
-         //   pst.setString(10,TextK9.getText());
-         //   pst.setString(11,TextK10.getText());
+            pst.setString(6, TextK6.getText());
+            pst.setString(7, TextK7.getText());
+            pst.setString(8, String.valueOf(idw));
 
-         //   if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()||TextK9.getText().isEmpty()||RodzajPlatnosci.getValue().equals("Rodzaj platnosci")||TextK10.getText().isEmpty()){
-      //          throw new Exception();
-      //    }
-         //   else{
+            if (TextK2.getText().isEmpty() || TextK3.getText().isEmpty() || TextK4.getText().isEmpty() || TextK6.getText().isEmpty() || TextK8.getText().isEmpty() || RodzajWycieczki.getValue().equals("Rodzaj wycieczki") || RodzajPlatnosci.getValue().equals("Rodzaj platnosci")  ||idw == 0) {
+                JOptionPane.showMessageDialog(null, "Blad dodawania! Nie ma wycieczki o takiej nazwie i rodzaju. ");
+            } else {
                 pst.execute();
-                JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
+                JOptionPane.showMessageDialog(null, "Dodano pomyslnie!");
                 WyswietlFaktury();
                 TextK1.clear();
                 TextK2.clear();
@@ -189,13 +188,11 @@ public class Faktury implements Initializable {
                 TextK6.clear();
                 TextK7.clear();
                 TextK8.clear();
-                TextK9.clear();
-                TextK10.clear();
                 RodzajPlatnosci.setValue("Rodzaj platnosci");
-
-        //    }
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Blad dodawania! "+e);
+                RodzajWycieczki.setValue("Rodzaj wycieczki");
+            }
+            }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Blad dodawania! " + e);
         }
     }
 
@@ -218,9 +215,8 @@ public class Faktury implements Initializable {
             TextK6.clear();
             TextK7.clear();
             TextK8.clear();
-            TextK9.clear();
-            TextK10.clear();
             RodzajPlatnosci.setValue("Rodzaj platnosci");
+            RodzajWycieczki.setValue("Rodzaj wycieczki");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Blad przy usuwaniu! "+e);
         }
@@ -231,12 +227,21 @@ public class Faktury implements Initializable {
             Poloczenie connectNow = new Poloczenie();
             Connection connectDB = connectNow.getConnection();
 
+            int idw = 0;
+            Statement stat3 = null;
+            stat3 = connectDB.createStatement();
+            String maxW = "SELECT id_wycieczki FROM wycieczki WHERE nazwa='" + TextK8.getText() + "' AND rodzajWycieczki='" + RodzajWycieczki.getValue() + "'";
+            ResultSet maxw = stat3.executeQuery(maxW);
+            while (maxw.next()) {
+                idw = maxw.getInt("id_wycieczki");
+            }
+
             String val1=TextK1.getText();
             String val2=TextK2.getText();
             String val3=TextK3.getText();
             String val4=TextK4.getText();
             String val7=TextK7.getText();
-            String val8=TextK8.getText();
+
             String val9=null;
             if(RodzajPlatnosci.getValue().equals("BLIK")) {
                val9="1";
@@ -249,11 +254,12 @@ public class Faktury implements Initializable {
             }
             String val10=TextK6.getText();
 
-            String danee="UPDATE faktury SET id_faktury='"+val1+"',imie='"+val2+"',nazwisko='"+val3+"',email='"+val4+"',data='"+val10+"', kwota='"+val7+"',id_wycieczki=4 WHERE id_faktury='"+val1+"'";
+            String danee="UPDATE faktury SET id_faktury='"+val1+"',imie='"+val2+"',nazwisko='"+val3+"',email='"
+                    +val4+"',id_platnosc='"+val9+"',data='"+val10+"', kwota='"+val7+"',id_wycieczki='"+idw+"' WHERE id_faktury='"+val1+"'";
             pst=(PreparedStatement) connectDB.prepareStatement(danee);
-        //    if(TextK1.getText().isEmpty()||TextK2.getText().isEmpty()||TextK3.getText().isEmpty()||TextK4.getText().isEmpty()||TextK6.getText().isEmpty()||TextK8.getText().isEmpty()||TextK9.getText().isEmpty()||RodzajPlatnosci.getValue().equals("Rodzaj platnosci")||TextK10.getText().isEmpty()){
-       //         throw new Exception();
-       //     }else{
+            if (TextK2.getText().isEmpty() || TextK3.getText().isEmpty() || TextK4.getText().isEmpty() || TextK6.getText().isEmpty() || TextK8.getText().isEmpty() || RodzajWycieczki.getValue().equals("Rodzaj wycieczki") || RodzajPlatnosci.getValue().equals("Rodzaj platnosci")  ||idw == 0) {
+                JOptionPane.showMessageDialog(null, "Blad dodawania! Nie ma wycieczki o takiej nazwie i rodzaju. ");
+            }else{
                 pst.execute();
                 JOptionPane.showMessageDialog(null,"Edycja zakonczona pomyslnie!");
                 WyswietlFaktury();
@@ -264,25 +270,31 @@ public class Faktury implements Initializable {
                 TextK6.clear();
                 TextK7.clear();
                 TextK8.clear();
-                TextK9.clear();
-                TextK10.clear();
                 RodzajPlatnosci.setValue("Rodzaj platnosci");
-           // }
+                RodzajWycieczki.setValue("Rodzaj wycieczki");
+            }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,"Blad przy edycji! "+e);
         }
     }
 
     public void zamknijButtonOnAction() {
+        String rodz=konto.getText();
         Stage stage = (Stage) ZamknijButton.getScene().getWindow();
         stage.close();
 
         try {
-            Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
+            Parent root=null;
+            if(rodz.equals("PRACOWNIK")){
+                root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
+            }
+            if(rodz.equals("ADMIN")){
+                root = FXMLLoader.load(getClass().getResource("../javaFX/Administrator.fxml"));
+            }
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1720.0D, 880.0D));
+            menuStage.setScene(new Scene(root, 1910, 1000));
+            menuStage.setTitle("SKY ROUTE TRAVEL");
             menuStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -290,7 +302,7 @@ public class Faktury implements Initializable {
         }
     }
 
-    public void DodajButtonOnActionEvent() throws SQLException { DodajFakture();}
+    public void DodajButtonOnActionEvent() throws Exception { DodajFakture();}
 
     public void UsunButtonOnActionEvent(){ UsunFakture();}
 
@@ -301,10 +313,22 @@ public class Faktury implements Initializable {
         String a="Rodzaj platnosci";
         String b="BLIK";
         String c="PayPal";
-        String d="Przelew bankowy";
+        String d="Przelew";
         listPlatnosc.addAll(b,c,d);
         RodzajPlatnosci.getItems().addAll(listPlatnosc);
         RodzajPlatnosci.setValue(a);
+    }
+
+    private void ChoiceBoxWycieczki(){
+        listWycieczki.removeAll(listWycieczki);
+        String a="Rodzaj wycieczki";
+
+        String b="Last Minute";
+        String c="Promocja";
+        String d="Egzotyka";
+        listWycieczki.addAll(b,c,d);
+        RodzajWycieczki.getItems().addAll(listWycieczki);
+        RodzajWycieczki.setValue(a);
     }
 
     public void getSelected(){
@@ -319,14 +343,14 @@ public class Faktury implements Initializable {
         TextK6.setText(dta.getCellData(index).toString());
         TextK7.setText(kwot.getCellData(index).toString());
         TextK8.setText(nazw.getCellData(index));
-        TextK9.setText(rodz.getCellData(index));
         RodzajPlatnosci.setValue(pln.getCellData(index));
+        RodzajWycieczki.setValue(rodz.getCellData(index));
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        ChoiceBoxWycieczki();
         ChoiceBoxPlatnosc();
         WyswietlFaktury();
     }

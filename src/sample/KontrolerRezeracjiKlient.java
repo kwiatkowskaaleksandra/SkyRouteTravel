@@ -11,7 +11,9 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import static java.lang.StrictMath.round;
@@ -265,8 +267,7 @@ void zaplac() throws SQLException {
         pst.setString(1, String.valueOf(idWK+1));
         pst.setString(2,String.valueOf(idZal));
         pst.setString(3, String.valueOf(idWyc.getText()));
-      //  pst.setString(4, String.valueOf(terminR.getValue()));
-        pst.setString(4, "2020-09-09");
+        pst.setString(4, String.valueOf(terminR.getValue()));
         pst.setString(5,calosc.getText());
         pst.setString(6,iloscOR.getText());
         pst.setString(7,iloscDR.getText());
@@ -282,11 +283,11 @@ void zaplac() throws SQLException {
         }
         pst.setString(9,"Niezaakceptowana");
         pst.execute();
+        JOptionPane.showMessageDialog(null,"Zarezerwowano wycieczkę!");
     }catch (Exception e){
         JOptionPane.showMessageDialog(null,"Błędne dane! "+e);
     }
     }
-
 
     private void ChoiceBoxrodzajPR(){
         ObservableList rodzajPlatnosci= FXCollections.observableArrayList();
@@ -300,13 +301,36 @@ void zaplac() throws SQLException {
        rodzajPlatnosci.addAll(b,c,d,e);
        rodzajPR.getItems().addAll(rodzajPlatnosci);
        rodzajPR.setValue(a);
+    }
 
+    private void ChoiceBoxrodzajTR(){
+        ObservableList rodzajTermin= FXCollections.observableArrayList();
+        Random rD=new Random();
+        int dzien= rD.nextInt(28)+1;
+        int miesiac= rD.nextInt(12)+1;
+        String a="Terminy";
+
+        String b=2022+"-"+miesiac+"-"+dzien;
+        int dzien1= rD.nextInt(28)+1;
+        int miesiac1= rD.nextInt(12)+1;
+        String c=2022+"-"+miesiac1+"-"+dzien1;
+        int dzien2= rD.nextInt(28)+1;
+        int miesiac2= rD.nextInt(12)+1;
+        String d=2022+"-"+miesiac2+"-"+dzien2;
+        int dzien3= rD.nextInt(28)+1;
+        int miesiac3= rD.nextInt(12)+1;
+        String e=2022+"-"+miesiac3+"-"+dzien3;
+
+        rodzajTermin.addAll(b,c,d,e);
+        terminR.getItems().addAll(rodzajTermin);
+        terminR.setValue(a);
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ChoiceBoxrodzajPR();
+        ChoiceBoxrodzajTR();
         try {
             WyswietlRezrwacje();
         } catch (SQLException throwables) {

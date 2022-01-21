@@ -74,6 +74,8 @@ public class WycieczkiKlient implements Initializable {
     private TextField cenaPr;
     @FXML
     private CheckBox wyborPrem;
+    @FXML
+    private Label rodz;
 
     @FXML
     private ChoiceBox<String> RodzajUbezpieczenia;
@@ -94,7 +96,18 @@ public class WycieczkiKlient implements Initializable {
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium, w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni, zdjecie FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport  ORDER BY id_wycieczki ASC";
+        String rod=null;
+        if(rodz.getText().equals("PROMOCJE")){
+            rod="Promocja";
+        }else if(rodz.getText().equals("LAST MINUTE")){
+            rod="Last Minute";
+        }else if(rodz.getText().equals("EGZOTYKA")){
+            rod="EGZOTYKA";
+        }else if(rodz.getText().equals("OFERTY WYCIECZEK")){
+            rod="Promocja' OR w.rodzajWycieczki='Last Minute' OR w.rodzajWycieczki='Egzotyka";
+        }
+
+        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium, w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni, zdjecie FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport  where w.rodzajWycieczki='"+rod+"' ORDER BY id_wycieczki ASC";
 
         Statement st = null;
         try{
@@ -162,7 +175,8 @@ public class WycieczkiKlient implements Initializable {
             root = FXMLLoader.load(getClass().getResource("../javaFX/Klient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1720.0D, 880.0D));
+            menuStage.setScene(new Scene(root, 1910, 1000));
+            menuStage.setTitle("SKY ROUTE TRAVEL");
             menuStage.show();
         } catch (Exception e) {
             e.printStackTrace();

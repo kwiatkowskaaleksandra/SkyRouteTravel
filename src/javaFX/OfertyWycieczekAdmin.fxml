@@ -95,7 +95,7 @@
             <TextField fx:id="id" layoutX="1320.0" layoutY="184.0" promptText="id" visible="false" />
             <Button fx:id="zdjecie" layoutX="1320.0" layoutY="797.0" mnemonicParsing="false" onAction="#WybierzZdjecie" prefHeight="36.0" prefWidth="149.0" text="Dodaj zdjęcie" />
             <TextField fx:id="nazwZdj" editable="false" layoutX="1493.0" layoutY="797.0" prefHeight="36.0" prefWidth="267.0" promptText="NAZWA PLIKU" />
-            <Label fx:id="konto" layoutX="1455.0" layoutY="28.0" text="PRACOWNIK" visible="false" />
+            <Label fx:id="konto" layoutX="1377.0" layoutY="22.0" text="ADMIN" visible="false" />
 
 
 

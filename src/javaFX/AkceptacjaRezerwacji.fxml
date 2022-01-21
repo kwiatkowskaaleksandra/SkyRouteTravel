@@ -21,5 +21,6 @@
       <Button fx:id="akc" layoutX="885.0" layoutY="120.0" mnemonicParsing="false" onAction="#akceptujRezerwacje" prefHeight="37.0" prefWidth="105.0" text="Akceptuj" />
       <Button fx:id="odrz" layoutX="885.0" layoutY="174.0" mnemonicParsing="false" onAction="#odzrucRezerwacje" prefHeight="37.0" prefWidth="105.0" text="Odrzuć" />
       <TextField fx:id="idRezrw" editable="false" layoutX="875.0" layoutY="35.0" prefHeight="25.0" prefWidth="105.0" promptText="idRezerwacji" visible="false" />
+      <Button fx:id="zam" layoutX="885.0" layoutY="226.0" onAction="#wyjdzButtonOnAction" mnemonicParsing="false" prefHeight="37.0" prefWidth="105.0" text="Zamknij" />
    </children>
 </AnchorPane>

@@ -3,33 +3,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Wiadomosci">
+<AnchorPane prefHeight="650.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WiadomosciKlient">
    <children>
       <Pane layoutX="-1.0" prefHeight="650.0" prefWidth="687.0">
          <children>
             <TableView fx:id="Tab1" layoutX="1.0" layoutY="64.0" onMouseClicked="#getSelected" prefHeight="583.0" prefWidth="687.0">
               <columns>
-
-                <TableColumn fx:id="od" minWidth="0.0" prefWidth="108.0" text="Od:" />
-                 <TableColumn fx:id="tem" minWidth="0.0" prefWidth="421.0" text="Temat:" />
+                  <TableColumn fx:id="od" minWidth="0.0" prefWidth="108.0" text="Od:" />
+                  <TableColumn fx:id="tem" minWidth="0.0" prefWidth="421.0" text="Temat:" />
                   <TableColumn fx:id="dat" prefWidth="157.0" text="Odebrano:" />
               </columns>
             </TableView>
-            <Button fx:id="UsunButton" layoutX="422.0" layoutY="23.0" mnemonicParsing="false" onAction="#UsunWiadomoscOnActionEvent" text="USUN" />
-            <Button fx:id="WyjdzButton" layoutX="523.0" layoutY="23.0" mnemonicParsing="false" onAction="#wyjdzButtonOnAction" text="WYJDZ" />
-            <TextField fx:id="DanePrac" editable="false" layoutX="14.0" layoutY="23.0" prefHeight="32.0" prefWidth="242.0" />
-         </children>
-      </Pane>
+             <TextField fx:id="DanePrac" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="242.0" />
+         </children></Pane>
+      <Button fx:id="UsunButton" layoutX="414.0" layoutY="23.0" mnemonicParsing="false" onAction="#UsunWiadomoscOnActionEvent" text="USUN" />
+      <Button fx:id="WyjdzButton" layoutX="523.0" layoutY="23.0" mnemonicParsing="false" onAction="#wyjdzButtonOnAction" text="WYJDZ" />
+      <Button fx:id="WyslijButton" layoutX="1130.0" layoutY="29.0" mnemonicParsing="false" onAction="#WyslijWiadomoscOnActionEvent" text="WYSLIJ" />
+      <Button fx:id="OdpowiedzButton" layoutX="1019.0" layoutY="29.0" mnemonicParsing="false" onAction="#OdpowiedzOnActionEvent" text="ODPOWIEDZ" />
       <Pane layoutX="686.0" layoutY="64.0" prefHeight="583.0" prefWidth="564.0">
          <children>
             <Label fx:id="forma" layoutX="14.0" layoutY="21.0" prefHeight="32.0" prefWidth="65.0" text="Od:" />
             <Label fx:id="temOdp" layoutX="14.0" layoutY="53.0" prefHeight="25.0" prefWidth="48.0" text="Temat" />
             <Label layoutX="14.0" layoutY="91.0" prefHeight="25.0" prefWidth="48.0" text="Treść:" />
-            <TextArea fx:id="wiad" layoutX="57.0" layoutY="91.0" prefHeight="456.0" prefWidth="493.0" wrapText="true" />
             <TextField fx:id="adres" editable="false" layoutX="57.0" layoutY="25.0" prefHeight="25.0" prefWidth="493.0" />
             <TextField fx:id="subject" editable="false" layoutX="57.0" layoutY="53.0" prefHeight="25.0" prefWidth="493.0" />
+            <TextArea fx:id="wiad" layoutX="57.0" layoutY="91.0" prefHeight="456.0" prefWidth="493.0" wrapText="true" />
          </children></Pane>
-      <Button fx:id="WyslijButton" layoutX="1130.0" layoutY="29.0" mnemonicParsing="false" onAction="#WyslijWiadomoscOnActionEvent" text="WYSLIJ" />
-      <Button fx:id="OdpowiedzButton" layoutX="1019.0" layoutY="29.0" mnemonicParsing="false" onAction="#OdpowiedzOnActionEvent" text="ODPOWIEDZ" />
    </children>
 </AnchorPane>

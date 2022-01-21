@@ -6,34 +6,30 @@ package sample;/*
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import javax.swing.*;
-import javax.swing.text.html.ImageView;
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class Wiadomosci implements Initializable {
+public class WiadomosciKlient implements Initializable {
 
     @FXML
     private TableView<DaneDoWiadomosci> Tab1;
     @FXML
-    private TableColumn<DaneDoWiadomosci,String> tem;
+    private TableColumn<DaneDoWiadomosci, String> tem;
     @FXML
-    private TableColumn<DaneDoWiadomosci,String> dat;
+    private TableColumn<DaneDoWiadomosci, String> dat;
     @FXML
-    private TableColumn<DaneDoWiadomosci,String> od;
+    private TableColumn<DaneDoWiadomosci, String> od;
     @FXML
     private TextField DanePrac;
     @FXML
@@ -55,7 +51,7 @@ public class Wiadomosci implements Initializable {
 
 
     PreparedStatement pst = null;
-    int index=-1;
+    int index = -1;
     Poloczenie connectNow = new Poloczenie();
     Connection connectDB = connectNow.getConnection();
 
@@ -63,20 +59,20 @@ public class Wiadomosci implements Initializable {
         final ObservableList WczTab = FXCollections.observableArrayList();
         Statement statement = connectDB.createStatement();
 
-        String dane="SELECT id_pracownika FROM zalogowany;";
+        String dane = "SELECT id_klienta FROM zalogowany;";
         ResultSet queryResult = statement.executeQuery(dane);
-        int idZal=0;
+        int idZal = 0;
         while (queryResult.next()) {
-            idZal = queryResult.getInt("id_pracownika");
+            idZal = queryResult.getInt("id_klienta");
         }
         Statement st = null;
-        try{
+        try {
             st = connectDB.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         DaneDoWiadomosci daneDoWiadomosci;
-        String dane3 = "SELECT imie, nazwisko FROM pracownik p WHERE p.id_pracownika='" + idZal + "'";
+        String dane3 = "SELECT imie, nazwisko FROM klient k WHERE k.id_klienta='" + idZal + "'";
         ResultSet rs2 = null;
         try {
             rs2 = Objects.requireNonNull(st).executeQuery(dane3);
@@ -87,14 +83,14 @@ public class Wiadomosci implements Initializable {
             while (Objects.requireNonNull(rs2).next()) {
                 String imie = rs2.getString("imie");
                 String nazwisko = rs2.getString("nazwisko");
-                DanePrac.setText(imie+" "+nazwisko);
+                DanePrac.setText(imie + " " + nazwisko);
             }
 
         } catch (Exception e) {
             System.out.println("There is an Exception.");
             System.out.println(e.getMessage());
         }
-        String danee = "SELECT w.id_wiadomosci,temat,adresat,tresc,data , imie, nazwisko FROM wiadomosci w , pracownik p WHERE w.id_pracownika=p.id_pracownika and  p.id_pracownika='" + idZal +"'";
+        String danee = "SELECT w.id_wiadomosci,temat,adresat,tresc,data , imie, nazwisko FROM wiadomosci w , klient k WHERE w.id_klienta=k.id_klienta and  w.id_klienta='" + idZal + "'";
 
         ResultSet rs = null;
         try {
@@ -104,15 +100,15 @@ public class Wiadomosci implements Initializable {
         }
         try {
             while (Objects.requireNonNull(rs).next()) {
-                int id=rs.getInt("id_wiadomosci");
+                int id = rs.getInt("id_wiadomosci");
                 String temat = rs.getString("temat");
                 String adresat = rs.getString("adresat");
                 String tresc = rs.getString("tresc");
-                Date data=rs.getDate("data");
+                Date data = rs.getDate("data");
                 String imie = rs.getString("imie");
                 String nazwisko = rs.getString("nazwisko");
-                DanePrac.setText(imie+" "+nazwisko);
-                daneDoWiadomosci = new DaneDoWiadomosci(id,temat,adresat,tresc,data);
+                DanePrac.setText(imie + " " + nazwisko);
+                daneDoWiadomosci = new DaneDoWiadomosci(id, temat, adresat, tresc, data);
                 WczTab.add(daneDoWiadomosci);
 
             }
@@ -137,7 +133,7 @@ public class Wiadomosci implements Initializable {
         this.adres.setText(this.od.getCellData(this.index));
         this.subject.setText(this.tem.getCellData(this.index));
 
-        String tema=this.tem.getCellData(this.index);
+        String tema = this.tem.getCellData(this.index);
         Statement stat = null;
         stat = this.connectDB.createStatement();
         String dane = "SELECT tresc FROM wiadomosci WHERE temat='" + tema + "'";
@@ -154,28 +150,28 @@ public class Wiadomosci implements Initializable {
         stage.close();
     }
 
-    public void usunWiadomosc(){
+    public void usunWiadomosc() {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
-        String danee="DELETE FROM wiadomosci WHERE temat=? AND adresat=?";
+        String danee = "DELETE FROM wiadomosci WHERE temat=? AND adresat=?";
         try {
-            pst=(PreparedStatement) connectDB.prepareStatement(danee);
+            pst = (PreparedStatement) connectDB.prepareStatement(danee);
             pst.setString(1, subject.getText());
             pst.setString(2, adres.getText());
             pst.execute();
-            JOptionPane.showMessageDialog(null,"Usunieto pomyslnie!");
+            JOptionPane.showMessageDialog(null, "Usunieto pomyslnie!");
             WyswietlWiadomosci();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Blad przy usuwaniu!  "+e);
+            JOptionPane.showMessageDialog(null, "Blad przy usuwaniu!  " + e);
         }
     }
 
-    public void Odpowiedz(){
-            forma.setText("Do:");
-            subject.setText("RE: "+subject.getText());
-            wiad.clear();
+    public void Odpowiedz() {
+        forma.setText("Do:");
+        subject.setText("RE: " + subject.getText());
+        wiad.clear();
     }
 
     public void WyslijWiadomosc() throws SQLException {
@@ -185,50 +181,58 @@ public class Wiadomosci implements Initializable {
         }
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
-        Statement stat=null;
-        stat=connectDB.createStatement();
-        Statement stat2=null;
-        stat2=connectDB.createStatement();
-        String t=this.tem.getCellData(index);
-        String a=this.od.getCellData(index);
-        String danee="SELECT * FROM wiadomosci WHERE temat='"+t+"' AND adresat='"+a+"'";
-        ResultSet wynik=stat.executeQuery(danee);
+        Statement stat = null;
+        stat = connectDB.createStatement();
+        Statement stat2 = null;
+        stat2 = connectDB.createStatement();
+        String t = this.tem.getCellData(index);
+        String a = this.od.getCellData(index);
+        String danee = "SELECT * FROM wiadomosci WHERE temat='" + t + "' AND adresat='" + a + "'";
+        ResultSet wynik = stat.executeQuery(danee);
 
-        int idw = 0, id_prac=0, id_kl=0;
-        while(wynik.next()){
-            id_prac=wynik.getInt("id_pracownika");
-            id_kl=wynik.getInt("id_klienta");
+        int idw = 0, id_prac = 0, id_kl = 0;
+        while (wynik.next()) {
+            id_prac = wynik.getInt("id_pracownika");
+            id_kl = wynik.getInt("id_klienta");
         }
-        String maxID="SELECT id_wiadomosci FROM wiadomosci";
-        ResultSet max=stat2.executeQuery(maxID);
-       while (max.next()){
-            idw=max.getInt("id_wiadomosci");
+        String maxID = "SELECT id_wiadomosci FROM wiadomosci";
+        ResultSet max = stat2.executeQuery(maxID);
+        while (max.next()) {
+            idw = max.getInt("id_wiadomosci");
         }
 
-        String dane="INSERT INTO wiadomosci(id_wiadomosci,temat,adresat,tresc,data,id_pracownika,id_klienta)values(?,?,?,?,?,?,?)";
-        try{
-            pst=(PreparedStatement)connectDB.prepareStatement(dane);
-            pst.setString(1, String.valueOf(idw+1));
-            pst.setString(2,subject.getText());
-            pst.setString(3,adres.getText());
-            pst.setString(4,wiad.getText());
+        String dane = "INSERT INTO wiadomosci(id_wiadomosci,temat,adresat,tresc,data,id_pracownika,id_klienta)values(?,?,?,?,?,?,?)";
+        try {
+            pst = (PreparedStatement) connectDB.prepareStatement(dane);
+            pst.setString(1, String.valueOf(idw + 1));
+            pst.setString(2, subject.getText());
+            pst.setString(3, adres.getText());
+            pst.setString(4, wiad.getText());
             pst.setString(5, String.valueOf(LocalDate.now()));
-            pst.setString(6,String.valueOf(id_prac));
-            pst.setString(7,String.valueOf(id_kl));
+            pst.setString(6, String.valueOf(id_prac));
+            pst.setString(7, String.valueOf(id_kl));
             pst.execute();
-            JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
+            JOptionPane.showMessageDialog(null, "Dodano pomyslnie!");
             WyswietlWiadomosci();
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Blad dodawania! "+e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Blad dodawania! " + e);
         }
         wynik.close();
         max.close();
     }
 
 
-    public void UsunWiadomoscOnActionEvent(){usunWiadomosc();}
-    public void OdpowiedzOnActionEvent(){Odpowiedz();}
-    public void WyslijWiadomoscOnActionEvent() throws SQLException {WyslijWiadomosc();}
+    public void UsunWiadomoscOnActionEvent() {
+        usunWiadomosc();
+    }
+
+    public void OdpowiedzOnActionEvent() {
+        Odpowiedz();
+    }
+
+    public void WyslijWiadomoscOnActionEvent() throws SQLException {
+        WyslijWiadomosc();
+    }
 
 
     @Override

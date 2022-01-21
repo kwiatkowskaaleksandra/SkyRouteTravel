@@ -40,7 +40,7 @@
                     </columns>
                 </TableView>
                 <TextField fx:id="TextK1" editable="false" layoutX="1526.0" layoutY="171.0" prefHeight="47.0" prefWidth="267.0" promptText="Miejsce" />
-                <Label fx:id="rodz" alignment="CENTER" layoutY="69.0" prefHeight="59.0" prefWidth="1820.0" text="OFERTY WYCIECZEK" textFill="#2c108a">
+                <Label fx:id="rodz" alignment="CENTER" layoutY="69.0" prefHeight="59.0" prefWidth="1820.0" text="EGZOTYKA" textFill="#2c108a">
                     <font>
                         <Font name="Berlin Sans FB" size="20.0" />
                     </font>

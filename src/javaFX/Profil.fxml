@@ -110,7 +110,7 @@
                </padding></Label>
             <VBox alignment="TOP_CENTER" prefHeight="306.0" prefWidth="880.0" spacing="30.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="880.0" text="Szczegóły konta" textFill="WHITE">
+                  <Label fx:id="rodzajUst" prefHeight="20.0" prefWidth="880.0" text="Szczegóły konta" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -118,7 +118,7 @@
                         <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                      </padding>
                   </Label>
-                  <HBox  alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="880.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="880.0">
                      <children>
                         <Label prefHeight="70.0" prefWidth="158.0" text="Imie" textFill="WHITE">
                            <font>

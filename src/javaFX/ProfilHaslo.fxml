@@ -19,7 +19,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="150.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../obrazy/logo.PNG" />
+                        <Image url="@../obrazy/logo1.PNG" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
@@ -114,7 +114,7 @@
                </padding></Label>
             <VBox alignment="TOP_CENTER" prefHeight="306.0" prefWidth="880.0" spacing="30.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="880.0" text="ZMIEŃ HASŁO" textFill="WHITE">
+                  <Label fx:id="rodzajUst" prefHeight="20.0" prefWidth="880.0" text="ZMIEŃ HASŁO" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -133,7 +133,7 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="61.0" prefWidth="120.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        <TextField fx:id="stareHasl" prefHeight="25.0" prefWidth="368.0" />
                      </children></HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="94.0" prefWidth="880.0">
                      <children>
@@ -146,7 +146,7 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="61.0" prefWidth="106.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        <TextField fx:id="noweHasl" prefHeight="25.0" prefWidth="368.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
@@ -160,7 +160,7 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="61.0" prefWidth="127.0" />
-                        <TextField prefHeight="25.0" prefWidth="368.0" />
+                        <TextField fx:id="powNoweHasl" prefHeight="25.0" prefWidth="368.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
@@ -175,7 +175,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Zapisz zmiany" textFill="WHITE">
+            <Button fx:id="zapisz" mnemonicParsing="false" prefHeight="40.0" onAction="#zmianaHasla" prefWidth="118.0" text="Zapisz zmiany" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

@@ -41,7 +41,7 @@
                               <Image url="@../obrazy/avatarr.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="prof" onAction="#ProfilOnAction" mnemonicParsing="false" prefWidth="165.0" text="PROFIL" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
+                        <Button fx:id="prof" mnemonicParsing="false" onAction="#ProfilOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="PROFIL" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0">
@@ -51,7 +51,7 @@
                               <Image url="@../obrazy/notyfikacja.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="rez" onAction="#RezerwacjaOnAction" mnemonicParsing="false" prefWidth="165.0" text="REZERWACJE" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
+                        <Button fx:id="rez" mnemonicParsing="false" onAction="#RezerwacjaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="REZERWACJE" textFill="#c6c1c1" />
                      </children>
                      <styleClass>
                         <String fx:value="selected" />
@@ -65,7 +65,7 @@
                               <Image url="@../obrazy/haslo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="hsl" onAction="#HasloOnAction" mnemonicParsing="false" prefWidth="165.0" text="ZMIEŃ HASŁO" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
+                        <Button fx:id="hsl" mnemonicParsing="false" onAction="#HasloOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="ZMIEŃ HASŁO" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
@@ -75,7 +75,7 @@
                               <Image url="@../obrazy/ustawienia.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="ust" onAction="#UstawieniaOnAction" mnemonicParsing="false" prefWidth="165.0" text="USTAWIENIA" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
+                        <Button fx:id="ust" mnemonicParsing="false" onAction="#UstawieniaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="USTAWIENIA" textFill="#c6c1c1" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
@@ -85,7 +85,7 @@
                               <Image url="@../obrazy/prywatnosc.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="plt" onAction="#PolitykaOnAction" mnemonicParsing="false" prefWidth="165.0" text="POLITYKA PRYWATNOŚCI" style="-fx-background-color: #13123A;" textFill="#c6c1c1" />
+                        <Button fx:id="plt" mnemonicParsing="false" onAction="#PolitykaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="POLITYKA PRYWATNOŚCI" textFill="#c6c1c1" />
                      </children>
                      <opaqueInsets>
                         <Insets top="15.0" />
@@ -110,7 +110,7 @@
                </padding></Label>
             <VBox alignment="TOP_CENTER" prefHeight="474.0" prefWidth="880.0" spacing="30.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="880.0" text="Rezerwacje" textFill="WHITE">
+                  <Label fx:id="rodzajUst" prefHeight="20.0" prefWidth="880.0" text="Rezerwacje" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -118,24 +118,25 @@
                         <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                      </padding>
                   </Label>
+                  <TextField fx:id="idRezrw" promptText="idR" visible="false" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="372.0" prefWidth="518.0" stylesheets="@../css/WycieczkiMenu.css">
+                        <TableView fx:id="Tab" onMouseClicked="#getSelected" prefHeight="372.0" prefWidth="559.0" stylesheets="@../css/WycieczkiMenu.css">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="ID" />
-                            <TableColumn prefWidth="75.0" text="TERMIN" />
-                              <TableColumn prefWidth="75.0" text="ILOŚĆ OSÓB" />
-                              <TableColumn prefWidth="87.0" text="ILOŚĆ DZIECI" />
-                              <TableColumn prefWidth="63.0" text="CENA" />
-                              <TableColumn prefWidth="141.0" text="RODZAJ PŁATNOŚCI" />
+                            <TableColumn fx:id="idR" prefWidth="75.0" text="ID" visible="false" />
+                            <TableColumn fx:id="term" prefWidth="75.0" text="TERMIN" />
+                              <TableColumn fx:id="naz" prefWidth="113.0" text="NAZWA" />
+                              <TableColumn fx:id="cen" prefWidth="58.0" text="CENA" />
+                              <TableColumn fx:id="plat" prefWidth="184.0" text="RODZAJ PŁATNOŚCI" />
+                              <TableColumn fx:id="stat" prefWidth="128.0" text="STATUS" />
                           </columns>
                         </TableView>
-                        <Button layoutX="685.0" layoutY="44.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Zaakceptuj" textFill="WHITE">
+                        <Button fx:id="op" layoutX="685.0" layoutY="44.0" mnemonicParsing="false" onAction="#opinia" prefHeight="40.0" prefWidth="118.0" text="Dodaj opinie" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button layoutX="685.0" layoutY="166.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Odrzuć" textFill="WHITE">
+                        <Button layoutX="685.0" layoutY="166.0" mnemonicParsing="false" onAction="#usunRezrw" prefHeight="40.0" prefWidth="118.0" text="Odrzuć" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

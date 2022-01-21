@@ -29,6 +29,7 @@ public class KontrolerPracownik implements Initializable  {
     public Button Wiadomosci;
     public Button Akceptacja;
     public ListView <String>listaOgloszen;
+    public ListView <String>listaOpinie;
 
 
 
@@ -42,7 +43,7 @@ public class KontrolerPracownik implements Initializable  {
             root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1820,980));
+            menuStage.setScene(new Scene(root, 1910, 1000));
             menuStage.setTitle("SKY ROUTE TRAVEL");
             menuStage.show();
         }catch(Exception e)
@@ -80,7 +81,7 @@ public class KontrolerPracownik implements Initializable  {
             root = FXMLLoader.load(getClass().getResource("../javaFX/Faktury.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1820,980));
+            menuStage.setScene(new Scene(root, 1430,1000));
             menuStage.setTitle("Faktury");
             menuStage.show();
         }catch(Exception e)
@@ -111,14 +112,13 @@ public class KontrolerPracownik implements Initializable  {
 
     public void AkceptacjaOnAction(javafx.event.ActionEvent event){
         Stage stage = (Stage) Akceptacja.getScene().getWindow();
-        stage.close();
 
         try{
             Parent root;
             root = FXMLLoader.load(getClass().getResource("../javaFX/AkceptacjaRezerwacji.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1250,650));
+            menuStage.setScene(new Scene(root, 1010,550));
             menuStage.setTitle("Akceptacja Rezerwacji");
             menuStage.show();
 
@@ -134,10 +134,8 @@ public class KontrolerPracownik implements Initializable  {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
-        final ObservableList WczTab = FXCollections.observableArrayList();
 
-            String danee = "SELECT data,tresc FROM ogloszenia";
-
+            String daneOgl = "SELECT data,tresc FROM ogloszenia";
             Statement st = null;
             try{
                 st = connectDB.createStatement();
@@ -147,7 +145,7 @@ public class KontrolerPracownik implements Initializable  {
 
             ResultSet rs = null;
             try {
-                rs = Objects.requireNonNull(st).executeQuery(danee);
+                rs = Objects.requireNonNull(st).executeQuery(daneOgl);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -163,6 +161,34 @@ public class KontrolerPracownik implements Initializable  {
                 System.out.println("There is an Exception.");
                 System.out.println(e.getMessage());
             }
+
+        String daneO = "SELECT o.tresc, o.data, w.nazwa  FROM opinie o, wycieczki w WHERE o.id_wycieczki=w.id_wycieczki";
+        Statement st2 = null;
+        try{
+            st2 = connectDB.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs2 = null;
+        try {
+            rs2 = Objects.requireNonNull(st2).executeQuery(daneO);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            while (Objects.requireNonNull(rs2).next()) {
+
+                String data =rs2.getString("data");
+                String tresc = rs2.getString("tresc");
+                String nazwa=rs2.getString("nazwa");
+                listaOpinie.getItems().addAll(data+"  -  "+nazwa+"  -  "+tresc);
+            }
+            st2.close();
+        } catch (Exception e) {
+            System.out.println("There is an Exception.");
+            System.out.println(e.getMessage());
+        }
 
 
     }

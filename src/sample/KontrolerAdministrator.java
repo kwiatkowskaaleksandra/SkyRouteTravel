@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,8 @@ public class KontrolerAdministrator {
     private Button kontaPracownikow;
     @FXML
     private Button Ogloszenia;
+    @FXML
+    private Button opinie;
 
     public void IdWylogujOnAciotn(javafx.event.ActionEvent event)
     {
@@ -30,8 +33,8 @@ public class KontrolerAdministrator {
             root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1820,980));
-            menuStage.setTitle("Administrator");
+            menuStage.setScene(new Scene(root, 1910, 1000));
+            menuStage.setTitle("SKY ROUTE TRAVEL");
             menuStage.show();
         }catch(Exception e)
         {
@@ -46,7 +49,7 @@ public class KontrolerAdministrator {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/OfertyWycieczek.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/OfertyWycieczekAdmin.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -65,10 +68,10 @@ public class KontrolerAdministrator {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Faktury.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/FakturyAdmin.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1820,980));
+            menuStage.setScene(new Scene(root, 1430,1000));
             menuStage.setTitle("Faktury");
             menuStage.show();
         }catch(Exception e)
@@ -106,6 +109,24 @@ public class KontrolerAdministrator {
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 470,510));
             menuStage.setTitle("Ogloszenia");
+            menuStage.show();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void OpinieKlientow() {
+        Stage stage = (Stage) opinie.getScene().getWindow();
+
+        try{
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("../javaFX/opinieAdmin.fxml"));
+            Stage menuStage = new Stage();
+            menuStage.initStyle(StageStyle.DECORATED);
+            menuStage.setScene(new Scene(root, 810,480));
+            menuStage.setTitle("Opinie Klientów");
             menuStage.show();
         }catch(Exception e)
         {

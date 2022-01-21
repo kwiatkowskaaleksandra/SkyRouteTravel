@@ -1,10 +1,13 @@
 package sample;
 
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import  static  org.junit.jupiter.api.Assertions.assertThrows;
 import java.sql.*;
 import java.util.Objects;
 
@@ -25,7 +28,7 @@ class FakturyTest {
 
         Statement st = null;
         try{
-            st = connectDB.createStatement();
+         st = connectDB.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,24 +64,31 @@ class FakturyTest {
     }
 
     @Test
+
     void dodajFakture() throws SQLException {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
+      // WycieczkiKlient thrown= assertThrows(WycieczkiKlient.class,()-> {
 
+           // try {
+                Statement stat2 = null;
+                stat2 = connectDB.createStatement();
+                String maxID = "SELECT id_faktury FROM faktury ORDER BY  id_faktury ASC";
+                ResultSet max = stat2.executeQuery(maxID);
+                int idf = 0;
+                while (max.next()) {
+                    idf = max.getInt("id_faktury");
+                }
+                Statement stat3 = null;
+                stat3 = connectDB.createStatement();
 
-        Statement stat2=null;
-        stat2=connectDB.createStatement();
-        String maxID="SELECT id_faktury FROM faktury ORDER BY  id_faktury ASC";
-        ResultSet max=stat2.executeQuery(maxID);
-        int idf = 0;
-        while (max.next()){
-            idf=max.getInt("id_faktury");
-        }
-        Statement stat3=null;
-        stat3=connectDB.createStatement();
+                String danee = "INSERT INTO faktury(id_faktury,imie,nazwisko,email,id_platnosc,data,kwota,id_wycieczki)values(1,'jarek','kot','jarek@wp.pl',4,'1999-04-04',1444,5)";
+                stat3.executeUpdate(danee);
+          //  } catch (Exception e) {
 
-        String danee="INSERT INTO faktury(id_faktury,imie,nazwisko,email,id_platnosc,data,kwota,id_wycieczki)values(1,'jarek','kot','jarek@wp.pl',4,'1999-04-04',1444,5)";
-        stat3.executeUpdate(danee);
+//            }
+
+       // });
 
     }
 

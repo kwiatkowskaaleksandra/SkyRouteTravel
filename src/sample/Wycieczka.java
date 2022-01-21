@@ -1,8 +1,4 @@
-package sample;/*
- * @project BiuroPodróży.iml
- * @author kola
- */
-
+package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -105,6 +102,8 @@ public class Wycieczka implements Initializable {
     @FXML
     private TextField id;
     @FXML
+    private Label konto;
+    @FXML
     private ChoiceBox<String> RodzajWycieczki;
     @FXML
     private ChoiceBox<String> RodzajTransportu;
@@ -158,7 +157,6 @@ public class Wycieczka implements Initializable {
                 WczTab.add(daneDoWycieczek);
             }
 
-           // st.close();
         } catch (Exception e) {
             System.out.println("There is an Exception.");
             System.out.println(e.getMessage());
@@ -395,15 +393,21 @@ public class Wycieczka implements Initializable {
     }
 
     public void zamknijButtonOnAction() {
+        String rodz=konto.getText();
         Stage stage = (Stage) ZamknijButton.getScene().getWindow();
         stage.close();
-
         try {
-            Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
+            Parent root = null;
+            if(rodz.equals("ADMIN")){
+                root = FXMLLoader.load(getClass().getResource("../javaFX/Administrator.fxml"));
+            }
+           if(rodz.equals("PRACOWNIK")){
+                root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
+            }
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1720.0D, 880.0D));
+            menuStage.setScene(new Scene(root, 1910, 1000));
+            menuStage.setTitle("SKY ROUTE TRAVEL");
             menuStage.show();
         } catch (Exception e) {
             e.printStackTrace();

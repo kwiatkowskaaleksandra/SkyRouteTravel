@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.Objects;
@@ -49,6 +51,8 @@ public class WycieczkiMenu implements Initializable {
     private Button ZamknijButton;
     @FXML
     private Button zalogujButton;
+    @FXML
+    private Button ZarezerwujButton;
 
     @FXML
     private TextField TextK1;
@@ -69,12 +73,10 @@ public class WycieczkiMenu implements Initializable {
     @FXML
     private TextField TextK12;
 
-
-
-
-
     @FXML
     private Label label;
+    @FXML
+    private Label rodzaj;
     @FXML
     private TextField login;
 
@@ -91,7 +93,6 @@ public class WycieczkiMenu implements Initializable {
     int index=-1;
     ResultSet rs = null;
     Statement st = null;
-    String rodzaj;
     float cena;
     Poloczenie connectNow = new Poloczenie();
     Connection connectDB = connectNow.getConnection();
@@ -100,7 +101,18 @@ public class WycieczkiMenu implements Initializable {
     {
 
         if(!login.getText().isBlank() && !haslo.getText().isBlank())
-        {
+        {Poloczenie connectNow = new Poloczenie();
+            Connection connectDB = connectNow.getConnection();
+            String dane="DELETE FROM zalogowany WHERE id_zalogowanego=1";
+            try{
+                PreparedStatement pst=null;
+                pst=(PreparedStatement) connectDB.prepareStatement(dane);
+                pst.execute();
+            }catch(Exception e)
+            {
+                e.printStackTrace();
+                e.getCause();
+            }
             validateLogin();
         }
         else
@@ -115,24 +127,82 @@ public class WycieczkiMenu implements Initializable {
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLoginKl = "SELECT login , haslo FROM klient WHERE login = '" +login.getText() +"'AND haslo = '" + haslo.getText() + "'" ;
+        String verifyLoginPr = "SELECT id_pracownika,login , haslo FROM pracownik WHERE login = '" +login.getText() +"'AND haslo = '" + haslo.getText() + "'" ;
+        String verifyLoginKl = "SELECT id_klienta,login , haslo FROM klient WHERE login = '" +login.getText() +"'AND haslo = '" + haslo.getText() + "'" ;
 
+        String dane="INSERT INTO zalogowany(id_zalogowanego,id_klienta,id_pracownika,login,haslo)values(?,?,?,?,?)";
         try{
             Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLoginPr);
 
-
-            ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
-            while(queryResultKl.next()) {
-
-                if (queryResultKl.getString("login").equals(login.getText()) && queryResultKl.getString("haslo").equals(haslo.getText())) {
-                    KontrolerMenu k=new KontrolerMenu();
-                   k.KontrolerKlient();
-                } else {
-
+            while(queryResult.next())
+            {
+                if(queryResult.getString("login").equals(login.getText()) && queryResult.getString("haslo").equals(haslo.getText()) ) {
+                    if (login.getText().equals("admin")) {
+                        Stage stage = (Stage) zalogujButton.getScene().getWindow();
+                        KontrolerMenu kontrolerMenu=new KontrolerMenu();
+                        kontrolerMenu.KontrolerAdministrator();
+                        stage.close();
+                    }
+                    else {
+                        String id = queryResult.getString("id_pracownika");
+                        try {
+                            PreparedStatement pst = null;
+                            pst = (PreparedStatement) connectDB.prepareStatement(dane);
+                            pst.setString(1, "1");
+                            pst.setString(2, null);
+                            pst.setString(3, id);
+                            pst.setString(4, login.getText());
+                            pst.setString(5, haslo.getText());
+                            pst.execute();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            e.getCause();
+                        }
+                        label.setText("Udalo sie zalogowac!");
+                        KontrolerMenu kontrolerMenu=new KontrolerMenu();
+                        kontrolerMenu.KontrolerPracownik();
+                        Stage stage = (Stage) zalogujButton.getScene().getWindow();
+                        stage.close();
+                    }
+                }
+                else {
+                    Stage stage = (Stage) zalogujButton.getScene().getWindow();
+                    label.setText("Nieprawidlowe logowanie! Prosze sprobowac ponownie");
+                    JOptionPane.showMessageDialog(null,"Nieprawidlowe logowanie! Prosze sprobowac ponownie");
                 }
             }
-            Stage stage = (Stage) zalogujButton.getScene().getWindow();
-            stage.close();
+            if(queryResult.next()==false ){
+                label.setText("Błędny login lub hasło.");
+            }
+            ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
+            while (queryResultKl.next()) {
+
+                if (queryResultKl.getString("login").equals(login.getText()) && queryResultKl.getString("haslo").equals(haslo.getText())) {
+                    String id = queryResultKl.getString("id_klienta");
+                    try {
+                        PreparedStatement pst = null;
+                        pst = (PreparedStatement) connectDB.prepareStatement(dane);
+                        pst.setString(1, "1");
+                        pst.setString(2, id);
+                        pst.setString(3, null);
+                        pst.setString(4, login.getText());
+                        pst.setString(5, haslo.getText());
+                        pst.execute();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        e.getCause();
+                    }
+                    label.setText("Udalo sie zalogowac!");
+                    KontrolerMenu kontrolerMenu=new KontrolerMenu();
+                    kontrolerMenu.KontrolerKlient();
+                    Stage stage = (Stage) zalogujButton.getScene().getWindow();
+                    stage.close();
+                }
+            }
+            if(queryResultKl.next()==false ){
+                label.setText("Błędny login lub hasło.");
+            }
 
 
         }catch(Exception e)
@@ -148,7 +218,18 @@ public class WycieczkiMenu implements Initializable {
         Connection connectDB = connectNow.getConnection();
         final ObservableList WczTab = FXCollections.observableArrayList();
 
-        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni, zdjecie FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport  ORDER BY id_wycieczki ASC";
+        String rodz=null;
+        if(rodzaj.getText().equals("PROMOCJE")){
+            rodz="Promocja";
+        }else if(rodzaj.getText().equals("LAST MINUTE")){
+            rodz="Last Minute";
+        }else if(rodzaj.getText().equals("EGZOTYKA")){
+            rodz="EGZOTYKA";
+        }else if(rodzaj.getText().equals("OFERTY WYCIECZEK")){
+            rodz="Promocja' OR w.rodzajWycieczki='Last Minute' OR w.rodzajWycieczki='Egzotyka";
+        }
+
+        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni, zdjecie FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport where w.rodzajWycieczki='"+rodz+"' ORDER BY id_wycieczki ASC";
 
         Statement st = null;
         try{
@@ -215,7 +296,8 @@ public class WycieczkiMenu implements Initializable {
             root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 1720.0D, 880.0D));
+            menuStage.setScene(new Scene(root, 1910, 1000));
+            menuStage.setTitle("SKY ROUTE TRAVEL");
             menuStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -289,4 +371,9 @@ public class WycieczkiMenu implements Initializable {
 
         WyswietlWycieczki();
     }
+
+    public void rezerwuj() {
+        Stage stage = (Stage) ZarezerwujButton.getScene().getWindow();
+        JOptionPane.showMessageDialog(null,"Aby zarezerwować wycieczkę należy się zalogować. ");
     }
+}
