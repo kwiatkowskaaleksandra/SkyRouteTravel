@@ -3,6 +3,7 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import sample.Poloczenie;
 
 import javax.swing.*;
 import java.sql.*;

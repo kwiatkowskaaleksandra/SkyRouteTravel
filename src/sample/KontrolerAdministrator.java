@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,7 +29,7 @@ public class KontrolerAdministrator {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1910, 1000));
@@ -49,7 +48,7 @@ public class KontrolerAdministrator {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/OfertyWycieczekAdmin.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/OfertyWycieczekAdmin.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -68,7 +67,7 @@ public class KontrolerAdministrator {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/FakturyAdmin.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/FakturyAdmin.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1430,1000));
@@ -86,7 +85,7 @@ public class KontrolerAdministrator {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/KontaPracownikow.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/KontaPracownikow.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 900,650));
@@ -104,7 +103,7 @@ public class KontrolerAdministrator {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Ogloszenia.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Ogloszenia.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 470,510));
@@ -122,7 +121,7 @@ public class KontrolerAdministrator {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/opinieAdmin.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/opinieAdmin.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 810,480));

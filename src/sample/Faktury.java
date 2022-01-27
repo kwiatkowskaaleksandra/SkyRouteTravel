@@ -11,6 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.DaneDoFaktur;
+import sample.Poloczenie;
 
 import javax.swing.*;
 import java.net.URL;
@@ -286,10 +288,10 @@ public class Faktury implements Initializable {
         try {
             Parent root=null;
             if(rodz.equals("PRACOWNIK")){
-                root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Pracownik.fxml"));
             }
             if(rodz.equals("ADMIN")){
-                root = FXMLLoader.load(getClass().getResource("../javaFX/Administrator.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Administrator.fxml"));
             }
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);

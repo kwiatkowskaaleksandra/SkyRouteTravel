@@ -2,31 +2,23 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.DaneDoWycieczek;
+import sample.Poloczenie;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.*;
-import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -35,7 +27,7 @@ public class KontrolerMenu implements Initializable {
     @FXML
     private TableView<DaneDoWycieczek> Tab1;
     @FXML
-    private TableColumn<DaneDoWycieczek,Integer> idp;
+    private TableColumn<DaneDoWycieczek,Integer> idk;
     @FXML
     private TableColumn<DaneDoWycieczek,String> nzw;
     @FXML
@@ -73,13 +65,13 @@ public class KontrolerMenu implements Initializable {
     @FXML
     private TextField IdLogin;
     @FXML
-    private TextField IdKraj;
+    public TextField IdKraj;
     @FXML
-    private TextField IdMiejsce;
+    public TextField IdMiejsce;
     @FXML
-    private TextField IdZakwaterowanie;
+    public TextField IdZakwaterowanie;
     @FXML
-    private TextField IdTransport;
+    public TextField IdTransport;
     @FXML
     private PasswordField IdHaslo;
     @FXML
@@ -105,7 +97,7 @@ public class KontrolerMenu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-      //  WyswietlWycieczki();
+
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
         Random rand = new Random();
@@ -113,7 +105,7 @@ public class KontrolerMenu implements Initializable {
         int r = 0;
         try {
             stat1 = connectDB.createStatement();
-            r = rand.nextInt(13)+1;
+            r = rand.nextInt(13) + 1;
             System.out.println(r);
             String maxID = "SELECT * FROM wycieczki where id_wycieczki='" + r + "'";
             ResultSet max = null;
@@ -128,21 +120,23 @@ public class KontrolerMenu implements Initializable {
                 nazwa = max.getString("nazwa");
                 cena = max.getFloat("cena");
                 System.out.println(foto);
-                File kat = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                // File kat = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                File kat = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki[] = kat.list();
                 for (int i = 0; i < pliki.length; i++) {
 
                     if ((pliki[i].equals(foto))) {
                         System.out.println("mam taki");
-                        image1.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki[i]));
-                        tekst1.setText(nazwa+ " TYLKO " + cena + " zł");
+                        //image1.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki[i]));
+                        image1.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki[i]));
+                        tekst1.setText(nazwa + " TYLKO " + cena + " zł");
                     }
                 }
             }
 
             Statement stat2 = null;
             stat2 = connectDB.createStatement();
-            r+=1;
+            r += 1;
             String maxID2 = "SELECT * FROM wycieczki where id_wycieczki='" + r + "'";
             ResultSet max2 = null;
             System.out.println(r);
@@ -156,21 +150,24 @@ public class KontrolerMenu implements Initializable {
                 nazwa2 = max2.getString("nazwa");
                 cena2 = max2.getFloat("cena");
                 System.out.println(foto);
-                File kat2 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                // File kat2 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                File kat2 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki2[] = kat2.list();
                 for (int i = 0; i < pliki2.length; i++) {
 
                     if ((pliki2[i].equals(foto2))) {
                         System.out.println("mam taki");
-                        image2.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki2[i]));
+                        // image2.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki2[i]));
+                        image2.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki2[i]));
                         tekst2.setText(nazwa2 + " TYLKO " + cena2 + " zł");
+
                     }
                 }
             }
 
             Statement stat3 = null;
-            r+=1;
-            stat3= connectDB.createStatement();
+            r += 1;
+            stat3 = connectDB.createStatement();
             System.out.println(r);
             String maxID3 = "SELECT * FROM wycieczki where id_wycieczki='" + r + "'";
             ResultSet maxIDZ = null;
@@ -183,23 +180,25 @@ public class KontrolerMenu implements Initializable {
                 id3 = maxIDZ.getInt("id_wycieczki");
                 foto3 = maxIDZ.getString("zdjecie");
                 nazwa3 = maxIDZ.getString("nazwa");
-                cena3= maxIDZ.getFloat("cena");
+                cena3 = maxIDZ.getFloat("cena");
                 System.out.println(foto3);
-                File kat3 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                // File kat3 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                File kat3 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki3[] = kat3.list();
                 for (int i = 0; i < pliki3.length; i++) {
 
                     if ((pliki3[i].equals(foto3))) {
                         System.out.println("mam taki");
-                        image3.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki3[i]));
+                        //image3.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki3[i]));
+                        image3.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki3[i]));
                         tekst3.setText(nazwa3 + " TYLKO " + cena3 + " zł");
                     }
                 }
             }
 
             Statement stat4 = null;
-            r+=1;
-            stat4= connectDB.createStatement();
+            r += 1;
+            stat4 = connectDB.createStatement();
             System.out.println(r);
             String maxID4 = "SELECT * FROM wycieczki where id_wycieczki='" + r + "'";
             ResultSet maxIDZd = null;
@@ -212,15 +211,17 @@ public class KontrolerMenu implements Initializable {
                 id4 = maxIDZd.getInt("id_wycieczki");
                 foto4 = maxIDZd.getString("zdjecie");
                 nazwa4 = maxIDZd.getString("nazwa");
-                cena4= maxIDZd.getFloat("cena");
+                cena4 = maxIDZd.getFloat("cena");
                 System.out.println(foto4);
-                File kat4 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                //File kat4 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                File kat4 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki4[] = kat4.list();
                 for (int i = 0; i < pliki4.length; i++) {
 
                     if ((pliki4[i].equals(foto4))) {
                         System.out.println("mam taki");
-                        image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
+                        //image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
+                        image4.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki4[i]));
                         tekst4.setText(nazwa4 + " TYLKO " + cena4 + " zł");
                     }
                 }
@@ -228,6 +229,7 @@ public class KontrolerMenu implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 
     public void IdZalogujOnAction(javafx.event.ActionEvent event)
@@ -343,231 +345,11 @@ public class KontrolerMenu implements Initializable {
         }
     }
 
-    public void WyswietlWycieczki(){
-        Poloczenie connectNow = new Poloczenie();
-        Connection connectDB = connectNow.getConnection();
-        final ObservableList WczTab = FXCollections.observableArrayList();
-
-        String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni, zdjecie FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport  ORDER BY id_wycieczki ASC";
-
-        Statement st = null;
-        try{
-            st = connectDB.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        DaneDoWycieczek daneDoWycieczek;
-
-        ResultSet rs = null;
-        try {
-            rs = Objects.requireNonNull(st).executeQuery(danee);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            while (Objects.requireNonNull(rs).next()) {
-                int id1 = rs.getInt("id_wycieczki");
-                String nazwa = rs.getString("nazwa");
-                String miejsce = rs.getString("miejsce");
-                float cena = rs.getFloat("cena");
-                String transport = rs.getString("transport");
-                String czasPodrozy =rs.getString("czas");
-                String zakwaterowanie =rs.getString("zakwaterowanie");
-                String wyzywienie =rs.getString("wyzywienie");
-                String atrakcje =rs.getString("atrakcje");
-                String premium =rs.getString("premium");
-                float cenaP = rs.getFloat("w.cenaPrem");
-                String rodzaj = rs.getString("rodzajWycieczki");
-                int iloscDni = rs.getInt("iloscDni");
-                String zdj = rs.getString("zdjecie");
-                daneDoWycieczek = new DaneDoWycieczek(id1, nazwa,miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,cenaP,atrakcje,rodzaj,iloscDni, zdj);
-                WczTab.add(daneDoWycieczek);
-
-            }
-            st.close();
-        } catch (Exception e) {
-            System.out.println("There is an Exception.");
-            System.out.println(e.getMessage());
-        }
-        idp.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nzw.setCellValueFactory(new PropertyValueFactory<>("nazwa"));
-        ms.setCellValueFactory(new PropertyValueFactory<>("miejsce"));
-        cn.setCellValueFactory(new PropertyValueFactory<>("cena"));
-        tran.setCellValueFactory(new PropertyValueFactory<>("transport"));
-        czs.setCellValueFactory(new PropertyValueFactory<>("czasPodrozy"));
-        zak.setCellValueFactory(new PropertyValueFactory<>("zakwaterowanie"));
-        prem.setCellValueFactory(new PropertyValueFactory<>("premium"));
-        atr.setCellValueFactory(new PropertyValueFactory<>("atrakcje"));
-        rdw.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
-
-
-        Tab1.setItems(WczTab);
-
-     /*   FilteredList<DaneDoWycieczek>filtrowanie = new FilteredList<>(WczTab, b -> true);
-        this.IdKraj.textProperty().addListener(((observable, oldValue, newValue)->{
-
-            filtrowanie.setPredicate(DaneDoWycieczek->{
-                if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
-                {
-                    return true;
-                }
-                String szukaneSlowo = newValue.toLowerCase();
-                if(DaneDoWycieczek.getNazwa().toLowerCase().indexOf(szukaneSlowo) > -1)
-                {
-                    return true;
-                }else
-                    return false;
-
-
-            });
-
-        }));
-        this.IdMiejsce.textProperty().addListener(((observable, oldValue, newValue)->{
-
-            filtrowanie.setPredicate(DaneDoWycieczek->{
-                if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
-                {
-                    return true;
-                }
-                String szukaneSlowo = newValue.toLowerCase();
-                if(DaneDoWycieczek.getMiejsce().toLowerCase().indexOf(szukaneSlowo) > -1)
-                {
-                    return true;
-                }else
-                    return false;
-
-
-            });
-
-        }));
-        this.IdZakwaterowanie.textProperty().addListener(((observable, oldValue, newValue)->{
-
-            filtrowanie.setPredicate(DaneDoWycieczek->{
-                if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
-                {
-                    return true;
-                }
-                String szukaneSlowo = newValue.toLowerCase();
-                if(DaneDoWycieczek.getZakwaterowanie().toLowerCase().indexOf(szukaneSlowo) > -1)
-                {
-                    return true;
-                }else
-                    return false;
-
-
-            });
-
-        }));
-        this.IdTransport.textProperty().addListener(((observable, oldValue, newValue)->{
-
-            filtrowanie.setPredicate(DaneDoWycieczek->{
-                if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
-                {
-                    return true;
-                }
-                String szukaneSlowo = newValue.toLowerCase();
-                if(DaneDoWycieczek.getTransport().toLowerCase().indexOf(szukaneSlowo) > -1)
-                {
-                    return true;
-                }else
-                    return false;
-
-
-            });
-
-        }));
-        SortedList<DaneDoWycieczek> posortowane = new SortedList<>(filtrowanie);
-        posortowane.comparatorProperty().bind(Tab1.comparatorProperty());
-        this.Tab1.setItems(posortowane);
-*/
-    }
-
-    public void wyszukaj() {
-        Poloczenie connectNow = new Poloczenie();
-        Connection connectDB = connectNow.getConnection();
-        ObservableList WczTab = FXCollections.observableArrayList();
-        String danee = "SELECT * FROM wycieczki";
-        Statement st = null;
-
-        try {
-            st = connectDB.createStatement();
-        } catch (SQLException var15) {
-            var15.printStackTrace();
-        }
-        DaneDoWycieczek daneDoWycieczek;
-
-        ResultSet rs = null;
-
-        try {
-            assert st != null;
-
-            rs = st.executeQuery(danee);
-        } catch (SQLException var14) {
-            var14.printStackTrace();
-        }
-
-        try {
-            while (Objects.requireNonNull(rs).next()) {
-                int id1 = rs.getInt("id_wycieczki");
-                String nazwa = rs.getString("nazwa");
-                String miejsce = rs.getString("miejsce");
-                float cena = rs.getFloat("cena");
-                String transport = rs.getString("t.rodzaj");
-                String czasPodrozy =rs.getString("czas");
-                String zakwaterowanie =rs.getString("z.rodzaj");
-                String wyzywienie=rs.getString("wyzywienie");
-                String premium =rs.getString("premium");
-                float cenaPrem=rs.getFloat("w.cenaPrem");
-                String atrakcje =rs.getString("atrakcje");
-                String rodzaj = rs.getString("rodzajWycieczki");
-                int iloscDni = rs.getInt("iloscDni");
-                String zdj =rs.getString("zdjecia");
-                daneDoWycieczek = new DaneDoWycieczek(id1,nazwa, miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,cenaPrem,atrakcje,rodzaj,iloscDni,zdj);
-                WczTab.add(daneDoWycieczek);
-            }
-
-            st.close();
-        } catch (Exception var16) {
-            System.out.println("Wyjątek!.");
-            System.out.println(var16.getMessage());
-        }
-
-        idp.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nzw.setCellValueFactory(new PropertyValueFactory<>("nazwa"));
-        ms.setCellValueFactory(new PropertyValueFactory<>("miejsce"));
-        cn.setCellValueFactory(new PropertyValueFactory<>("cena"));
-        tran.setCellValueFactory(new PropertyValueFactory<>("transport"));
-        czs.setCellValueFactory(new PropertyValueFactory<>("czasPodrozy"));
-        zak.setCellValueFactory(new PropertyValueFactory<>("zakwaterowanie"));
-        prem.setCellValueFactory(new PropertyValueFactory<>("premium"));
-        atr.setCellValueFactory(new PropertyValueFactory<>("atrakcje"));
-
-        FilteredList<DaneDoWycieczek> wyszukiwanie = new FilteredList(WczTab, (b) -> {
-            return true;
-        });
-        this.IdMiejsce.textProperty().addListener((observable, oldValue, newValue) -> {
-            wyszukiwanie.setPredicate((DaneDoWycieczek) -> {
-                if (newValue != null && !newValue.isEmpty()) {
-                    String literki = newValue.toLowerCase();
-                    if (DaneDoWycieczek.getMiejsce().toLowerCase().contains(literki)) {
-                        return true;
-                    } else {
-                        return DaneDoWycieczek.getMiejsce().toLowerCase().contains(literki) ? true : String.valueOf(DaneDoWycieczek.getTransport()).contains(literki);
-                    }
-                } else {
-                    return true;
-                }
-            });
-        });
-        SortedList<DaneDoWycieczek> posortowane = new SortedList(wyszukiwanie);
-        posortowane.comparatorProperty().bind(this.Tab1.comparatorProperty());
-        this.Tab1.setItems(posortowane);
-    }
 
     public void KontrolerKlient(){
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Klient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/Klient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1910, 1000));
@@ -583,7 +365,7 @@ public class KontrolerMenu implements Initializable {
     public void KontrolerPracownik(){
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Pracownik.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1910, 1000));
@@ -599,7 +381,7 @@ public class KontrolerMenu implements Initializable {
     public void KontrolerAdministrator(){
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Administrator.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Administrator.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1910, 1000));
@@ -618,7 +400,7 @@ public class KontrolerMenu implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiMenuKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WycieczkiMenuKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -637,7 +419,7 @@ public class KontrolerMenu implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiLastMinuteMenuKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WycieczkiLastMinuteMenuKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -656,7 +438,7 @@ public class KontrolerMenu implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiPromocjeMenuKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WycieczkiPromocjeMenuKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -675,7 +457,7 @@ public class KontrolerMenu implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiEgzotykaMenuKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WycieczkiEgzotykaMenuKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -689,26 +471,30 @@ public class KontrolerMenu implements Initializable {
     }
 
     public void szukajWycieczki() {
+
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/TabelkaSzukaj.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/TabelkaSzukaj.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1053,526));
             menuStage.setTitle("Wynik wyszukiwania");
             menuStage.show();
+
         }catch(Exception e)
         {
             e.printStackTrace();
             e.getCause();
         }
-        WyswietlWycieczki();
+
+
+
     }
 
     public void zalozKonto() {
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/RejestracjaKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/RejestracjaKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 440,400));

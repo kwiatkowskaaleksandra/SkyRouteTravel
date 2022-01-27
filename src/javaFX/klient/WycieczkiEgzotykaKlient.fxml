@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="980.0" prefWidth="1820.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../../css/klient.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WycieczkiKlient">
+    <children>
+        <Pane layoutX="-8.0" prefHeight="980.0" prefWidth="1820.0" style="-fx-background-image: url('../../obrazy/klient1.jpg');" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label alignment="TOP_CENTER" layoutX="14.0" layoutY="10.0" prefHeight="70.0" prefWidth="1803.0" text="SKY ROUTE TRAVEL" textAlignment="JUSTIFY" textFill="#1e0d79">
+                    <font>
+                        <Font name="Symbol" size="45.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                    </cursor>
+                    <effect>
+                        <DropShadow />
+                    </effect></Label>
+                <Button fx:id="ZarezerwujButton" layoutX="1466.0" layoutY="901.0" mnemonicParsing="false" onAction="#ZarezerwujButtonOnAction" prefHeight="47.0" prefWidth="172.0" text="ZAREZERWUJ" textFill="#160d75">
+                    <font>
+                        <Font name="Berlin Sans FB" size="17.0" />
+                    </font></Button>
+                <TableView fx:id="Tab1" layoutX="186.0" layoutY="171.0" onMouseClicked="#getSelected" prefHeight="611.0" prefWidth="1280.0">
+                    <columns>
+                        <TableColumn fx:id="idp" prefWidth="33.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ID" />
+                  <TableColumn fx:id="nzw" minWidth="0.0" prefWidth="139.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="NAZWA" />
+                        <TableColumn fx:id="ms" prefWidth="206.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="MIEJSCE" />
+                        <TableColumn fx:id="cn" prefWidth="138.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CENA" />
+                        <TableColumn fx:id="tran" minWidth="0.0" prefWidth="92.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="TRANSPORT" />
+                        <TableColumn fx:id="czs" minWidth="0.0" prefWidth="105.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="CZAS PODROZY" />
+                        <TableColumn fx:id="zak" minWidth="7.0" prefWidth="143.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ZAKWATEROWANIE" />
+                        <TableColumn fx:id="prem" prefWidth="141.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="OFERTA PREMIUM" />
+                        <TableColumn fx:id="cenaprem" prefWidth="111.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="cenaprem" visible="false" />
+                        <TableColumn fx:id="atr" prefWidth="111.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="ATRAKCJE" />
+                  <TableColumn fx:id="rdw" prefWidth="171.0" style="-fx-border-color: #3366CC; -fx-border-width: 2;" text="RODZAJ WYCIECZKI" />
+                    </columns>
+                </TableView>
+                <TextField fx:id="TextK1" editable="false" layoutX="1526.0" layoutY="171.0" prefHeight="47.0" prefWidth="267.0" promptText="Miejsce" />
+                <Label fx:id="rodz" alignment="CENTER" layoutY="69.0" prefHeight="59.0" prefWidth="1820.0" text="EGZOTYKA" textFill="#2c108a">
+                    <font>
+                        <Font name="Berlin Sans FB" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="ZamknijButton" layoutX="1648.0" layoutY="901.0" mnemonicParsing="false" onAction="#zamknijButtonOnAction" prefHeight="47.0" prefWidth="172.0" text="WYJDŹ" textFill="#2c108a">
+                    <font>
+                        <Font name="Berlin Sans FB" size="17.0" />
+                    </font></Button>
+            <TextField fx:id="TextK2" editable="false" layoutX="1526.0" layoutY="241.0" prefHeight="47.0" prefWidth="267.0" promptText="Cena" />
+            <TextField fx:id="TextK9" layoutX="1526.0" layoutY="311.0" prefHeight="47.0" prefWidth="267.0" promptText="Twoja cena" />
+            <TextField fx:id="TextK3" editable="false" layoutX="1526.0" layoutY="381.0" prefHeight="47.0" prefWidth="267.0" promptText="Transport" />
+            <TextField fx:id="TextK4" editable="false" layoutX="1526.0" layoutY="451.0" prefHeight="47.0" prefWidth="267.0" promptText="Czas podróży" />
+            <TextField fx:id="TextK5" editable="false" layoutX="1526.0" layoutY="521.0" prefHeight="47.0" prefWidth="267.0" promptText="Zakwaterowanie" />
+            <TextField fx:id="TextK6" editable="false" layoutX="1526.0" layoutY="591.0" prefHeight="47.0" prefWidth="267.0" promptText="Oferta premium" />
+            <TextArea fx:id="TextK7" editable="false" layoutX="1526.0" layoutY="712.0" prefHeight="105.0" prefWidth="267.0" promptText="Atrakcje" wrapText="true" />
+            <TextField fx:id="TextK11" editable="false" layoutX="1526.0" layoutY="105.0" prefHeight="47.0" prefWidth="267.0" promptText="Nazwa" />
+            <CheckBox fx:id="wyborPrem" layoutX="1679.0" layoutY="662.0" mnemonicParsing="false" text="Oferta premium" textFill="WHITE" />
+            <TextField fx:id="cenaPr" editable="false" layoutX="1526.0" layoutY="652.0" prefHeight="37.0" prefWidth="136.0" promptText="Cena oferty premium" />
+            </children></Pane>
+    </children>
+</AnchorPane>

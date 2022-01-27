@@ -2,7 +2,6 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,9 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.DaneDoRezerwacji;
+import sample.Poloczenie;
 
 import javax.swing.*;
 import java.net.URL;
@@ -78,7 +78,7 @@ public class KontrolerProfil implements Initializable {
         stage.close();
      try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Profil.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/Profil.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1220,740));
@@ -97,7 +97,7 @@ public class KontrolerProfil implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/ProfilRezerwacje.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/ProfilRezerwacje.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1220,740));
@@ -115,7 +115,7 @@ public class KontrolerProfil implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/ProfilPolityka.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/ProfilPolityka.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1220,740));
@@ -133,7 +133,7 @@ public class KontrolerProfil implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/ProfilHaslo.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/ProfilHaslo.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1220,740));
@@ -152,7 +152,7 @@ public class KontrolerProfil implements Initializable {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/ProfilUstawienia.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/ProfilUstawienia.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1220,740));
@@ -377,7 +377,7 @@ public class KontrolerProfil implements Initializable {
     public void opinia() throws SQLException {
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/opinieKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/opinieKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 500,410));

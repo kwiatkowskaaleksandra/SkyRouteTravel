@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="996.0" prefWidth="1426.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Faktury">
+   <children>
+      <Label alignment="CENTER" layoutX="531.0" layoutY="14.0" prefHeight="61.0" prefWidth="425.0" text="SKY ROUTE TRAVEL" textFill="#2c108a">
+         <font>
+            <Font name="Symbol" size="45.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect></Label>
+      <Label alignment="CENTER" layoutX="664.0" layoutY="89.0" prefHeight="43.0" prefWidth="132.0" text="FAKTURY" textFill="#2c108a">
+         <font>
+            <Font name="Berlin Sans FB" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="EdytujButton" layoutX="281.0" layoutY="145.0" mnemonicParsing="false" onAction="#EdytujButtonOnActionEvent" prefHeight="48.0" prefWidth="120.0" text="EDYTUJ" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="22.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Button fx:id="UsunButton" layoutX="471.0" layoutY="146.0" mnemonicParsing="false" onAction="#UsunButtonOnActionEvent" prefHeight="47.0" prefWidth="120.0" text="USUN" textFill="#160d75">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB Bold" size="22.0" />
+         </font></Button>
+      <Button fx:id="DodajButton" layoutX="85.0" layoutY="145.0" mnemonicParsing="false" onAction="#DodajButtonOnActionEvent" prefHeight="47.0" prefWidth="120.0" text="DODAJ" textFill="#160e73">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="22.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <TableView fx:id="Tab1" layoutX="14.0" layoutY="209.0" onMouseClicked="#getSelected" prefHeight="780.0" prefWidth="990.0">
+        <columns>
+          <TableColumn fx:id="idp" prefWidth="54.0" text="ID" visible="false" />
+          <TableColumn fx:id="im" prefWidth="104.0" text="IMIE" />
+            <TableColumn fx:id="naz" prefWidth="107.0" text="NAZWISKO" />
+            <TableColumn fx:id="mail" prefWidth="129.0" text="ADRES E-MAIL" />
+            <TableColumn fx:id="pln" prefWidth="154.0" text="PŁATNOSC" />
+            <TableColumn fx:id="dta" prefWidth="109.0" text="DATA" />
+            <TableColumn fx:id="kwot" prefWidth="109.0" text="KWOTA" />
+            <TableColumn fx:id="nazw" prefWidth="109.0" text="NAZWA" />
+            <TableColumn fx:id="rodz" prefWidth="167.0" resizable="false" text="RODZAJ" />
+            <TableColumn fx:id="idw" prefWidth="165.0" text="ID_WYCIECZKI" visible="false" />
+        </columns>
+      </TableView>
+      <Button fx:id="ZamknijButton" layoutX="1081.0" layoutY="865.0" mnemonicParsing="false" onAction="#zamknijButtonOnAction" prefHeight="43.0" prefWidth="173.0" text="ZAMKNIJ" textFill="#2c108a">
+         <font>
+            <Font name="Berlin Sans FB" size="17.0" />
+         </font></Button>
+      <TextField fx:id="TextK1" layoutX="1048.0" layoutY="209.0" prefHeight="47.0" prefWidth="267.0" promptText="ID" visible="false" />
+      <TextField fx:id="TextK2" layoutX="1048.0" layoutY="268.0" prefHeight="47.0" prefWidth="267.0" promptText="IMIE" />
+      <TextField fx:id="TextK3" layoutX="1048.0" layoutY="326.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWISKO" />
+      <TextField fx:id="TextK4" layoutX="1048.0" layoutY="378.0" prefHeight="47.0" prefWidth="267.0" promptText="ADRES E-MAIL" />
+      <TextField fx:id="TextK6" layoutX="1048.0" layoutY="480.0" prefHeight="47.0" prefWidth="267.0" promptText="DATA (RRRR-MM-DD)" />
+      <TextField fx:id="TextK7" layoutX="1048.0" layoutY="536.0" prefHeight="47.0" prefWidth="267.0" promptText="KWOTA" />
+      <TextField fx:id="TextK8" layoutX="1048.0" layoutY="593.0" prefHeight="47.0" prefWidth="267.0" promptText="NAZWA" />
+      <ChoiceBox fx:id="RodzajPlatnosci" layoutX="1048.0" layoutY="433.0" prefHeight="39.0" prefWidth="267.0" />
+      <TextField fx:id="TextK10" editable="false" layoutX="1048.0" layoutY="716.0" prefHeight="43.0" prefWidth="267.0" promptText="id_wycieczki" visible="false" />
+      <ChoiceBox fx:id="RodzajWycieczki" layoutX="1048.0" layoutY="654.0" prefHeight="39.0" prefWidth="267.0" />
+      <Label fx:id="konto" layoutX="26.0" layoutY="36.0" text="PRACOWNIK" visible="false" />
+   </children>
+</AnchorPane>

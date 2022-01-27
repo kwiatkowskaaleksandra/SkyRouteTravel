@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import sample.DaneOpinie;
+import sample.Poloczenie;
 
 import javax.swing.*;
 import java.net.URL;

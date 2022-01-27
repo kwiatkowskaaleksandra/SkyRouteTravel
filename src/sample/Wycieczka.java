@@ -4,28 +4,17 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.*;
+import java.io.File;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -399,10 +388,10 @@ public class Wycieczka implements Initializable {
         try {
             Parent root = null;
             if(rodz.equals("ADMIN")){
-                root = FXMLLoader.load(getClass().getResource("../javaFX/Administrator.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Administrator.fxml"));
             }
            if(rodz.equals("PRACOWNIK")){
-                root = FXMLLoader.load(getClass().getResource("../javaFX/Pracownik.fxml"));
+                root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Pracownik.fxml"));
             }
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);

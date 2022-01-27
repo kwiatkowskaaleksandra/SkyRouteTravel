@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.DaneDoWiadomosci;
+import sample.Poloczenie;
 
 import javax.swing.*;
 import javax.swing.text.html.ImageView;

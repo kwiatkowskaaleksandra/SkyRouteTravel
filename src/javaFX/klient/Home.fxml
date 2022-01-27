@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../../css/menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerMenu">
+   <children>
+      <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../../obrazy/56776.jpg');">
+         <children>
+            <ImageView fx:id="image1" fitHeight="273.0" fitWidth="500.0" layoutX="41.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="tekst1" layoutX="-4.0" layoutY="563.0" prefHeight="49.0" prefWidth="500.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="image2" fitHeight="300.0" fitWidth="450.0" layoutX="1383.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image3" fitHeight="255.0" fitWidth="405.0" layoutX="56.0" layoutY="651.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image4" fitHeight="273.0" fitWidth="467.0" layoutX="1371.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="tekst4" layoutX="1437.0" layoutY="846.0" prefHeight="58.0" prefWidth="425.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Label fx:id="wyc1" layoutX="59.0" layoutY="341.0" prefHeight="49.0" prefWidth="467.0" text="NAJCZĘŚCIEJ WYBIERANE:">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font></Label>
+      <Label fx:id="wyc2" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="1309.0" layoutY="352.0" prefHeight="58.0" prefWidth="381.0" text="HIT TYGODNIA" textAlignment="RIGHT">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="tekst2" layoutX="1362.0" layoutY="642.0" prefHeight="39.0" prefWidth="282.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="tekst3" layoutX="59.0" layoutY="895.0" prefHeight="49.0" prefWidth="383.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
+      <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">
+         <font>
+            <Font name="Symbol" size="36.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Button fx:id="IdZaloguj" layoutX="1828.0" layoutY="6.0" mnemonicParsing="false" onAction="#IdZalogujOnAction" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="ZALOGUJ" textFill="#090875">
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="IdLogin" layoutX="1575.0" layoutY="6.0" prefHeight="31.0" prefWidth="116.0" promptText="Login" />
+      <TextField fx:id="IdKraj" layoutX="278.0" layoutY="275.0" prefHeight="31.0" prefWidth="200.0" promptText="KRAJ" />
+      <TextField fx:id="IdMiejsce" layoutX="509.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="MIEJSCE" />
+      <TextField fx:id="IdZakwaterowanie" layoutX="739.0" layoutY="276.0" prefHeight="31.0" prefWidth="299.0" promptText="ZAKWATEROWANIE" />
+      <TextField fx:id="IdTransport" layoutX="1070.0" layoutY="274.0" prefHeight="31.0" prefWidth="163.0" promptText="TRANSPORT" />
+      <Button fx:id="IdSzukaj" layoutX="1250.0" layoutY="209.0" mnemonicParsing="false" onAction="#szukajWycieczki" prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="48.0" />
+         </font>
+      </Button>
+      <Label layoutX="282.0" layoutY="189.0" prefHeight="80.0" prefWidth="200.0" text="GDZIE CHCESZ JECHAĆ?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="509.0" layoutY="188.0" prefHeight="80.0" prefWidth="200.0" text="W JAKIE MIEJSCE?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="739.0" layoutY="187.0" prefHeight="80.0" prefWidth="299.0" text="JAKIE CHCESZ ZAKWATEROWANIE ?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="1070.0" layoutY="189.0" prefHeight="80.0" prefWidth="163.0" text="JAKI TRANSPORT?" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="WycieczkiKlient" layoutX="469.0" layoutY="4.0" mnemonicParsing="false" onAction="#WycieczkiMenuOnAction" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="Promocja" layoutX="926.0" layoutY="4.0" mnemonicParsing="false" onAction="#PromocjaOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="PROMOCJE" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="LastMinute" layoutX="719.0" layoutY="3.0" mnemonicParsing="false" onAction="#LastMinuteOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="LAST MINUTE" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="Egzotyka" layoutX="1139.0" layoutY="4.0" mnemonicParsing="false" onAction="#EgzotykaOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="EGZOTYKA" textFill="#160d75">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <PasswordField fx:id="IdHaslo" layoutX="1698.0" layoutY="6.0" prefHeight="31.0" prefWidth="116.0" promptText="Hasło" />
+      <Label fx:id="IdLabel" layoutX="1595.0" layoutY="40.0" prefHeight="11.0" prefWidth="322.0" textFill="#f50101">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Button fx:id="zalKonto" layoutX="1812.0" layoutY="43.0" onAction="#zalozKonto" mnemonicParsing="false" prefHeight="21.0" prefWidth="99.0" text="ZAŁÓŻ KONTO" />
+   </children>
+
+</AnchorPane>

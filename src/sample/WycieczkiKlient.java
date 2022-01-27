@@ -11,6 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.DaneDoWycieczek;
+import sample.Poloczenie;
+
 import static java.lang.StrictMath.round;
 
 import java.net.URL;
@@ -172,7 +175,7 @@ public class WycieczkiKlient implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Klient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/Klient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1910, 1000));
@@ -222,7 +225,7 @@ public class WycieczkiKlient implements Initializable {
         queryResult.close();
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/RezerwacjaKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/RezerwacjaKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 600, 800.0D));

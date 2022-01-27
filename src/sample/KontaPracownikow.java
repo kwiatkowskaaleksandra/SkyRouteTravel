@@ -13,8 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 

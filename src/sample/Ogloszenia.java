@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import sample.DaneOgloszenia;
+import sample.Poloczenie;
 
 import javax.swing.*;
 import java.net.URL;

@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sample.DaneDoWycieczek;
+import sample.Poloczenie;
 
 import javax.swing.*;
 import java.io.IOException;

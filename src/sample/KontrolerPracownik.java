@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.Poloczenie;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -40,7 +39,7 @@ public class KontrolerPracownik implements Initializable  {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1910, 1000));
@@ -59,7 +58,7 @@ public class KontrolerPracownik implements Initializable  {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/OfertyWycieczek.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/OfertyWycieczek.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820,980));
@@ -78,7 +77,7 @@ public class KontrolerPracownik implements Initializable  {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Faktury.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Faktury.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1430,1000));
@@ -96,7 +95,7 @@ public class KontrolerPracownik implements Initializable  {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Wiadomosci.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/Wiadomosci.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1250,650));
@@ -115,7 +114,7 @@ public class KontrolerPracownik implements Initializable  {
 
         try{
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/AkceptacjaRezerwacji.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/pracownicy/AkceptacjaRezerwacji.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1010,550));

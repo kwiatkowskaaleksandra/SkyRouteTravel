@@ -5,7 +5,7 @@ package sample;/*
 
 import java.sql.Date;
 
-public class DaneDoWiadomosci extends KontrolerMenu{
+public class DaneDoWiadomosci extends KontrolerMenu {
     String temat, tresc,adresat;
     Date data;
     int id;

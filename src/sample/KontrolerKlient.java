@@ -53,7 +53,7 @@ public class KontrolerKlient  implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Home.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/Home.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1910, 1000));
@@ -71,7 +71,7 @@ public class KontrolerKlient  implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WycieczkiKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820, 980));
@@ -89,7 +89,7 @@ public class KontrolerKlient  implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiPromocjeKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WycieczkiPromocjeKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820, 980));
@@ -107,7 +107,7 @@ public class KontrolerKlient  implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiEgzotykaKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WycieczkiEgzotykaKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820, 980));
@@ -125,7 +125,7 @@ public class KontrolerKlient  implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WycieczkiLastMinuteKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WycieczkiLastMinuteKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1820, 980));
@@ -142,7 +142,7 @@ public class KontrolerKlient  implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/Profil.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/Profil.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 1220, 740));
@@ -159,7 +159,7 @@ public class KontrolerKlient  implements Initializable {
 
         try {
             Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/WiadomosciKlient.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/WiadomosciKlient.fxml"));
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.initStyle(StageStyle.DECORATED);
@@ -185,6 +185,7 @@ public class KontrolerKlient  implements Initializable {
             r = rand.nextInt(13)+1;
             System.out.println(r);
             String maxID = "SELECT * FROM wycieczki where id_wycieczki='" + r + "'";
+
             ResultSet max = null;
 
             max = stat1.executeQuery(maxID);
@@ -197,21 +198,23 @@ public class KontrolerKlient  implements Initializable {
                 nazwa = max.getString("nazwa");
                 cena = max.getFloat("cena");
                 System.out.println(foto);
-                File kat = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                // File kat = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                File kat = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki[] = kat.list();
                 for (int i = 0; i < pliki.length; i++) {
 
                     if ((pliki[i].equals(foto))) {
                         System.out.println("mam taki");
-                        image1.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki[i]));
-                        tekst1.setText(nazwa+ " TYLKO " + cena + " zł");
+                        //image1.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki[i]));
+                        image1.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki[i]));
+                        tekst1.setText(nazwa + " TYLKO " + cena + " zł");
                     }
                 }
             }
 
             Statement stat2 = null;
             stat2 = connectDB.createStatement();
-r+=1;
+            r += 1;
             String maxID2 = "SELECT * FROM wycieczki where id_wycieczki='" + r + "'";
             ResultSet max2 = null;
             System.out.println(r);
@@ -225,21 +228,24 @@ r+=1;
                 nazwa2 = max2.getString("nazwa");
                 cena2 = max2.getFloat("cena");
                 System.out.println(foto);
-                File kat2 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                // File kat2 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                File kat2 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki2[] = kat2.list();
                 for (int i = 0; i < pliki2.length; i++) {
 
                     if ((pliki2[i].equals(foto2))) {
                         System.out.println("mam taki");
-                        image2.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki2[i]));
+                        // image2.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki2[i]));
+                        image2.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki2[i]));
                         tekst2.setText(nazwa2 + " TYLKO " + cena2 + " zł");
+
                     }
                 }
             }
 
             Statement stat3 = null;
-            r+=1;
-            stat3= connectDB.createStatement();
+            r += 1;
+            stat3 = connectDB.createStatement();
             System.out.println(r);
             String maxID3 = "SELECT * FROM wycieczki where id_wycieczki='" + r + "'";
             ResultSet maxIDZ = null;
@@ -252,23 +258,25 @@ r+=1;
                 id3 = maxIDZ.getInt("id_wycieczki");
                 foto3 = maxIDZ.getString("zdjecie");
                 nazwa3 = maxIDZ.getString("nazwa");
-                cena3= maxIDZ.getFloat("cena");
+                cena3 = maxIDZ.getFloat("cena");
                 System.out.println(foto3);
-                File kat3 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                // File kat3 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                File kat3 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki3[] = kat3.list();
                 for (int i = 0; i < pliki3.length; i++) {
 
                     if ((pliki3[i].equals(foto3))) {
                         System.out.println("mam taki");
-                        image3.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki3[i]));
+                        //image3.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki3[i]));
+                        image3.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki3[i]));
                         tekst3.setText(nazwa3 + " TYLKO " + cena3 + " zł");
                     }
                 }
             }
 
             Statement stat4 = null;
-            r+=1;
-            stat4= connectDB.createStatement();
+            r += 1;
+            stat4 = connectDB.createStatement();
             System.out.println(r);
             String maxID4 = "SELECT * FROM wycieczki where id_wycieczki='" + r + "'";
             ResultSet maxIDZd = null;
@@ -281,15 +289,17 @@ r+=1;
                 id4 = maxIDZd.getInt("id_wycieczki");
                 foto4 = maxIDZd.getString("zdjecie");
                 nazwa4 = maxIDZd.getString("nazwa");
-                cena4= maxIDZd.getFloat("cena");
+                cena4 = maxIDZd.getFloat("cena");
                 System.out.println(foto4);
-                File kat4 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                //File kat4 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                File kat4 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki4[] = kat4.list();
                 for (int i = 0; i < pliki4.length; i++) {
 
                     if ((pliki4[i].equals(foto4))) {
                         System.out.println("mam taki");
-                        image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
+                        //image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
+                        image4.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki4[i]));
                         tekst4.setText(nazwa4 + " TYLKO " + cena4 + " zł");
                     }
                 }
@@ -297,6 +307,7 @@ r+=1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 
 

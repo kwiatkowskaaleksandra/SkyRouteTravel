@@ -10,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sample.DaneDoWiadomosci;
+import sample.Poloczenie;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;

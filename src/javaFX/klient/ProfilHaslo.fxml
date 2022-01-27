@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerProfil">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="340.0" spacing="50.0" styleClass="primary-color" stylesheets="@../../css/profil.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../obrazy/logo1.PNG" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ImageView>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" text="Edytuj profil" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="312.0" prefWidth="340.0" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0" styleClass="selected" stylesheets="@../../css/profil.css">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../obrazy/avatarr.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="prof" mnemonicParsing="false" onAction="#ProfilOnAction" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #13123A;" text="PROFIL" textFill="#c6c1c1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../obrazy/notyfikacja.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="rez" mnemonicParsing="false" onAction="#RezerwacjaOnAction" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #13123A;" text="REZERWACJE" textFill="#c6c1c1" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../obrazy/haslo.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="hsl" mnemonicParsing="false" onAction="#HasloOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="ZMIEŃ HASŁO" textFill="#c6c1c1" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="selected" />
+                        <String fx:value="selected-border" />
+                     </styleClass>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../obrazy/ustawienia.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="ust" mnemonicParsing="false" onAction="#UstawieniaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="USTAWIENIA" textFill="#c6c1c1" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../obrazy/prywatnosc.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="plt" mnemonicParsing="false" onAction="#PolitykaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="POLITYKA PRYWATNOŚCI" textFill="#c6c1c1" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets top="15.0" />
+                     </opaqueInsets>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="secondary-color" stylesheets="@../../css/profil.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="84.0" prefWidth="880.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+               </padding></Label>
+            <VBox alignment="TOP_CENTER" prefHeight="306.0" prefWidth="880.0" spacing="30.0">
+               <children>
+                  <Label fx:id="rodzajUst" prefHeight="20.0" prefWidth="880.0" text="ZMIEŃ HASŁO" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                     </padding>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="880.0">
+                     <children>
+                        <Label prefHeight="61.0" prefWidth="189.0" text="Stare hasło" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                           </padding>
+                        </Label>
+                        <Pane prefHeight="61.0" prefWidth="120.0" />
+                        <TextField fx:id="stareHasl" prefHeight="25.0" prefWidth="368.0" />
+                     </children></HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="94.0" prefWidth="880.0">
+                     <children>
+                        <Label prefHeight="61.0" prefWidth="201.0" text="Nowe hasło" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                           </padding>
+                        </Label>
+                        <Pane prefHeight="61.0" prefWidth="106.0" />
+                        <TextField fx:id="noweHasl" prefHeight="25.0" prefWidth="368.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
+                     <children>
+                        <Label prefHeight="61.0" prefWidth="178.0" text="Powtórz" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                           </padding>
+                        </Label>
+                        <Pane prefHeight="61.0" prefWidth="127.0" />
+                        <TextField fx:id="powNoweHasl" prefHeight="25.0" prefWidth="368.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
+                     <children>
+                        <Pane prefHeight="70.0" prefWidth="145.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="53.0" prefWidth="880.0">
+                     <children>
+                        <Pane prefHeight="53.0" prefWidth="90.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="zapisz" mnemonicParsing="false" prefHeight="40.0" onAction="#zmianaHasla" prefWidth="118.0" text="Zapisz zmiany" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

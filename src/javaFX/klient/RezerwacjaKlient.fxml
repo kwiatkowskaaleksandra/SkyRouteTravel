@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerRezeracjiKlient">
+   <content>
+      <Pane prefHeight="1300.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="42.0" layoutY="670.0" text="Bezpłatna zmiana rezerwacji">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="cenaR" editable="false" layoutX="181.0" layoutY="190.0" prefHeight="23.0" prefWidth="150.0" promptText="cena" />
+            <TextField fx:id="iloscDR" layoutX="181.0" layoutY="230.0" prefWidth="150.0" promptText="ilość dzieci" />
+            <TextField fx:id="iloscOR" layoutX="181.0" layoutY="270.0" prefWidth="150.0" promptText="ilość osób" />
+            <Label layoutX="187.0" layoutY="24.0" text="REZERWACJA">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="terminR" layoutX="181.0" layoutY="150.0" prefWidth="150.0" />
+            <Label layoutX="42.0" layoutY="150.0" text="TERMIN" />
+            <Label layoutX="42.0" layoutY="270.0" text="ILOŚĆ DOROSŁYCH" />
+            <Label layoutX="42.0" layoutY="230.0" text="ILOŚĆ DZIECI" />
+            <Label layoutX="42.0" layoutY="190.0" prefHeight="17.0" prefWidth="45.0" text="CENA" />
+            <Label layoutX="42.0" layoutY="310.0" text="RODZAJ PŁATNOŚCI" />
+            <Label layoutX="14.0" layoutY="380.0" text="UBEZPIECZENIE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="podstawoweR" layoutX="42.0" layoutY="450.0" mnemonicParsing="false" text="PODSTAWOWE" />
+            <CheckBox fx:id="podstawowePR" layoutX="42.0" layoutY="490.0" mnemonicParsing="false" text="PODSTAWOWE PLUS" />
+            <CheckBox fx:id="premR" layoutX="42.0" layoutY="530.0" mnemonicParsing="false" text="PREMIUM" />
+            <Label layoutX="14.0" layoutY="80.0" text="DANE DO WYCIECZKI">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="600.0" text="USŁUGI PREMIUM">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="bzrSR" layoutX="42.0" layoutY="710.0" mnemonicParsing="false" text="Bezpłatna zmiana rezerwacji &quot;Standard&quot;" />
+            <CheckBox fx:id="bzrPR" layoutX="42.0" layoutY="790.0" mnemonicParsing="false" text="Bezpłatna zmiana rezerwacji &quot;Premium&quot;" />
+            <CheckBox fx:id="ukrCR" layoutX="42.0" layoutY="990.0" mnemonicParsing="false" text="Ubezpieczenie od kosztów rezygnacji(rozszerzone o COVID-19)" />
+            <CheckBox fx:id="dmtR" layoutX="42.0" layoutY="1070.0" mnemonicParsing="false" text="Dopłata do najlepszych miejsc w transporcie" />
+            <CheckBox fx:id="ukrR" layoutX="42.0" layoutY="950.0" mnemonicParsing="false" text="Ubezpieczenie od kosztów rezygnacji" />
+            <CheckBox fx:id="upsR" layoutX="42.0" layoutY="870.0" mnemonicParsing="false" text="Ubezpieczenie Pakiet Sport do wariantu Podstawowego" />
+            <CheckBox fx:id="bzrKR" layoutX="42.0" layoutY="750.0" mnemonicParsing="false" text="Bezpłatna zmiana rezerwacji &quot;Komfort&quot;" />
+            <CheckBox fx:id="plmR" layoutX="42.0" layoutY="1110.0" mnemonicParsing="false" text="Prośba o łóżko małżeńskie" />
+            <Label layoutX="42.0" layoutY="1030.0" text="Inne">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="830.0" text="Ubezpieczenia dodatkowe">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="910.0" text="Ubezpieczenie od rezygnacji">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="zaplac" layoutX="70.0" layoutY="1220.0" mnemonicParsing="false" onAction="#zaplac" prefHeight="30.0" prefWidth="100.0" text="ZAPŁAĆ" />
+            <Button fx:id="anuluj" layoutX="394.0" layoutY="1220.0" mnemonicParsing="false" onAction="#anulujRezerwacje" prefHeight="30.0" prefWidth="100.0" text="ANULUJ" />
+            <ChoiceBox fx:id="rodzajPR" layoutX="181.0" layoutY="310.0" prefWidth="150.0" />
+            <Label layoutX="419.0" layoutY="709.0" text="150zł" />
+            <Label layoutX="419.0" layoutY="750.0" text="300zł" />
+            <Label layoutX="419.0" layoutY="790.0" text="400zł" />
+            <Label layoutX="419.0" layoutY="870.0" text="50zł" />
+            <Label layoutX="419.0" layoutY="450.0" text="40zł na osobe" />
+            <Label layoutX="419.0" layoutY="489.0" text="60zł na osobe" />
+            <Label layoutX="419.0" layoutY="529.0" text="80zł na osobe" />
+            <Label layoutX="419.0" layoutY="950.0" text="4%" />
+            <Label layoutX="419.0" layoutY="990.0" text="6%" />
+            <Label layoutX="419.0" layoutY="1070.0" text="30zł na osobe" />
+            <Label layoutX="419.0" layoutY="1110.0" text="25zł" />
+            <TextField fx:id="calosc" editable="false" layoutX="125.0" layoutY="1150.0" promptText="całość" />
+            <Label layoutX="42.0" layoutY="1150.0" text="Pełna kwota" />
+            <Button fx:id="kwota" layoutX="203.0" layoutY="1223.0" mnemonicParsing="false" onMouseClicked="#wyliczCene" text="Policz pelna kwote" />
+            <TextField fx:id="ilD" editable="false" layoutX="220.0" layoutY="385.0" promptText="ilD" visible="false" />
+            <TextField fx:id="idK" editable="false" layoutX="274.0" layoutY="385.0" promptText="id" visible="false" />
+            <TextField fx:id="idWyc" editable="false" layoutX="274.0" layoutY="385.0" promptText="idwyc" visible="false" />
+            <CheckBox fx:id="wyborPrem" layoutX="41.0" layoutY="635.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="148.0" text="Dodatkowe atrakcje" />
+            <Label fx:id="cenaPrem" layoutX="405.0" layoutY="637.0" prefHeight="20.0" prefWidth="45.0" />
+         </children>
+      </Pane>
+   </content>
+</ScrollPane>
