@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="470.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FakturaKlient">
+   <children>
+      <Label layoutX="173.0" layoutY="27.0" text="FAKTURA" />
+      <TextField fx:id="imNaz" editable="false" layoutX="138.0" layoutY="60.0" prefHeight="32.0" prefWidth="250.0" />
+      <TextField fx:id="em" editable="false" layoutX="138.0" layoutY="104.0" prefHeight="32.0" prefWidth="250.0" />
+      <TextField fx:id="data" editable="false" layoutX="138.0" layoutY="150.0" prefHeight="32.0" prefWidth="250.0" />
+      <TextField fx:id="kwota" editable="false" layoutX="138.0" layoutY="194.0" prefHeight="32.0" prefWidth="250.0" />
+      <TextField fx:id="msce" editable="false" layoutX="138.0" layoutY="235.0" prefHeight="32.0" prefWidth="250.0" />
+      <TextField fx:id="ilOs" editable="false" layoutX="138.0" layoutY="282.0" prefHeight="32.0" prefWidth="250.0" />
+      <TextField fx:id="stat" editable="false" layoutX="138.0" layoutY="328.0" prefHeight="32.0" prefWidth="250.0" />
+      <Label layoutX="14.0" layoutY="68.0" text="NAZWISKO IMIE" />
+      <Label layoutX="14.0" layoutY="112.0" text="ADRES EMAIL" />
+      <Label layoutX="14.0" layoutY="158.0" text="DATA" />
+      <Label layoutX="16.0" layoutY="202.0" text="KWOTA" />
+      <Label layoutX="16.0" layoutY="243.0" text="MIEJSCE" />
+      <Label layoutX="16.0" layoutY="290.0" prefHeight="17.0" prefWidth="80.0" text="ILOSC OSOB" />
+      <Label layoutY="336.0" text="STATUS POTWIERDZENIA" />
+      <Button fx:id="wroc" layoutX="324.0" layoutY="421.0" mnemonicParsing="false" text="WRÓĆ" />
+   </children>
+</AnchorPane>

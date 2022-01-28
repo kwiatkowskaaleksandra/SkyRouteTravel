@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ import sample.Poloczenie;
 import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -28,6 +30,7 @@ public class KontrolerProfil implements Initializable {
     public Button ust;
     public Button plt;
     public Button op;
+    public Button fakt;
     public Button zapisz;
     public Button zapiszZmiany;
     public TextField imieKl;
@@ -43,12 +46,17 @@ public class KontrolerProfil implements Initializable {
     public TextField nazw;
     public TextField email;
     public TextField log;
+    public TextField id;
     public TextArea polityka;
 
     @FXML
     public TextField msc;
     @FXML
     public TextField nazwa;
+    @FXML
+    public TextField miejsce2;
+    @FXML
+    public TextField nazwa2;
     @FXML
     public TextArea tresc;
     public Button wrc;
@@ -71,7 +79,9 @@ public class KontrolerProfil implements Initializable {
     @FXML
     private TableColumn<DaneDoRezerwacji,String> stat;
     @FXML
-    private TextField idRezrw;
+    public TextField idRezrw;
+    String n=null;
+    String m=null;
 
     public void ProfilOnAction()  {
         Stage stage = (Stage) prof.getScene().getWindow();
@@ -164,7 +174,7 @@ public class KontrolerProfil implements Initializable {
             e.getCause();
         }
     }
-
+    Object object=new Object();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -216,6 +226,38 @@ public class KontrolerProfil implements Initializable {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+        }
+        String idr=null;
+
+        if(this.nazwa!=null){
+
+            Statement s = null;
+            try {
+                s = connectDB.createStatement();
+            } catch (
+                    SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            String daneRez = "SELECT id_rezerwacji, nazwa, miejsce from rezerwacje r, wycieczki w where w.id_wycieczki=r.id_wycieczki and r.id_rezerwacji='" + idRezrw.getText() + "'";
+            ResultSet q = null;
+           // System.out.println(idRezrw.getText());
+            int idRez = 0;
+            String nazwaW = null, miejsce = null;
+            try {
+                q = s.executeQuery(daneRez);
+
+                while (q.next()) {
+                    idRez = q.getInt("id_rezerwacji");
+                    nazwaW = q.getString("nazwa");
+                    miejsce = q.getString("miejsce");
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            nazwa.setText(nazwaW);
+            msc.setText(miejsce);
+
         }
 
     }
@@ -376,6 +418,9 @@ public class KontrolerProfil implements Initializable {
 
     public void opinia() throws SQLException {
         try{
+            System.out.println("przed: "+idRezrw.getText());
+
+
             Parent root;
             root = FXMLLoader.load(getClass().getResource("../javaFX/klient/opinieKlient.fxml"));
             Stage menuStage = new Stage();
@@ -383,6 +428,8 @@ public class KontrolerProfil implements Initializable {
             menuStage.setScene(new Scene(root, 500,410));
             menuStage.setTitle("Opinie");
             menuStage.show();
+            getSelected();
+            System.out.println("po: "+idRezrw.getText());
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -390,14 +437,81 @@ public class KontrolerProfil implements Initializable {
         }
     }
 
+    public void dodOpinie() throws SQLException {
+
+        Poloczenie connectNow = new Poloczenie();
+        Connection connectDB = connectNow.getConnection();
+        Statement stat=null;
+        stat=connectDB.createStatement();
+        int idZal=0;
+        String idZ="SELECT id_klienta from zalogowany";
+        ResultSet maxz=stat.executeQuery(idZ);
+        while (maxz.next()){
+            idZal=maxz.getInt("id_klienta");
+        }
+
+        Statement stat2=null;
+        stat2=connectDB.createStatement();
+        int ido=0;
+        String maxID="SELECT id_opinia FROM opinie";
+        ResultSet max=stat2.executeQuery(maxID);
+        while (max.next()){
+            ido=max.getInt("id_opinia");
+        }
+
+        Statement stat3=null;
+        stat3=connectDB.createStatement();
+        int idW=0;
+        String idWyc="SELECT r.id_wycieczki FROM rezerwacje r , wycieczki w where r.id_klienta='"+idZal+"'AND w.nazwa='"+nazwa.getText()+"'AND w.miejsce='"+msc.getText()+"' AND w.id_wycieczki=r.id_wycieczki";
+        ResultSet idwycieczki=stat3.executeQuery(idWyc);
+        while (idwycieczki.next()){
+            idW=idwycieczki.getInt("id_wycieczki");
+        }
+
+        System.out.println(idW);
+        String dane="INSERT INTO opinie(id_opinia,tresc,data,id_klienta,id_wycieczki)values(?,?,?,?,?)";
+        try{
+            pst=(PreparedStatement)connectDB.prepareStatement(dane);
+            pst.setString(1, String.valueOf(ido+1));
+            pst.setString(2,tresc.getText());
+            pst.setString(3,String.valueOf(LocalDate.now()));
+            pst.setString(4, String.valueOf(idZal));
+            pst.setString(5, String.valueOf(idW));
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Blad dodawania! "+e);
+        }
+    }
+    public void wyjdzButtonOnAction() {
+        Stage stage = (Stage) wrc.getScene().getWindow();
+        stage.close();
+    }
 
     public void getSelected() {
         index=Tab.getSelectionModel().getSelectedIndex();
         if(index<=-1){
             return;
         }
-        idRezrw.setText(String.valueOf(idR.getCellData(index)));
+            idRezrw.setText(String.valueOf(idR.getCellData(index)));
 
+           System.out.println(idRezrw.getText());
     }
 
+
+    public void fakturaKlient() {
+        try{
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/fakturaKlient.fxml"));
+            Stage menuStage = new Stage();
+            menuStage.initStyle(StageStyle.DECORATED);
+            menuStage.setScene(new Scene(root, 500,410));
+            menuStage.setTitle("Faktura");
+            menuStage.show();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 }

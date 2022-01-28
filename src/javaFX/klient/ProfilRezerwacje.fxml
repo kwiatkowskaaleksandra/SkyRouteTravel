@@ -108,6 +108,8 @@
                <padding>
                   <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
                </padding></Label>
+            <TextField fx:id="nazwa2" editable="false" visible="false" />
+            <TextField fx:id="miejsce2" editable="false" visible="false" />
             <VBox alignment="TOP_CENTER" prefHeight="474.0" prefWidth="880.0" spacing="30.0">
                <children>
                   <Label fx:id="rodzajUst" prefHeight="20.0" prefWidth="880.0" text="Rezerwacje" textFill="WHITE">
@@ -137,6 +139,11 @@
                            </font>
                         </Button>
                         <Button layoutX="685.0" layoutY="166.0" mnemonicParsing="false" onAction="#usunRezrw" prefHeight="40.0" prefWidth="118.0" text="Odrzuć" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="fakt" layoutX="687.0" layoutY="108.0" mnemonicParsing="false" onAction="#fakturaKlient" prefHeight="38.0" prefWidth="115.0" text="Faktura" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

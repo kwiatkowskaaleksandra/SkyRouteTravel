@@ -24,8 +24,6 @@ public class opiniaKlient implements Initializable {
     public TextField nazwa;
     @FXML
     public TextArea tresc;
-    @FXML
-    private TextField idRezrw;
     public Button wrc;
     public Button dod;
     PreparedStatement pst = null;
@@ -76,23 +74,21 @@ System.out.println(idW);
         }
     }
 
-    public void wyjdzButtonOnAction() {
-        Stage stage = (Stage) wrc.getScene().getWindow();
-        stage.close();
-    }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    KontrolerProfil kontrolerProfil = new KontrolerProfil();
+    public void getSelected(){
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
         Statement statement2 = null;
+
+
         try {
             statement2 = connectDB.createStatement();
         } catch (
                 SQLException throwables) {
             throwables.printStackTrace();
         }
-        String daneRez = "SELECT id_rezerwacji, nazwa, miejsce from rezerwacje r, wycieczki w where w.id_wycieczki=r.id_wycieczki and r.id_rezerwacji='" + 1 + "'";
+        String daneRez = "SELECT id_rezerwacji, nazwa, miejsce from rezerwacje r, wycieczki w where w.id_wycieczki=r.id_wycieczki and r.id_rezerwacji='" + kontrolerProfil.idRezrw.getText() + "'";
         ResultSet queryResult2 = null;
         int idRez = 0;
         String nazwaW = null, miejsce = null;
@@ -109,5 +105,10 @@ System.out.println(idW);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        nazwa.setText(kontrolerProfil.nazwa2.getText());
     }
 }
