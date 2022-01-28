@@ -133,7 +133,7 @@
                               <TableColumn fx:id="stat" prefWidth="128.0" text="STATUS" />
                           </columns>
                         </TableView>
-                        <Button fx:id="op" layoutX="685.0" layoutY="44.0" mnemonicParsing="false" onAction="#opinia" prefHeight="40.0" prefWidth="118.0" text="Dodaj opinie" textFill="WHITE">
+                        <Button fx:id="op" layoutX="685.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#getSelected" onAction="#opinia" prefHeight="40.0" prefWidth="118.0" text="Dodaj opinie" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

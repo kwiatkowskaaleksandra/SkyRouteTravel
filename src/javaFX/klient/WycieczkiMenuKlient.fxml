@@ -8,9 +8,9 @@
 
 <AnchorPane prefHeight="980.0" prefWidth="1820.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../../css/klient.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WycieczkiMenu">
     <children>
-        <Pane layoutX="-8.0" prefHeight="980.0" prefWidth="1820.0" style="-fx-background-image: url('../../obrazy/tlo1.jpg');" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+        <Pane layoutX="-8.0" prefHeight="980.0" prefWidth="1820.0" style="-fx-background-color: url('../../obrazy/tlo1.jpg');" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label alignment="TOP_CENTER" layoutX="14.0" layoutY="10.0" prefHeight="70.0" prefWidth="1803.0" text="SKY ROUTE TRAVEL" textAlignment="JUSTIFY" textFill="#1e0d79">
+                <Label alignment="TOP_CENTER" layoutX="14.0" layoutY="10.0" prefHeight="70.0" prefWidth="1803.0" text="SKY ROUTE TRAVEL" textAlignment="JUSTIFY" textFill="#ae631c">
                     <font>
                         <Font name="Symbol" size="45.0" />
                     </font>
@@ -20,10 +20,13 @@
                     <effect>
                         <DropShadow />
                     </effect></Label>
-                <Button fx:id="ZarezerwujButton" layoutX="1574.0" layoutY="782.0" mnemonicParsing="false" onAction="#rezerwuj" prefHeight="47.0" prefWidth="172.0" text="ZAREZERWUJ" textFill="#160d75">
+                <Button fx:id="ZarezerwujButton" layoutX="1574.0" layoutY="782.0" mnemonicParsing="false" onAction="#rezerwuj" prefHeight="47.0" prefWidth="172.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" text="ZAREZERWUJ" textFill="#ae631c">
                     <font>
                         <Font name="Berlin Sans FB" size="17.0" />
-                    </font></Button>
+                    </font>
+               <effect>
+                  <DropShadow />
+               </effect></Button>
                 <TableView fx:id="Tab1" layoutX="186.0" layoutY="171.0" onMouseClicked="#getSelected" prefHeight="611.0" prefWidth="1280.0" stylesheets="@../../css/tabelkaW.css">
                     <columns>
                         <TableColumn fx:id="idp" prefWidth="33.0" text="ID" />
@@ -39,25 +42,31 @@
                     </columns>
                 </TableView>
                 <TextField fx:id="TextK1" layoutX="1526.0" layoutY="221.0" prefHeight="47.0" prefWidth="267.0" promptText="Miejsce" />
-                <Label fx:id="rodzaj" alignment="CENTER" layoutY="69.0" prefHeight="59.0" prefWidth="1820.0" text="OFERTY WYCIECZEK" textFill="#2c108a">
+                <Label fx:id="rodzaj" alignment="CENTER" layoutY="69.0" prefHeight="59.0" prefWidth="1820.0" text="OFERTY WYCIECZEK" textFill="#ae631c">
                     <font>
                         <Font name="Berlin Sans FB" size="20.0" />
                     </font>
                 </Label>
-                <Button fx:id="ZamknijButton" layoutX="1574.0" layoutY="841.0" mnemonicParsing="false" onAction="#zamknijButtonOnAction" prefHeight="47.0" prefWidth="172.0" text="WYJDŹ" textFill="#2c108a">
+                <Button fx:id="ZamknijButton" layoutX="1574.0" layoutY="841.0" mnemonicParsing="false" onAction="#zamknijButtonOnAction" prefHeight="47.0" prefWidth="172.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" text="WYJDŹ" textFill="#ae631c">
                     <font>
                         <Font name="Berlin Sans FB" size="17.0" />
-                    </font></Button>
+                    </font>
+               <effect>
+                  <DropShadow />
+               </effect></Button>
             <TextField fx:id="TextK2" layoutX="1526.0" layoutY="271.0" prefHeight="47.0" prefWidth="267.0" promptText="Cena" />
             <TextField fx:id="TextK3" layoutX="1526.0" layoutY="321.0" prefHeight="47.0" prefWidth="267.0" promptText="Transport" />
             <TextField fx:id="TextK4" layoutX="1526.0" layoutY="371.0" prefHeight="47.0" prefWidth="267.0" promptText="Czas podróży" />
             <TextField fx:id="TextK5" layoutX="1526.0" layoutY="421.0" prefHeight="47.0" prefWidth="267.0" promptText="Zakwaterowanie" />
             <TextField fx:id="TextK6" layoutX="1526.0" layoutY="471.0" prefHeight="47.0" prefWidth="267.0" promptText="Oferta premium" />
             <TextArea fx:id="TextK7" layoutX="1526.0" layoutY="521.0" prefHeight="92.0" prefWidth="267.0" promptText="Atrakcje" wrapText="true" />
-            <Button fx:id="zalogujButton" layoutX="1621.0" layoutY="33.0" mnemonicParsing="false" onAction="#zalogujButtonOnAction" prefHeight="47.0" prefWidth="172.0" style="-fx-background-color: #ffffff;" text="Zaloguj sie" textFill="#160d75">
+            <Button fx:id="zalogujButton" layoutX="1621.0" layoutY="33.0" mnemonicParsing="false" onAction="#zalogujButtonOnAction" prefHeight="47.0" prefWidth="172.0" style="-fx-background-color: #ffffff; -fx-background-radius: 30;" text="Zaloguj sie" textFill="#ae631c">
                <font>
                   <Font name="Berlin Sans FB" size="17.0" />
-               </font></Button>
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Button>
             <PasswordField fx:id="haslo" layoutX="1452.0" layoutY="44.0" promptText="Haslo" />
             <TextField fx:id="login" layoutX="1289.0" layoutY="44.0" promptText="Login" />
             <Label fx:id="label" layoutX="1512.0" layoutY="90.0" prefHeight="17.0" prefWidth="283.0" textFill="#f51919" />

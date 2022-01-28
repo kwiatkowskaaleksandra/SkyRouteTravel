@@ -2,7 +2,6 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,8 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import sample.DaneDoRezerwacji;
-import sample.Poloczenie;
 
 import javax.swing.*;
 import java.net.URL;
@@ -49,6 +46,8 @@ public class KontrolerProfil implements Initializable {
     public TextField id;
     public TextArea polityka;
 
+    public Connection connectDB;
+
     @FXML
     public TextField msc;
     @FXML
@@ -82,6 +81,98 @@ public class KontrolerProfil implements Initializable {
     public TextField idRezrw;
     String n=null;
     String m=null;
+   public static int ideRez;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+        Poloczenie connectNow = new Poloczenie();
+        connectDB = connectNow.getConnection();
+        Statement statement2 = null;
+        try {
+            statement2 = connectDB.createStatement();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        String daneKl="SELECT k.id_klienta,k.login,k.imie,k.nazwisko, k.email, k.dataZalozenia FROM zalogowany z , klient k WHERE z.id_klienta=k.id_klienta;";
+        ResultSet queryResult2 = null;
+        int idZal=0;
+        String imie=null,nazwisko=null,email=null,data=null,login=null;
+        try {
+            queryResult2 = statement2.executeQuery(daneKl);
+
+            while (queryResult2.next()) {
+                idZal = queryResult2.getInt("id_klienta");
+                imie=queryResult2.getString("imie");
+                nazwisko=queryResult2.getString("nazwisko");
+                login=queryResult2.getString("login");
+                email=queryResult2.getString("email");
+                data=queryResult2.getString("dataZalozenia");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if(rodzajUst.getText().equals("Szczegóły konta"))
+        {
+            imieKl.setText(imie);
+            nazwKl.setText(nazwisko);
+            emailKl.setText(email);
+            dataKl.setText(data);
+            loginKl.setText(login);
+        }
+        if(rodzajUst.getText().equals("Rezerwacje")){
+            try {
+                rezerwacja();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        if(rodzajUst.getText().equals("Edycja konta")){
+            try {
+                dane();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        String idr=null;
+
+        if(this.nazwa!=null){
+
+            Statement s = null;
+            try {
+                s = connectDB.createStatement();
+            } catch (
+                    SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+            System.out.println(ideRez);
+            String daneRez = "SELECT r.id_rezerwacji, w.nazwa, w.miejsce from rezerwacje r, wycieczki w where w.id_wycieczki=r.id_wycieczki and r.id_rezerwacji=" + ideRez;
+            ResultSet q = null;
+             System.out.println(ideRez);
+            int idRez = 0;
+            String nazwaW = null, miejsce = null;
+            try {
+                q = s.executeQuery(daneRez);
+
+                while (q.next()) {
+                    idRez = q.getInt("id_rezerwacji");
+                    nazwaW = q.getString("nazwa");
+                    miejsce = q.getString("miejsce");
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+            nazwa.setText(nazwaW);
+            msc.setText(miejsce);
+
+        }
+
+    }
 
     public void ProfilOnAction()  {
         Stage stage = (Stage) prof.getScene().getWindow();
@@ -175,92 +266,7 @@ public class KontrolerProfil implements Initializable {
         }
     }
     Object object=new Object();
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Poloczenie connectNow = new Poloczenie();
-        Connection connectDB = connectNow.getConnection();
-        Statement statement2 = null;
-        try {
-            statement2 = connectDB.createStatement();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        String daneKl="SELECT k.id_klienta,k.login,k.imie,k.nazwisko, k.email, k.dataZalozenia FROM zalogowany z , klient k WHERE z.id_klienta=k.id_klienta;";
-        ResultSet queryResult2 = null;
-        int idZal=0;
-        String imie=null,nazwisko=null,email=null,data=null,login=null;
-        try {
-            queryResult2 = statement2.executeQuery(daneKl);
-
-            while (queryResult2.next()) {
-                idZal = queryResult2.getInt("id_klienta");
-                imie=queryResult2.getString("imie");
-                nazwisko=queryResult2.getString("nazwisko");
-                login=queryResult2.getString("login");
-                email=queryResult2.getString("email");
-                data=queryResult2.getString("dataZalozenia");
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        if(rodzajUst.getText().equals("Szczegóły konta"))
-        {
-            imieKl.setText(imie);
-            nazwKl.setText(nazwisko);
-            emailKl.setText(email);
-            dataKl.setText(data);
-            loginKl.setText(login);
-        }
-        if(rodzajUst.getText().equals("Rezerwacje")){
-            try {
-                rezerwacja();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-        if(rodzajUst.getText().equals("Edycja konta")){
-            try {
-                dane();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-        String idr=null;
-
-        if(this.nazwa!=null){
-
-            Statement s = null;
-            try {
-                s = connectDB.createStatement();
-            } catch (
-                    SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            String daneRez = "SELECT id_rezerwacji, nazwa, miejsce from rezerwacje r, wycieczki w where w.id_wycieczki=r.id_wycieczki and r.id_rezerwacji='" + idRezrw.getText() + "'";
-            ResultSet q = null;
-           // System.out.println(idRezrw.getText());
-            int idRez = 0;
-            String nazwaW = null, miejsce = null;
-            try {
-                q = s.executeQuery(daneRez);
-
-                while (q.next()) {
-                    idRez = q.getInt("id_rezerwacji");
-                    nazwaW = q.getString("nazwa");
-                    miejsce = q.getString("miejsce");
-                }
-
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            nazwa.setText(nazwaW);
-            msc.setText(miejsce);
-
-        }
-
-    }
 
     public void dane() throws SQLException {
         Poloczenie connectNow = new Poloczenie();
@@ -338,10 +344,13 @@ public class KontrolerProfil implements Initializable {
 
     public void rezerwacja() throws SQLException {
         final ObservableList WczTab = FXCollections.observableArrayList();
+        getSelected();
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
         Statement statement = connectDB.createStatement();
+
+
 
         String dane = "SELECT id_klienta FROM zalogowany;";
         ResultSet queryResult = statement.executeQuery(dane);
@@ -383,6 +392,7 @@ public class KontrolerProfil implements Initializable {
 
                 daneDoRezerwacji = new DaneDoRezerwacji(id1,naz+" "+im,naz+" "+msc, (java.sql.Date) term,ilDor,ilDz,cn,rodz,stat);
                 WczTab.add(daneDoRezerwacji);
+
             }
 
             st.close();
@@ -417,9 +427,10 @@ public class KontrolerProfil implements Initializable {
     }
 
     public void opinia() throws SQLException {
-        try{
-            System.out.println("przed: "+idRezrw.getText());
 
+
+
+        try{
 
             Parent root;
             root = FXMLLoader.load(getClass().getResource("../javaFX/klient/opinieKlient.fxml"));
@@ -428,8 +439,7 @@ public class KontrolerProfil implements Initializable {
             menuStage.setScene(new Scene(root, 500,410));
             menuStage.setTitle("Opinie");
             menuStage.show();
-            getSelected();
-            System.out.println("po: "+idRezrw.getText());
+
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -443,6 +453,9 @@ public class KontrolerProfil implements Initializable {
         Connection connectDB = connectNow.getConnection();
         Statement stat=null;
         stat=connectDB.createStatement();
+
+
+
         int idZal=0;
         String idZ="SELECT id_klienta from zalogowany";
         ResultSet maxz=stat.executeQuery(idZ);
@@ -488,14 +501,25 @@ public class KontrolerProfil implements Initializable {
         stage.close();
     }
 
-    public void getSelected() {
-        index=Tab.getSelectionModel().getSelectedIndex();
+    public void getSelected() throws SQLException {
+        System.out.println(Tab);
+        this.index=this.Tab.getSelectionModel().getSelectedIndex();
         if(index<=-1){
             return;
         }
-            idRezrw.setText(String.valueOf(idR.getCellData(index)));
+           // idRezrw.setText(String.valueOf(idR.getCellData(index)));
+        //this.idRezrw.setText(this.idR.getCellData(this.index).toString());
 
-           System.out.println(idRezrw.getText());
+         ideRez = this.idR.getCellData(this.index);
+        System.out.println("dupa"+ideRez);
+
+
+
+
+
+
+
+          // System.out.println(idRezrw.get());
     }
 
 
@@ -514,4 +538,6 @@ public class KontrolerProfil implements Initializable {
             e.getCause();
         }
     }
+
+
 }
