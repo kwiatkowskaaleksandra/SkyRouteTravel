@@ -12,7 +12,7 @@
    <children>
       <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../../obrazy/56776.jpg');">
          <children>
-            <ImageView fx:id="image2" fitHeight="300.0" fitWidth="450.0" layoutX="1362.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image2" fitHeight="273.0" fitWidth="500.0" layoutX="1362.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="wyc1" layoutX="59.0" layoutY="316.0" prefHeight="49.0" prefWidth="467.0" text="NAJCZĘŚCIEJ WYBIERANE:">
                <font>
                   <Font name="System Bold" size="27.0" />
@@ -22,27 +22,27 @@
                   <Font name="System Bold" size="27.0" />
                </font>
             </Label>
-            <Label fx:id="tekst2" layoutX="1362.0" layoutY="642.0" prefHeight="39.0" prefWidth="282.0">
+            <Label fx:id="tekst2" layoutX="1061.0" layoutY="384.0" prefHeight="49.0" prefWidth="282.0" textAlignment="RIGHT" textFill="#fcfcfc">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="image1" fitHeight="273.0" fitWidth="500.0" layoutX="59.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="tekst1" layoutX="59.0" layoutY="622.0" prefHeight="49.0" prefWidth="500.0">
+            <ImageView fx:id="image1" fitHeight="280.0" fitWidth="500.0" layoutX="59.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="tekst1" layoutX="577.0" layoutY="384.0" prefHeight="49.0" prefWidth="221.0" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="image3" fitHeight="255.0" fitWidth="405.0" layoutX="59.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="tekst3" layoutX="59.0" layoutY="895.0" prefHeight="49.0" prefWidth="383.0">
+            <ImageView fx:id="image3" fitHeight="273.0" fitWidth="500.0" layoutX="59.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="tekst3" layoutX="486.0" layoutY="699.0" prefHeight="58.0" prefWidth="294.0" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="image4" fitHeight="273.0" fitWidth="467.0" layoutX="1362.0" layoutY="671.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="tekst4" layoutX="1362.0" layoutY="897.0" prefHeight="58.0" prefWidth="425.0">
+            <ImageView fx:id="image4" fitHeight="273.0" fitWidth="517.0" layoutX="1362.0" layoutY="671.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="tekst4" layoutX="1040.0" layoutY="699.0" prefHeight="58.0" prefWidth="315.0" textAlignment="RIGHT" textFill="WHITE">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children></Pane>

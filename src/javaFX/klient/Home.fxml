@@ -13,17 +13,27 @@
       <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../../obrazy/56776.jpg');">
          <children>
             <ImageView fx:id="image1" fitHeight="273.0" fitWidth="500.0" layoutX="41.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="tekst1" layoutX="-4.0" layoutY="563.0" prefHeight="49.0" prefWidth="500.0">
+            <Label fx:id="tekst1" layoutX="460.0" layoutY="353.0" prefHeight="58.0" prefWidth="322.0" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="image2" fitHeight="300.0" fitWidth="450.0" layoutX="1383.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="image3" fitHeight="255.0" fitWidth="405.0" layoutX="56.0" layoutY="651.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="image4" fitHeight="273.0" fitWidth="467.0" layoutX="1371.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="tekst4" layoutX="1437.0" layoutY="846.0" prefHeight="58.0" prefWidth="425.0">
+            <ImageView fx:id="image2" fitHeight="273.0" fitWidth="500.0"  layoutX="1383.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image3" fitHeight="273.0" fitWidth="500.0"  layoutX="46.0" layoutY="654.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image4" fitHeight="273.0" fitWidth="500.0"  layoutX="1383.0" layoutY="642.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="tekst4" alignment="TOP_RIGHT" layoutX="1072.0" layoutY="704.0" prefHeight="58.0" prefWidth="299.0" textFill="WHITE">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="tekst2" alignment="TOP_RIGHT" layoutX="1087.0" layoutY="365.0" prefHeight="49.0" prefWidth="290.0" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="tekst3" layoutX="460.0" layoutY="680.0" prefHeight="58.0" prefWidth="336.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children></Pane>
@@ -34,16 +44,6 @@
       <Label fx:id="wyc2" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="1309.0" layoutY="352.0" prefHeight="58.0" prefWidth="381.0" text="HIT TYGODNIA" textAlignment="RIGHT">
          <font>
             <Font name="System Bold" size="27.0" />
-         </font>
-      </Label>
-      <Label fx:id="tekst2" layoutX="1362.0" layoutY="642.0" prefHeight="39.0" prefWidth="282.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="tekst3" layoutX="59.0" layoutY="895.0" prefHeight="49.0" prefWidth="383.0">
-         <font>
-            <Font size="15.0" />
          </font>
       </Label>
       <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
@@ -154,7 +154,7 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <Button fx:id="zalKonto" layoutX="1812.0" layoutY="43.0" onAction="#zalozKonto" mnemonicParsing="false" prefHeight="21.0" prefWidth="99.0" text="ZAŁÓŻ KONTO" />
+      <Button fx:id="zalKonto" layoutX="1812.0" layoutY="43.0" mnemonicParsing="false" onAction="#zalozKonto" prefHeight="21.0" prefWidth="99.0" text="ZAŁÓŻ KONTO" />
    </children>
 
 </AnchorPane>

@@ -255,7 +255,7 @@ public class WycieczkiKlient implements Initializable {
         Statement stat2=null;
         stat2=connectDB.createStatement();
         int liczba = 0;
-        String daneK ="SELECT wk.id_klienta FROM zalogowany z , wycieczki_klient wk where z.id_klienta=wk.id_klienta";
+        String daneK ="SELECT r.id_klienta FROM zalogowany z , rezerwacje r where z.id_klienta=r.id_klienta";
         ResultSet wynikK=stat2.executeQuery(daneK);
         while (wynikK.next()){
             liczba+=1;

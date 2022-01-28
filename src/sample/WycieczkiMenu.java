@@ -99,9 +99,16 @@ public class WycieczkiMenu implements Initializable {
     public void zalogujButtonOnAction(javafx.event.ActionEvent event)
     {
 
+
         if(!login.getText().isBlank() && !haslo.getText().isBlank())
-        {Poloczenie connectNow = new Poloczenie();
-            Connection connectDB = connectNow.getConnection();
+        { String dane2="DELETE  FROM wycieczki_klient WHERE id>0;";
+            try {
+                PreparedStatement pst2=null;
+                pst2=(PreparedStatement) connectDB.prepareStatement(dane2);
+                pst2.execute();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             String dane="DELETE FROM zalogowany WHERE id_zalogowanego=1";
             try{
                 PreparedStatement pst=null;

@@ -82,10 +82,9 @@ public class KontrolerProfil implements Initializable {
     String n=null;
     String m=null;
    public static int ideRez;
-
+public static String stan;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
         Poloczenie connectNow = new Poloczenie();
         connectDB = connectNow.getConnection();
@@ -136,7 +135,6 @@ public class KontrolerProfil implements Initializable {
                 throwables.printStackTrace();
             }
         }
-        String idr=null;
 
         if(this.nazwa!=null){
 
@@ -149,7 +147,7 @@ public class KontrolerProfil implements Initializable {
             }
 
             System.out.println(ideRez);
-            String daneRez = "SELECT r.id_rezerwacji, w.nazwa, w.miejsce from rezerwacje r, wycieczki w where w.id_wycieczki=r.id_wycieczki and r.id_rezerwacji=" + ideRez;
+            String daneRez = "SELECT r.id_rezerwacji, w.nazwa, w.miejsce from rezerwacje r, wycieczki w where w.id_wycieczki=r.id_wycieczki and r.id_rezerwacji='" + ideRez+"';";
             ResultSet q = null;
              System.out.println(ideRez);
             int idRez = 0;
@@ -169,8 +167,8 @@ public class KontrolerProfil implements Initializable {
 
             nazwa.setText(nazwaW);
             msc.setText(miejsce);
-
         }
+
 
     }
 
@@ -192,6 +190,7 @@ public class KontrolerProfil implements Initializable {
             e.getCause();
         }
     }
+
     public void RezerwacjaOnAction(javafx.event.ActionEvent event){
         Stage stage = (Stage) rez.getScene().getWindow();
         stage.close();
@@ -210,6 +209,7 @@ public class KontrolerProfil implements Initializable {
             e.getCause();
         }
     }
+
     public void PolitykaOnAction(javafx.event.ActionEvent event){
         Stage stage = (Stage) plt.getScene().getWindow();
         stage.close();
@@ -228,6 +228,7 @@ public class KontrolerProfil implements Initializable {
             e.getCause();
         }
     }
+
     public void HasloOnAction(javafx.event.ActionEvent event){
         Stage stage = (Stage) hsl.getScene().getWindow();
         stage.close();
@@ -265,8 +266,6 @@ public class KontrolerProfil implements Initializable {
             e.getCause();
         }
     }
-    Object object=new Object();
-
 
     public void dane() throws SQLException {
         Poloczenie connectNow = new Poloczenie();
@@ -350,8 +349,6 @@ public class KontrolerProfil implements Initializable {
 
         Statement statement = connectDB.createStatement();
 
-
-
         String dane = "SELECT id_klienta FROM zalogowany;";
         ResultSet queryResult = statement.executeQuery(dane);
         int idZal = 0;
@@ -428,7 +425,9 @@ public class KontrolerProfil implements Initializable {
 
     public void opinia() throws SQLException {
 
-
+        if(ideRez==0){
+            JOptionPane.showMessageDialog(null,"Nalezy wybrac wycieczke do ktorej chcesz dodac opinie.");
+        }else{
 
         try{
 
@@ -445,6 +444,7 @@ public class KontrolerProfil implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        }
     }
 
     public void dodOpinie() throws SQLException {
@@ -453,8 +453,6 @@ public class KontrolerProfil implements Initializable {
         Connection connectDB = connectNow.getConnection();
         Statement stat=null;
         stat=connectDB.createStatement();
-
-
 
         int idZal=0;
         String idZ="SELECT id_klienta from zalogowany";
@@ -466,11 +464,12 @@ public class KontrolerProfil implements Initializable {
         Statement stat2=null;
         stat2=connectDB.createStatement();
         int ido=0;
-        String maxID="SELECT id_opinia FROM opinie";
+        String maxID="SELECT id_opinia FROM opinie order by id_opinia ASC";
         ResultSet max=stat2.executeQuery(maxID);
         while (max.next()){
             ido=max.getInt("id_opinia");
         }
+        System.out.println(ido);
 
         Statement stat3=null;
         stat3=connectDB.createStatement();
@@ -481,13 +480,12 @@ public class KontrolerProfil implements Initializable {
             idW=idwycieczki.getInt("id_wycieczki");
         }
 
-        System.out.println(idW);
         String dane="INSERT INTO opinie(id_opinia,tresc,data,id_klienta,id_wycieczki)values(?,?,?,?,?)";
         try{
             pst=(PreparedStatement)connectDB.prepareStatement(dane);
             pst.setString(1, String.valueOf(ido+1));
-            pst.setString(2,tresc.getText());
-            pst.setString(3,String.valueOf(LocalDate.now()));
+            pst.setString(2, tresc.getText());
+            pst.setString(3, String.valueOf(LocalDate.now()));
             pst.setString(4, String.valueOf(idZal));
             pst.setString(5, String.valueOf(idW));
             pst.execute();
@@ -496,48 +494,41 @@ public class KontrolerProfil implements Initializable {
             JOptionPane.showMessageDialog(null,"Blad dodawania! "+e);
         }
     }
+
     public void wyjdzButtonOnAction() {
         Stage stage = (Stage) wrc.getScene().getWindow();
         stage.close();
     }
 
     public void getSelected() throws SQLException {
-        System.out.println(Tab);
         this.index=this.Tab.getSelectionModel().getSelectedIndex();
         if(index<=-1){
             return;
         }
-           // idRezrw.setText(String.valueOf(idR.getCellData(index)));
-        //this.idRezrw.setText(this.idR.getCellData(this.index).toString());
-
-         ideRez = this.idR.getCellData(this.index);
-        System.out.println("dupa"+ideRez);
-
-
-
-
-
-
-
-          // System.out.println(idRezrw.get());
+        ideRez = this.idR.getCellData(this.index);
+        stan=this.stat.getCellData(this.index);
     }
 
 
     public void fakturaKlient() {
-        try{
-            Parent root;
-            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/fakturaKlient.fxml"));
-            Stage menuStage = new Stage();
-            menuStage.initStyle(StageStyle.DECORATED);
-            menuStage.setScene(new Scene(root, 500,410));
-            menuStage.setTitle("Faktura");
-            menuStage.show();
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-            e.getCause();
+        if(ideRez==0){
+            JOptionPane.showMessageDialog(null,"Należy wybrać wycieczke do której chcesz zobaczyć fakture.");
+        }else if(!stan.equals("Zaakceptowana")){
+            JOptionPane.showMessageDialog(null,"Wycieczka nie została zaakceptowana.");
+        }else{
+            try {
+                Parent root;
+                root = FXMLLoader.load(getClass().getResource("../javaFX/klient/fakturaKlient.fxml"));
+                Stage menuStage = new Stage();
+                menuStage.initStyle(StageStyle.DECORATED);
+                menuStage.setScene(new Scene(root, 430, 470));
+                menuStage.setTitle("Faktura");
+                menuStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
         }
     }
-
 
 }

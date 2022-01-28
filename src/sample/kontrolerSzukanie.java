@@ -2,6 +2,8 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,44 +44,10 @@ public class kontrolerSzukanie extends KontrolerMenu {
     private TableColumn<DaneDoSzukania,Float> cn;
     @FXML
     private TableColumn<DaneDoSzukania, ImageView> obr;
-    @FXML
-    public Button IdZaloguj;
-    @FXML
-    public Button IdSzukaj;
-    @FXML
-    public Button IdOferta;
-    @FXML
-    public Button IdPromocja;
-    @FXML
-    public Button IdLast;
-    @FXML
-    public Button IdEgzotyka;
-    @FXML
-    private Label IdLabel;
-    @FXML
-    private TextField IdLogin;
-
-    @FXML
-    private PasswordField IdHaslo;
-    @FXML
-    private Button zalKonto;
-
-    String rodzaj;
-    float cena;
 
     public Button WycieczkiKlient;
-    public Button LastMinute;
-    public Button Promocja;
-    public Button Egzotyka;
-    public ImageView image1;
-    public ImageView image2;
-    public ImageView image3;
-    public ImageView image4;
-    public Label tekst1;
-    public Label tekst2;
-    public Label tekst3;
-    public Label tekst4;
-    public Button Konto;
+KontrolerMenu kontrolerMenu=new KontrolerMenu();
+    String m=kontrolerMenu.miejsce;
 
     ObservableList<DaneDoSzukania> szukanie = FXCollections.observableArrayList();
     final ObservableList WczTab = FXCollections.observableArrayList();
@@ -88,10 +56,6 @@ public class kontrolerSzukanie extends KontrolerMenu {
     public void WyswietlWycieczki(){
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
-
-
-
-
 
         String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,w.id_transport,w.czas,id_zakwaterowanie,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w ";
 
@@ -125,7 +89,7 @@ public class kontrolerSzukanie extends KontrolerMenu {
                 String rodzaj = rs.getString("rodzajWycieczki");
                 int iloscDni = rs.getInt("iloscDni");
                 daneDoSzukania = new DaneDoSzukania(id1, nazwa,miejsce,cena,transport,czasPodrozy,zakwaterowanie,wyzywienie,premium,cenaP,atrakcje,rodzaj,iloscDni);
-                WczTab.add(DaneDoSzukania);
+                WczTab.add(daneDoSzukania);
 
             }
             st.close();
@@ -144,11 +108,16 @@ public class kontrolerSzukanie extends KontrolerMenu {
         atr.setCellValueFactory(new PropertyValueFactory<>("atrakcje"));
         rdw.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
 
-
         Tab1.setItems(WczTab);
-/*
+
         FilteredList<DaneDoSzukania> filtrowanie = new FilteredList<>(WczTab, b -> true);
-        this.IdKraj.textProperty().addListener(((observable, oldValue, newValue)->{
+
+        System.out.println(m);
+        TextField ms = new TextField();
+        ms.setText(m);
+        System.out.println(ms.getText());
+
+        this.ms.textProperty().addListener(((observable, oldValue, newValue)->{
 
             filtrowanie.setPredicate(DaneDoSzukania->{
                 if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
@@ -161,12 +130,11 @@ public class kontrolerSzukanie extends KontrolerMenu {
                     return true;
                 }else
                     return false;
-
-
             });
-
         }));
-        this.IdMiejsce.textProperty().addListener(((observable, oldValue, newValue)->{
+
+
+        this.ms.textProperty().addListener(((observable, oldValue, newValue)->{
 
             filtrowanie.setPredicate(DaneDoSzukania->{
                 if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
@@ -184,7 +152,7 @@ public class kontrolerSzukanie extends KontrolerMenu {
             });
 
         }));
-        this.IdZakwaterowanie.textProperty().addListener(((observable, oldValue, newValue)->{
+       /* this.IdZakwaterowanie.textProperty().addListener(((observable, oldValue, newValue)->{
 
             filtrowanie.setPredicate(DaneDoSzukania->{
                 if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
@@ -201,8 +169,8 @@ public class kontrolerSzukanie extends KontrolerMenu {
 
             });
 
-        }));
-        this.IdTransport.textProperty().addListener(((observable, oldValue, newValue)->{
+        }));*/
+        /*this.IdTransport.textProperty().addListener(((observable, oldValue, newValue)->{
 
             filtrowanie.setPredicate(DaneDoSzukania->{
                 if(newValue.isEmpty() || newValue.isBlank()|| newValue==null)
@@ -219,11 +187,11 @@ public class kontrolerSzukanie extends KontrolerMenu {
 
             });
 
-        }));
-        SortedList<DaneDoSzukania> posortowane = new SortedList<>(filtrowanie);
+        }));*/
+       SortedList<DaneDoSzukania> posortowane = new SortedList<>(filtrowanie);
         posortowane.comparatorProperty().bind(Tab1.comparatorProperty());
         this.Tab1.setItems(posortowane);
-*/
+
     }
 /*
     public void wyszukaj() {

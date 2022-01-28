@@ -75,9 +75,6 @@ public class KontrolerMenu implements Initializable {
     @FXML
     private Button zalKonto;
 
-    String rodzaj;
-    float cena;
-
     public Button WycieczkiKlient;
     public Button LastMinute;
     public Button Promocja;
@@ -92,6 +89,9 @@ public class KontrolerMenu implements Initializable {
     public Label tekst4;
     public Button Konto;
     ObservableList<DaneDoWycieczek> szukanie = FXCollections.observableArrayList();
+    public static String miejsce;
+    Poloczenie connectNow = new Poloczenie();
+    Connection connectDB = connectNow.getConnection();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -118,16 +118,16 @@ public class KontrolerMenu implements Initializable {
                 nazwa = max.getString("nazwa");
                 cena = max.getFloat("cena");
                 System.out.println(foto);
-              //   File kat = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
-                File kat = new File("D:\\SkyRouteTravel\\src\\obrazy");
+                 File kat = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+              //  File kat = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki[] = kat.list();
                 for (int i = 0; i < pliki.length; i++) {
 
                     if ((pliki[i].equals(foto))) {
                         System.out.println("mam taki");
-                       // image1.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki[i]));
-                        image1.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki[i]));
-                        tekst1.setText(nazwa + " TYLKO " + cena + " zł");
+                        image1.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki[i]));
+                        //image1.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki[i]));
+                        tekst1.setText(nazwa + " " + cena + " zł");
                     }
                 }
             }
@@ -148,15 +148,15 @@ public class KontrolerMenu implements Initializable {
                 nazwa2 = max2.getString("nazwa");
                 cena2 = max2.getFloat("cena");
                 System.out.println(foto);
-               //  File kat2 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
-                File kat2 = new File("D:\\SkyRouteTravel\\src\\obrazy");
+                 File kat2 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                //File kat2 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki2[] = kat2.list();
                 for (int i = 0; i < pliki2.length; i++) {
 
                     if ((pliki2[i].equals(foto2))) {
                         System.out.println("mam taki");
-                       //  image2.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki2[i]));
-                        image2.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki2[i]));
+                         image2.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki2[i]));
+                       // image2.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki2[i]));
                         tekst2.setText(nazwa2 + " TYLKO " + cena2 + " zł");
 
                     }
@@ -180,16 +180,16 @@ public class KontrolerMenu implements Initializable {
                 nazwa3 = maxIDZ.getString("nazwa");
                 cena3 = maxIDZ.getFloat("cena");
                 System.out.println(foto3);
-               //  File kat3 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
-                File kat3 = new File("D:\\SkyRouteTravel\\src\\obrazy");
+                 File kat3 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+               // File kat3 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki3[] = kat3.list();
                 for (int i = 0; i < pliki3.length; i++) {
 
                     if ((pliki3[i].equals(foto3))) {
                         System.out.println("mam taki");
-                       // image3.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki3[i]));
-                        image3.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki3[i]));
-                        tekst3.setText(nazwa3 + " TYLKO " + cena3 + " zł");
+                        image3.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki3[i]));
+                       // image3.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki3[i]));
+                        tekst3.setText(nazwa3 + " " + cena3 + " zł");
                     }
                 }
             }
@@ -211,15 +211,15 @@ public class KontrolerMenu implements Initializable {
                 nazwa4 = maxIDZd.getString("nazwa");
                 cena4 = maxIDZd.getFloat("cena");
                 System.out.println(foto4);
-               // File kat4 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
-                File kat4 = new File("D:\\SkyRouteTravel\\src\\obrazy");
+                File kat4 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                //File kat4 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki4[] = kat4.list();
                 for (int i = 0; i < pliki4.length; i++) {
 
                     if ((pliki4[i].equals(foto4))) {
                         System.out.println("mam taki");
-                       // image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
-                        image4.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki4[i]));
+                        image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
+                      //  image4.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki4[i]));
                         tekst4.setText(nazwa4 + " TYLKO " + cena4 + " zł");
                     }
                 }
@@ -235,6 +235,14 @@ public class KontrolerMenu implements Initializable {
 
         if(!IdLogin.getText().isBlank() && !IdHaslo.getText().isBlank())
         {
+            String dane2="DELETE  FROM wycieczki_klient WHERE id>0;";
+            try {
+                PreparedStatement pst2=null;
+                pst2=(PreparedStatement) connectDB.prepareStatement(dane2);
+                pst2.execute();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             Poloczenie connectNow = new Poloczenie();
             Connection connectDB = connectNow.getConnection();
             String dane="DELETE FROM zalogowany WHERE id_zalogowanego=1";
@@ -254,7 +262,6 @@ public class KontrolerMenu implements Initializable {
             IdLabel.setText("Wpisz login i haslo");
         }
     }
-
 
     public void ValidateLogin()
     {
@@ -342,7 +349,6 @@ public class KontrolerMenu implements Initializable {
             e.getCause();
         }
     }
-
 
     public void KontrolerKlient(){
         try{
@@ -469,7 +475,7 @@ public class KontrolerMenu implements Initializable {
     }
 
     public void szukajWycieczki() {
-
+        miejsce=IdMiejsce.getText();
         try{
             Parent root;
             root = FXMLLoader.load(getClass().getResource("../javaFX/klient/TabelkaSzukaj.fxml"));
@@ -484,9 +490,6 @@ public class KontrolerMenu implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
-
-
-
     }
 
     public void zalozKonto() {
