@@ -1,11 +1,14 @@
-package sample;
+package sample;/*
+ * @project BiuroPodróży.iml
+ * @author kola
+ */
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
@@ -17,8 +20,7 @@ import java.sql.Statement;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-
-public class kontrolerSzukanie extends KontrolerMenu {
+public class kontrolerSzukanieKlient extends KontrolerKlient {
 
     @FXML
     private TableView<sample.DaneDoSzukania> Tab1;
@@ -46,7 +48,7 @@ public class kontrolerSzukanie extends KontrolerMenu {
     private TableColumn<DaneDoSzukania, ImageView> obr;
 
     public Button WycieczkiKlient;
-KontrolerMenu kontrolerMenu=new KontrolerMenu();
+    KontrolerMenu kontrolerMenu=new KontrolerMenu();
     String m=kontrolerMenu.miejsce;
 
     ObservableList<DaneDoSzukania> szukanie = FXCollections.observableArrayList();
@@ -58,62 +60,62 @@ KontrolerMenu kontrolerMenu=new KontrolerMenu();
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
 
-        if (!nazwa.isEmpty()) {
-            if (!miejsce.isEmpty()) {
-                if (!transposrt.isEmpty()) {
-                    if (!zakwaterowanie.isEmpty()) {
+        if (!nazwaK.isEmpty()) {
+            if (!miejsceK.isEmpty()) {
+                if (!transposrtK.isEmpty()) {
+                    if (!zakwaterowanieK.isEmpty()) {
                         danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                                "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwa + "%' AND miejsce LIKE '" + miejsce + "%' AND t.rodzaj LIKE '" + transposrt + "%' AND z.rodzaj LIKE '" + zakwaterowanie + "%';";
+                                "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwaK + "%' AND miejsce LIKE '" + miejsceK + "%' AND t.rodzaj LIKE '" + transposrtK + "%' AND z.rodzaj LIKE '" + zakwaterowanieK + "%';";
                     } else {
                         danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                                "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwa + "%' AND miejsce LIKE '" + miejsce + "%' AND t.rodzaj LIKE '" + transposrt + "%';";
+                                "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwaK + "%' AND miejsce LIKE '" + miejsceK + "%' AND t.rodzaj LIKE '" + transposrtK + "%';";
                     }
                 } else {
                     danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwa + "%' AND miejsce LIKE '" + miejsce + "%';";
+                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwaK + "%' AND miejsce LIKE '" + miejsceK + "%';";
                 }
-            } else if(!transposrt.isEmpty()){
-                if (!zakwaterowanie.isEmpty()) {
+            } else if(!transposrtK.isEmpty()){
+                if (!zakwaterowanieK.isEmpty()) {
                     danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwa + "%' AND  t.rodzaj LIKE '" + transposrt + "%' AND z.rodzaj LIKE '" + zakwaterowanie + "%';";
+                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwaK + "%' AND  t.rodzaj LIKE '" + transposrtK + "%' AND z.rodzaj LIKE '" + zakwaterowanieK + "%';";
                 } else {
                     danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwa + "%' AND  t.rodzaj LIKE '" + transposrt + "%';";
+                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwaK + "%' AND  t.rodzaj LIKE '" + transposrtK + "%';";
                 }
-            }else if(!zakwaterowanie.isEmpty()){
+            }else if(!zakwaterowanieK.isEmpty()){
                 danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwa + "%' AND z.rodzaj LIKE '" + zakwaterowanie + "%';";
+                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwaK + "%' AND z.rodzaj LIKE '" + zakwaterowanieK + "%';";
             }else{
                 danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwa + "%';";
+                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND nazwa LIKE '" + nazwaK + "%';";
             }
-        }else if(!miejsce.isEmpty()){
-            if(!transposrt.isEmpty()){
-                if (!zakwaterowanie.isEmpty()) {
+        }else if(!miejsceK.isEmpty()){
+            if(!transposrtK.isEmpty()){
+                if (!zakwaterowanieK.isEmpty()) {
                     danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND miejsce LIKE '" + miejsce + "%' AND  t.rodzaj LIKE '" + transposrt + "%' AND z.rodzaj LIKE '" + zakwaterowanie + "%';";
+                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND miejsce LIKE '" + miejsceK + "%' AND  t.rodzaj LIKE '" + transposrtK + "%' AND z.rodzaj LIKE '" + zakwaterowanieK + "%';";
                 } else {
                     danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND miejsce LIKE '" + miejsce + "%' AND  t.rodzaj LIKE '" + transposrt + "%';";
+                            "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND miejsce LIKE '" + miejsceK + "%' AND  t.rodzaj LIKE '" + transposrtK + "%';";
                 }
-            }else if (!zakwaterowanie.isEmpty()) {
+            }else if (!zakwaterowanieK.isEmpty()) {
                 danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND miejsce LIKE '" + miejsce + "%' AND  z.rodzaj LIKE '" + zakwaterowanie + "%';";
+                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND miejsce LIKE '" + miejsceK + "%' AND  z.rodzaj LIKE '" + zakwaterowanieK + "%';";
             }else {
                 danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND miejsce LIKE '" + miejsce + "%';";
+                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND miejsce LIKE '" + miejsceK + "%';";
             }
-        }else if(!transposrt.isEmpty()){
-            if (!zakwaterowanie.isEmpty()) {
+        }else if(!transposrtK.isEmpty()){
+            if (!zakwaterowanieK.isEmpty()) {
                 danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND t.rodzaj LIKE '" + transposrt + "%' AND  z.rodzaj LIKE '" + zakwaterowanie + "%';";
+                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND t.rodzaj LIKE '" + transposrtK + "%' AND  z.rodzaj LIKE '" + zakwaterowanieK + "%';";
             }else{
                 danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND t.rodzaj LIKE '" + transposrt + "%';";
+                        "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND t.rodzaj LIKE '" + transposrtK + "%';";
             }
-        }else if(!zakwaterowanie.isEmpty()){
+        }else if(!zakwaterowanieK.isEmpty()){
             danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
-                    "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND z.rodzaj LIKE '" + zakwaterowanie + "%';";
+                    "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie AND z.rodzaj LIKE '" + zakwaterowanieK + "%';";
         }else{
             danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj,w.czas,z.rodzaj,w.wyzywienie,w.premium,w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni FROM wycieczki w, transport t , zakwaterowanie z " +
                     "WHERE t.id_transport=w.id_transport AND w.id_zakwaterowanie=z.id_zakwaterowanie ORDER BY w.id_wycieczki ASC";
@@ -177,5 +179,4 @@ KontrolerMenu kontrolerMenu=new KontrolerMenu();
 
         WyswietlWycieczki();
     }
-
 }

@@ -90,6 +90,10 @@ public class KontrolerMenu implements Initializable {
     public Button Konto;
     ObservableList<DaneDoWycieczek> szukanie = FXCollections.observableArrayList();
     public static String miejsce;
+    public static String nazwa;
+    public static String transposrt;
+    public static String zakwaterowanie;
+
     Poloczenie connectNow = new Poloczenie();
     Connection connectDB = connectNow.getConnection();
     @Override
@@ -476,6 +480,9 @@ public class KontrolerMenu implements Initializable {
 
     public void szukajWycieczki() {
         miejsce=IdMiejsce.getText();
+        nazwa=IdKraj.getText();
+        transposrt=IdTransport.getText();
+        zakwaterowanie=IdZakwaterowanie.getText();
         try{
             Parent root;
             root = FXMLLoader.load(getClass().getResource("../javaFX/klient/TabelkaSzukaj.fxml"));

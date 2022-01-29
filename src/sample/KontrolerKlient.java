@@ -8,11 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
@@ -37,6 +39,16 @@ public class KontrolerKlient  implements Initializable {
     public Label tekst3;
     public Label tekst4;
     @FXML
+    public TextField IdKraj2;
+    @FXML
+    public TextField IdMiejsce2;
+    @FXML
+    public TextField IdZakwaterowanie2;
+    @FXML
+    public TextField IdTransport2;
+    @FXML
+    public Button IdSzukaj2;
+    @FXML
     private Button wiad;
     @FXML
     private Button Promocja;
@@ -46,6 +58,10 @@ public class KontrolerKlient  implements Initializable {
     private Button Egzotyka;
     @FXML
     private Button rezerw;
+    public static String miejsceK;
+    public static String nazwaK;
+    public static String transposrtK;
+    public static String zakwaterowanieK;
 
     public void IdWylogujOnAciotn(javafx.event.ActionEvent event) {
         Stage stage = (Stage) IdWyloguj.getScene().getWindow();
@@ -311,4 +327,24 @@ public class KontrolerKlient  implements Initializable {
     }
 
 
+    public void szukajWycieczkiMenu() {
+        miejsceK=IdMiejsce2.getText();
+        nazwaK=IdKraj2.getText();
+        transposrtK=IdTransport2.getText();
+        zakwaterowanieK=IdZakwaterowanie2.getText();
+        try{
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("../javaFX/klient/TabelkaSzukajKlient.fxml"));
+            Stage menuStage = new Stage();
+            menuStage.initStyle(StageStyle.DECORATED);
+            menuStage.setScene(new Scene(root, 1053,526));
+            menuStage.setTitle("Wynik wyszukiwania");
+            menuStage.show();
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 }

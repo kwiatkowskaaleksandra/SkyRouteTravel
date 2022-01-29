@@ -70,11 +70,11 @@
             <Font name="Berlin Sans FB Demi Bold" size="12.0" />
          </font>
       </Button>
-      <TextField layoutX="278.0" layoutY="275.0" prefHeight="31.0" prefWidth="200.0" promptText="MIEJSCE" />
-      <TextField layoutX="509.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="TERMIN" />
-      <TextField layoutX="739.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="LICZBA OSOB" />
-      <TextField layoutX="972.0" layoutY="274.0" prefHeight="31.0" prefWidth="200.0" promptText="TRANSPORT" />
-      <Button layoutX="1250.0" layoutY="209.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
+      <TextField fx:id="IdKraj2" layoutX="278.0" layoutY="275.0" prefHeight="31.0" prefWidth="200.0" promptText="KRAJ" />
+      <TextField fx:id="IdMiejsce2" layoutX="509.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="MIEJSCE" />
+      <TextField fx:id="IdZakwaterowanie2" layoutX="739.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="ZAKWATEROWANIE" />
+      <TextField fx:id="IdTransport2" layoutX="972.0" layoutY="274.0" prefHeight="31.0" prefWidth="200.0" promptText="TRANSPORT" />
+      <Button fx:id="IdSzukaj2" layoutX="1250.0" layoutY="209.0" mnemonicParsing="false" onAction="#szukajWycieczkiMenu" prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="48.0" />
          </font>
@@ -84,12 +84,12 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="509.0" layoutY="188.0" prefHeight="80.0" prefWidth="200.0" text="KIEDY CHCESZ JECHAĆ?" textFill="WHITE">
+      <Label layoutX="509.0" layoutY="188.0" prefHeight="80.0" prefWidth="200.0" text="W JAKIE MIEJSCE?" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="739.0" layoutY="187.0" prefHeight="80.0" prefWidth="200.0" text="W ILE OSÓB?" textFill="WHITE">
+      <Label layoutX="739.0" layoutY="187.0" prefHeight="80.0" prefWidth="211.0" text="JAKIE CHCESZ ZAKWATEROWANIE ?" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>

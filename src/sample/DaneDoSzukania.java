@@ -1,10 +1,10 @@
 package sample;
 
 public class DaneDoSzukania {
-    String nazwa,miejsce,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj;
+    String nazwa,miejsce,atrakcje,premium,wyzywienie,czasPodrozy,rodzaj,zakwaterowanie,transport;
     float cena, cenaP;
-    int id, iloscDni,zakwaterowanie,transport;
-    public DaneDoSzukania(int id, String nazwa, String miejsce, float cena, int transport, String czasPodrozy, int zakwaterowanie, String wyzywienie, String premium, float cenaP, String atrakcje, String rodzaj, int iloscDni ){
+    int id, iloscDni;
+    public DaneDoSzukania(int id, String nazwa, String miejsce, float cena, String transport, String czasPodrozy, String zakwaterowanie, String wyzywienie, String premium, float cenaP, String atrakcje, String rodzaj, int iloscDni ){
         this.id=id;
         this.nazwa=nazwa;
         this.miejsce=miejsce;
@@ -52,11 +52,11 @@ public class DaneDoSzukania {
         this.miejsce=miejsce;
     }
 
-    public int getZakwaterowanie() {
+    public String getZakwaterowanie() {
         return zakwaterowanie;
     }
 
-    public void setZakwaterowanie(int zakwaterowanie){
+    public void setZakwaterowanie(String zakwaterowanie){
         this.zakwaterowanie=zakwaterowanie;
     }
 
@@ -64,11 +64,11 @@ public class DaneDoSzukania {
 
     public void setWyzywienie(String wyzywienie) { this.wyzywienie = wyzywienie; }
 
-    public int getTransport() {
+    public String getTransport() {
         return transport;
     }
 
-    public void setTransport(int transport){
+    public void setTransport(String transport){
         this.transport=transport;
     }
 
