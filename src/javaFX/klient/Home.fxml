@@ -1,160 +1,234 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../../css/menu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerMenu">
-   <children>
-      <Pane layoutY="54.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../../obrazy/56776.jpg');">
+
+<ScrollPane prefHeight="2016.0" prefWidth="1922.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KontrolerMenu">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2080.0" prefWidth="1920.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../../css/menu.css">
          <children>
-            <ImageView fx:id="image1" fitHeight="273.0" fitWidth="500.0" layoutX="41.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="tekst1" layoutX="460.0" layoutY="353.0" prefHeight="58.0" prefWidth="322.0" textFill="WHITE">
+            <Pane focusTraversable="true" prefHeight="60.0" prefWidth="1922.0" style="-fx-background-color: white;">
+               <children>
+                  <Label text="SKY ROUTE TRAVEL" textFill="NAVY">
+                     <font>
+                        <Font name="Cooper Black" size="36.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Label>
+                  <Button fx:id="zalKonto" layoutX="1442.0" layoutY="14.0" mnemonicParsing="false" onAction="#zalozKonto" prefHeight="24.0" prefWidth="115.0" style="-fx-background-color: WHITE;" text="ZAŁÓZ KONTO" textFill="#ffc000">
+                     <font>
+                        <Font name="Berlin Sans FB Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="IdZaloguj" layoutX="1812.0" layoutY="10.0" mnemonicParsing="false" onAction="#IdZalogujOnAction" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: WHITE;" text="ZALOGUJ" textFill="#ffc000">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="LastMinute" layoutX="737.0" layoutY="6.0" mnemonicParsing="false" onAction="#LastMinuteOnAction" prefHeight="49.0" prefWidth="199.0" style="-fx-background-color: #FFC000;" text="LAST MINUTE" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="WycieczkiKlient" layoutX="429.0" layoutY="6.0" mnemonicParsing="false" onAction="#WycieczkiMenuOnAction" prefHeight="49.0" prefWidth="279.0" style="-fx-background-color: #FFC000;" text="OFERTY WYCIECZEK" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Egzotyka" layoutX="961.0" layoutY="6.0" mnemonicParsing="false" onAction="#EgzotykaOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #FFC000;" text="EGZOTYKA" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <PasswordField fx:id="IdHaslo" layoutX="1683.0" layoutY="9.0" prefHeight="31.0" prefWidth="116.0" promptText="Hasło" />
+                  <TextField fx:id="IdLogin" layoutX="1557.0" layoutY="10.0" prefHeight="31.0" prefWidth="116.0" promptText="Login" />
+                  <Button fx:id="Promocja" layoutX="1159.0" layoutY="6.0" mnemonicParsing="false" onAction="#PromocjaOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #FFC000;" text="PROMOCJE" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutY="43.0" prefHeight="1026.0" prefWidth="1920.0" style="-fx-background-image: url('../../obrazy/56776.jpg');">
+               <children>
+                  <Pane layoutY="827.0" prefHeight="631.0" prefWidth="1922.0" style="-fx-background-color: #000080;">
+                     <children>
+                        <Label fx:id="wyc2" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="1056.0" layoutY="13.0" prefHeight="58.0" prefWidth="381.0" text="HIT TYGODNIA" textAlignment="RIGHT" textFill="WHITE">
+                           <font>
+                              <Font name="Bookman Old Style Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="image2" fitHeight="273.0" fitWidth="500.0" layoutX="1056.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="image4" fitHeight="273.0" fitWidth="500.0" layoutX="1056.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="image1" fitHeight="273.0" fitWidth="500.0" layoutX="32.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="wyc1" layoutX="32.0" layoutY="13.0" prefHeight="49.0" prefWidth="467.0" text="NAJCZĘŚCIEJ WYBIERANE:" textFill="WHITE">
+                           <font>
+                              <Font name="Bookman Old Style Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="image3" fitHeight="273.0" fitWidth="500.0" layoutX="32.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="tekst1" layoutX="542.0" layoutY="131.0" prefHeight="58.0" prefWidth="322.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tekst3" layoutX="542.0" layoutY="419.0" prefHeight="58.0" prefWidth="336.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tekst2" alignment="TOP_RIGHT" layoutX="1556.0" layoutY="136.0" prefHeight="49.0" prefWidth="290.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tekst4" alignment="TOP_RIGHT" layoutX="1556.0" layoutY="419.0" prefHeight="58.0" prefWidth="299.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="211.0" layoutY="388.0" prefHeight="285.0" prefWidth="523.0" style="-fx-background-color: #000080;">
+                     <children>
+                        <ImageView fitHeight="299.0" fitWidth="569.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url('../../obrazy/samolot1jpg');">
+                           <image>
+                              <Image url="@../../obrazy/samolot1.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="14.0" layoutY="28.0" prefHeight="41.0" prefWidth="310.0" text="ZIMA 2021/2022" textFill="WHITE">
+                           <font>
+                              <Font name="Cooper Black" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="150.0" prefHeight="41.0" prefWidth="506.0" text="EGZOTYKA W TWOIM ZASIEGU" textFill="WHITE">
+                           <font>
+                              <Font name="Cooper Black" size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="Egzotyka1" layoutX="311.0" layoutY="207.0" mnemonicParsing="false" onAction="#EgzotykaOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="EGZOTYKA" textFill="#160d75">
+                           <font>
+                              <Font name="Berlin Sans FB Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="1029.0" layoutY="388.0" prefHeight="391.0" prefWidth="598.0" style="-fx-background-color: #000080;">
+                     <children>
+                        <ImageView fitHeight="395.0" fitWidth="681.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../obrazy/Last-Minute-All-Inclusive-e1558002994769.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="63.0" layoutY="42.0" text="LAST MINUTE" textFill="WHITE">
+                           <font>
+                              <Font name="Cooper Black" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="63.0" layoutY="89.0" text="OSTATNIA SZANSA ABY ZNALEZC " textFill="WHITE">
+                           <font>
+                              <Font name="Cooper Black" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="63.0" layoutY="135.0" text="WYCIECZKE O JAKIEJ MARZYSZ !" textFill="WHITE">
+                           <font>
+                              <Font name="Cooper Black" size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="LastMinute1" layoutX="63.0" layoutY="255.0" mnemonicParsing="false" onAction="#LastMinuteOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="LAST MINUTE" textFill="#160d75">
+                           <font>
+                              <Font name="Berlin Sans FB Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </InnerShadow>
+                           </effect>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
+            <TextField fx:id="IdKraj" layoutX="278.0" layoutY="275.0" prefHeight="31.0" prefWidth="200.0" promptText="KRAJ" />
+            <TextField fx:id="IdMiejsce" layoutX="509.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="MIEJSCE" />
+            <TextField fx:id="IdZakwaterowanie" layoutX="739.0" layoutY="276.0" prefHeight="31.0" prefWidth="299.0" promptText="ZAKWATEROWANIE" />
+            <TextField fx:id="IdTransport" layoutX="1070.0" layoutY="274.0" prefHeight="31.0" prefWidth="163.0" promptText="TRANSPORT" />
+            <Button fx:id="IdSzukaj" layoutX="1250.0" layoutY="209.0" mnemonicParsing="false" onAction="#szukajWycieczki" prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Calibri Bold" size="48.0" />
+               </font>
+            </Button>
+            <Label layoutX="282.0" layoutY="189.0" prefHeight="80.0" prefWidth="200.0" text="GDZIE CHCESZ JECHAĆ?" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
                </font>
             </Label>
-            <ImageView fx:id="image2" fitHeight="273.0" fitWidth="500.0"  layoutX="1383.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="image3" fitHeight="273.0" fitWidth="500.0"  layoutX="46.0" layoutY="654.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="image4" fitHeight="273.0" fitWidth="500.0"  layoutX="1383.0" layoutY="642.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="tekst4" alignment="TOP_RIGHT" layoutX="1072.0" layoutY="704.0" prefHeight="58.0" prefWidth="299.0" textFill="WHITE">
+            <Label layoutX="509.0" layoutY="188.0" prefHeight="80.0" prefWidth="200.0" text="W JAKIE MIEJSCE?" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Calibri Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="tekst2" alignment="TOP_RIGHT" layoutX="1087.0" layoutY="365.0" prefHeight="49.0" prefWidth="290.0" textAlignment="RIGHT" textFill="WHITE">
+            <Label layoutX="739.0" layoutY="187.0" prefHeight="80.0" prefWidth="299.0" text="JAKIE CHCESZ ZAKWATEROWANIE ?" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Calibri Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="tekst3" layoutX="460.0" layoutY="680.0" prefHeight="58.0" prefWidth="336.0" textFill="WHITE">
+            <Label layoutX="1070.0" layoutY="189.0" prefHeight="80.0" prefWidth="163.0" text="JAKI TRANSPORT?" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Calibri Bold" size="20.0" />
                </font>
             </Label>
-         </children></Pane>
-      <Label fx:id="wyc1" layoutX="59.0" layoutY="341.0" prefHeight="49.0" prefWidth="467.0" text="NAJCZĘŚCIEJ WYBIERANE:">
-         <font>
-            <Font name="System Bold" size="27.0" />
-         </font></Label>
-      <Label fx:id="wyc2" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="1309.0" layoutY="352.0" prefHeight="58.0" prefWidth="381.0" text="HIT TYGODNIA" textAlignment="RIGHT">
-         <font>
-            <Font name="System Bold" size="27.0" />
-         </font>
-      </Label>
-      <VBox layoutX="210.0" layoutY="165.0" prefHeight="179.0" prefWidth="1500.0" style="-fx-background-color: #000080;" />
-      <Label layoutX="14.0" text="SKY ROUTE TRAVEL" textFill="#1e0d79">
-         <font>
-            <Font name="Symbol" size="36.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-         <effect>
-            <DropShadow />
-         </effect>
-      </Label>
-      <Button fx:id="IdZaloguj" layoutX="1828.0" layoutY="6.0" mnemonicParsing="false"  onAction="#IdZalogujOnAction" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="ZALOGUJ" textFill="#090875">
-         <effect>
-            <InnerShadow>
-               <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
-               </color>
-            </InnerShadow>
-         </effect>
-         <font>
-            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
-         </font>
-      </Button>
-      <TextField fx:id="IdLogin" layoutX="1575.0" layoutY="6.0" prefHeight="31.0" prefWidth="116.0" promptText="Login" />
-      <TextField fx:id="IdKraj" layoutX="278.0" layoutY="275.0" prefHeight="31.0" prefWidth="200.0" promptText="KRAJ" />
-      <TextField fx:id="IdMiejsce" layoutX="509.0" layoutY="276.0" prefHeight="31.0" prefWidth="200.0" promptText="MIEJSCE" />
-      <TextField fx:id="IdZakwaterowanie" layoutX="739.0" layoutY="276.0" prefHeight="31.0" prefWidth="299.0" promptText="ZAKWATEROWANIE" />
-      <TextField fx:id="IdTransport" layoutX="1070.0" layoutY="274.0" prefHeight="31.0" prefWidth="163.0" promptText="TRANSPORT" />
-      <Button fx:id="IdSzukaj" layoutX="1250.0" layoutY="209.0" mnemonicParsing="false" onAction="#szukajWycieczki" prefHeight="114.0" prefWidth="282.0" style="-fx-background-color: #000080;" text="SZUKAJ" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="48.0" />
-         </font>
-      </Button>
-      <Label layoutX="282.0" layoutY="189.0" prefHeight="80.0" prefWidth="200.0" text="GDZIE CHCESZ JECHAĆ?" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="509.0" layoutY="188.0" prefHeight="80.0" prefWidth="200.0" text="W JAKIE MIEJSCE?" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="739.0" layoutY="187.0" prefHeight="80.0" prefWidth="299.0" text="JAKIE CHCESZ ZAKWATEROWANIE ?" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="1070.0" layoutY="189.0" prefHeight="80.0" prefWidth="163.0" text="JAKI TRANSPORT?" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="20.0" />
-         </font>
-      </Label>
-      <Button fx:id="WycieczkiKlient" layoutX="469.0" layoutY="4.0" mnemonicParsing="false" onAction="#WycieczkiMenuOnAction" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #ffffff;" text="OFERTY WYCIECZEK" textFill="#160d75">
-         <font>
-            <Font name="Berlin Sans FB Bold" size="18.0" />
-         </font>
-         <effect>
-            <InnerShadow>
-               <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
-               </color>
-            </InnerShadow>
-         </effect>
-      </Button>
-      <Button fx:id="Promocja" layoutX="926.0" layoutY="4.0" mnemonicParsing="false" onAction="#PromocjaOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="PROMOCJE" textFill="#160d75">
-         <font>
-            <Font name="Berlin Sans FB Bold" size="18.0" />
-         </font>
-         <effect>
-            <InnerShadow>
-               <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
-               </color>
-            </InnerShadow>
-         </effect>
-      </Button>
-      <Button fx:id="LastMinute" layoutX="719.0" layoutY="3.0" mnemonicParsing="false" onAction="#LastMinuteOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="LAST MINUTE" textFill="#160d75">
-         <font>
-            <Font name="Berlin Sans FB Bold" size="18.0" />
-         </font>
-         <effect>
-            <InnerShadow>
-               <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
-               </color>
-            </InnerShadow>
-         </effect>
-      </Button>
-      <Button fx:id="Egzotyka" layoutX="1139.0" layoutY="4.0" mnemonicParsing="false" onAction="#EgzotykaOnAction" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #ffffff;" text="EGZOTYKA" textFill="#160d75">
-         <font>
-            <Font name="Berlin Sans FB Bold" size="18.0" />
-         </font>
-         <effect>
-            <InnerShadow>
-               <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
-               </color>
-            </InnerShadow>
-         </effect>
-      </Button>
-      <PasswordField fx:id="IdHaslo" layoutX="1698.0" layoutY="6.0" prefHeight="31.0" prefWidth="116.0" promptText="Hasło" />
-      <Label fx:id="IdLabel" layoutX="1595.0" layoutY="40.0" prefHeight="11.0" prefWidth="322.0" textFill="#f50101">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Button fx:id="zalKonto" layoutX="1812.0" layoutY="43.0" mnemonicParsing="false" onAction="#zalozKonto" prefHeight="21.0" prefWidth="99.0" text="ZAŁÓŻ KONTO" />
-   </children>
-
-</AnchorPane>
+            <Label fx:id="IdLabel" layoutX="1595.0" layoutY="40.0" prefHeight="11.0" prefWidth="322.0" textFill="#f50101">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Pane layoutX="1.0" layoutY="1854.0" prefHeight="162.0" prefWidth="1902.0" style="-fx-background-color: #000080;">
+               <children>
+                  <Label layoutX="818.0" layoutY="14.0" prefHeight="41.0" prefWidth="266.0" text="ZADZWON DO NAS !" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="874.0" layoutY="53.0" prefHeight="41.0" prefWidth="154.0" text="42 660 58 21" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="754.0" layoutY="105.0" prefHeight="41.0" prefWidth="394.0" text="codziennie w godz. 8:00-22:00" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      
+                  </AnchorPane>
+   </content>
+</ScrollPane>

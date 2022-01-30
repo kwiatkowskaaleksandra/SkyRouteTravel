@@ -83,6 +83,7 @@ public class KontrolerMenu implements Initializable {
     public ImageView image2;
     public ImageView image3;
     public ImageView image4;
+
     public Label tekst1;
     public Label tekst2;
     public Label tekst3;
@@ -90,6 +91,10 @@ public class KontrolerMenu implements Initializable {
     public Button Konto;
     ObservableList<DaneDoWycieczek> szukanie = FXCollections.observableArrayList();
     public static String miejsce;
+    public static String nazwa;
+    public static String transposrt;
+    public static String zakwaterowanie;
+
     Poloczenie connectNow = new Poloczenie();
     Connection connectDB = connectNow.getConnection();
     @Override
@@ -118,8 +123,8 @@ public class KontrolerMenu implements Initializable {
                 nazwa = max.getString("nazwa");
                 cena = max.getFloat("cena");
                 System.out.println(foto);
-              //   File kat = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
-                File kat = new File("D:\\SkyRouteTravel\\src\\obrazy");
+                //File kat = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                  File kat = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki[] = kat.list();
                 for (int i = 0; i < pliki.length; i++) {
 
@@ -148,15 +153,15 @@ public class KontrolerMenu implements Initializable {
                 nazwa2 = max2.getString("nazwa");
                 cena2 = max2.getFloat("cena");
                 System.out.println(foto);
-                // File kat2 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                //File kat2 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
                 File kat2 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki2[] = kat2.list();
                 for (int i = 0; i < pliki2.length; i++) {
 
                     if ((pliki2[i].equals(foto2))) {
                         System.out.println("mam taki");
-                       //  image2.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki2[i]));
-                        image2.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki2[i]));
+                        //image2.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki2[i]));
+                         image2.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki2[i]));
                         tekst2.setText(nazwa2 + " TYLKO " + cena2 + " zł");
 
                     }
@@ -180,15 +185,15 @@ public class KontrolerMenu implements Initializable {
                 nazwa3 = maxIDZ.getString("nazwa");
                 cena3 = maxIDZ.getFloat("cena");
                 System.out.println(foto3);
-               //  File kat3 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
-                File kat3 = new File("D:\\SkyRouteTravel\\src\\obrazy");
+                //File kat3 = new File("C:\\Users\\48732\\Desktop\\BiuroPodróży\\src\\obrazy");
+                 File kat3 = new File("D:\\SkyRouteTravel\\src\\obrazy");
                 String pliki3[] = kat3.list();
                 for (int i = 0; i < pliki3.length; i++) {
 
                     if ((pliki3[i].equals(foto3))) {
                         System.out.println("mam taki");
-                       // image3.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki3[i]));
-                        image3.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki3[i]));
+                        //image3.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki3[i]));
+                         image3.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki3[i]));
                         tekst3.setText(nazwa3 + " " + cena3 + " zł");
                     }
                 }
@@ -218,8 +223,8 @@ public class KontrolerMenu implements Initializable {
 
                     if ((pliki4[i].equals(foto4))) {
                         System.out.println("mam taki");
-                      //  image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
-                       image4.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki4[i]));
+                       // image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
+                          image4.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki4[i]));
                         tekst4.setText(nazwa4 + " TYLKO " + cena4 + " zł");
                     }
                 }
@@ -227,7 +232,6 @@ public class KontrolerMenu implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     public void IdZalogujOnAction(javafx.event.ActionEvent event)
@@ -315,29 +319,29 @@ public class KontrolerMenu implements Initializable {
                 IdLabel.setText("Błędny login lub hasło.");
             }
             ResultSet queryResultKl = statement.executeQuery(verifyLoginKl);
-                while (queryResultKl.next()) {
+            while (queryResultKl.next()) {
 
-                    if (queryResultKl.getString("login").equals(IdLogin.getText()) && queryResultKl.getString("haslo").equals(IdHaslo.getText())) {
-                        String id = queryResultKl.getString("id_klienta");
-                        try {
-                            PreparedStatement pst = null;
-                            pst = (PreparedStatement) connectDB.prepareStatement(dane);
-                            pst.setString(1, "1");
-                            pst.setString(2, id);
-                            pst.setString(3, null);
-                            pst.setString(4, IdLogin.getText());
-                            pst.setString(5, IdHaslo.getText());
-                            pst.execute();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            e.getCause();
-                        }
-                        IdLabel.setText("Udalo sie zalogowac!");
-                        KontrolerKlient();
-                        Stage stage = (Stage) IdZaloguj.getScene().getWindow();
-                        stage.close();
+                if (queryResultKl.getString("login").equals(IdLogin.getText()) && queryResultKl.getString("haslo").equals(IdHaslo.getText())) {
+                    String id = queryResultKl.getString("id_klienta");
+                    try {
+                        PreparedStatement pst = null;
+                        pst = (PreparedStatement) connectDB.prepareStatement(dane);
+                        pst.setString(1, "1");
+                        pst.setString(2, id);
+                        pst.setString(3, null);
+                        pst.setString(4, IdLogin.getText());
+                        pst.setString(5, IdHaslo.getText());
+                        pst.execute();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        e.getCause();
                     }
+                    IdLabel.setText("Udalo sie zalogowac!");
+                    KontrolerKlient();
+                    Stage stage = (Stage) IdZaloguj.getScene().getWindow();
+                    stage.close();
                 }
+            }
             if(queryResultKl.next()==false ){
                 IdLabel.setText("Błędny login lub hasło.");
             }
@@ -476,6 +480,9 @@ public class KontrolerMenu implements Initializable {
 
     public void szukajWycieczki() {
         miejsce=IdMiejsce.getText();
+        nazwa=IdKraj.getText();
+        transposrt=IdTransport.getText();
+        zakwaterowanie=IdZakwaterowanie.getText();
         try{
             Parent root;
             root = FXMLLoader.load(getClass().getResource("../javaFX/klient/TabelkaSzukaj.fxml"));

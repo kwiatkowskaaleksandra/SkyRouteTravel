@@ -79,14 +79,6 @@
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="45.0" prefWidth="200.0" styleClass="selected">
-                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../obrazy/prywatnosc.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="plt" mnemonicParsing="false" onAction="#PolitykaOnAction" prefWidth="165.0" style="-fx-background-color: #13123A;" text="POLITYKA PRYWATNOŚCI" textFill="#c6c1c1" />
-                     </children>
                      <opaqueInsets>
                         <Insets top="15.0" />
                      </opaqueInsets>
@@ -133,7 +125,7 @@
                               <TableColumn fx:id="stat" prefWidth="128.0" text="STATUS" />
                           </columns>
                         </TableView>
-                        <Button fx:id="op" layoutX="685.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#getSelected" onAction="#opinia" prefHeight="40.0" prefWidth="118.0" text="Dodaj opinie" textFill="WHITE">
+                        <Button fx:id="op" layoutX="685.0" layoutY="44.0" mnemonicParsing="false" onAction="#opinia" onMouseClicked="#getSelected" prefHeight="40.0" prefWidth="118.0" text="Dodaj opinie" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
