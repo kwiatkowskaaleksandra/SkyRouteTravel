@@ -58,7 +58,7 @@
             <DropShadow />
          </effect>
       </Label>
-      <Button fx:id="IdZaloguj" layoutX="1828.0" layoutY="6.0" mnemonicParsing="false" onAction="#IdZalogujOnAction" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="ZALOGUJ" textFill="#090875">
+      <Button fx:id="IdZaloguj" layoutX="1828.0" layoutY="6.0" mnemonicParsing="false"  onAction="#IdZalogujOnAction" prefHeight="31.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="ZALOGUJ" textFill="#090875">
          <effect>
             <InnerShadow>
                <color>
