@@ -2,10 +2,14 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="470.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FakturaKlient">
+<AnchorPane prefHeight="470.0" prefWidth="430.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FakturaKlient">
    <children>
-      <Label layoutX="173.0" layoutY="27.0" text="FAKTURA" />
+      <Label layoutX="117.0" layoutY="14.0" text="FAKTURA" textFill="#ffc000">
+         <font>
+            <Font name="Cooper Black" size="36.0" />
+         </font></Label>
       <TextField fx:id="imNaz" editable="false" layoutX="166.0" layoutY="61.0" prefHeight="32.0" prefWidth="250.0" />
       <TextField fx:id="em" editable="false" layoutX="166.0" layoutY="105.0" prefHeight="32.0" prefWidth="250.0" />
       <TextField fx:id="data" editable="false" layoutX="166.0" layoutY="151.0" prefHeight="32.0" prefWidth="250.0" />
@@ -13,13 +17,34 @@
       <TextField fx:id="msce" editable="false" layoutX="166.0" layoutY="236.0" prefHeight="32.0" prefWidth="250.0" />
       <TextField fx:id="ilOs" editable="false" layoutX="166.0" layoutY="283.0" prefHeight="32.0" prefWidth="250.0" />
       <TextField fx:id="statR" editable="false" layoutX="166.0" layoutY="329.0" prefHeight="32.0" prefWidth="250.0" />
-      <Label layoutX="14.0" layoutY="68.0" text="NAZWISKO IMIE" />
-      <Label layoutX="14.0" layoutY="112.0" text="ADRES EMAIL" />
-      <Label layoutX="14.0" layoutY="158.0" text="DATA" />
-      <Label layoutX="16.0" layoutY="202.0" text="KWOTA" />
-      <Label layoutX="15.0" layoutY="244.0" text="MIEJSCE" />
-      <Label layoutX="18.0" layoutY="291.0" prefHeight="17.0" prefWidth="80.0" text="ILOSC OSOB" />
-      <Label layoutX="14.0" layoutY="337.0" text="STATUS POTWIERDZENIA" textAlignment="RIGHT" />
-      <Button fx:id="wroc" layoutX="324.0" layoutY="421.0" onAction="#wrocButtonOnAction" mnemonicParsing="false" text="WRÓĆ" />
+      <Label layoutX="14.0" layoutY="68.0" text="NAZWISKO IMIE" textFill="#ffc000">
+         <font>
+            <Font name="Cooper Black" size="10.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="112.0" text="ADRES EMAIL" textFill="#ffc000">
+         <font>
+            <Font name="Cooper Black" size="10.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="158.0" text="DATA" textFill="#ffc000">
+         <font>
+            <Font name="Cooper Black" size="10.0" />
+         </font></Label>
+      <Label layoutX="16.0" layoutY="202.0" text="KWOTA" textFill="#ffc000">
+         <font>
+            <Font name="Cooper Black" size="10.0" />
+         </font></Label>
+      <Label layoutX="15.0" layoutY="244.0" text="MIEJSCE" textFill="#ffc000">
+         <font>
+            <Font name="Cooper Black" size="10.0" />
+         </font></Label>
+      <Label layoutX="18.0" layoutY="291.0" prefHeight="17.0" prefWidth="80.0" text="ILOSC OSOB" textFill="#ffc000">
+         <font>
+            <Font name="Cooper Black" size="10.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="337.0" text="STATUS POTWIERDZENIA" textAlignment="RIGHT" textFill="#ffc000">
+         <font>
+            <Font name="Cooper Black" size="10.0" />
+         </font></Label>
+      <Button fx:id="wroc" layoutX="324.0" layoutY="421.0" mnemonicParsing="false" onAction="#wrocButtonOnAction" style="-fx-background-color: #ffc000;" text="WRÓĆ" textFill="WHITE" />
    </children>
 </AnchorPane>

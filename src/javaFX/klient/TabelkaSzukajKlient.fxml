@@ -6,7 +6,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.kontrolerSzukanieKlient">
    <Pane prefHeight="526.0" prefWidth="1053.0">
       <children>
-          <TableView fx:id="Tab1" prefHeight="526.0" prefWidth="1053.0" stylesheets="@../../css/WycieczkiMenu.css">
+          <TableView fx:id="Tab1" prefHeight="526.0" prefWidth="1053.0" stylesheets="@../../css/TabelkaLast.css">
               <columns>
                   <TableColumn fx:id="idk" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="nzw" prefWidth="75.0" text="NAZWA" />

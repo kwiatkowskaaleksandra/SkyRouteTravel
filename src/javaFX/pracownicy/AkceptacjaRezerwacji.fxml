@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="541.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AkceptacjaRezerwacji">
+<AnchorPane prefHeight="541.0" prefWidth="1007.0" styleClass="bodybg" stylesheets="@../../css/rezerwacja.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AkceptacjaRezerwacji">
    <children>
-      <TableView fx:id="Tab1" layoutY="10.0" onMouseClicked="#getSelected" prefHeight="533.0" prefWidth="868.0">
+      <TableView fx:id="Tab1" onMouseClicked="#getSelected" prefHeight="543.0" prefWidth="868.0" stylesheets="@../../css/tabelkaRezerwacja.css">
         <columns>
             <TableColumn fx:id="idR" prefWidth="155.0" text="NAZWISKO" visible="false" />
           <TableColumn fx:id="nazwisko" prefWidth="155.0" text="NAZWISKO" />
@@ -18,9 +19,18 @@
             <TableColumn fx:id="status" prefWidth="127.0" text="STATUS" />
         </columns>
       </TableView>
-      <Button fx:id="akc" layoutX="885.0" layoutY="120.0" mnemonicParsing="false" onAction="#akceptujRezerwacje" prefHeight="37.0" prefWidth="105.0" text="Akceptuj" />
-      <Button fx:id="odrz" layoutX="885.0" layoutY="174.0" mnemonicParsing="false" onAction="#odzrucRezerwacje" prefHeight="37.0" prefWidth="105.0" text="Odrzuć" />
+      <Button fx:id="akc" layoutX="885.0" layoutY="120.0" mnemonicParsing="false" onAction="#akceptujRezerwacje" prefHeight="37.0" prefWidth="105.0" style="-fx-background-color: #355E3B; -fx-background-radius: 10;" text="Akceptuj" textFill="WHITE">
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Button fx:id="odrz" layoutX="885.0" layoutY="174.0" mnemonicParsing="false" onAction="#odzrucRezerwacje" prefHeight="37.0" prefWidth="105.0" style="-fx-background-color: #355E3B; -fx-background-radius: 10;" text="Odrzuć" textFill="WHITE">
+         <effect>
+            <DropShadow />
+         </effect></Button>
       <TextField fx:id="idRezrw" editable="false" layoutX="875.0" layoutY="35.0" prefHeight="25.0" prefWidth="105.0" promptText="idRezerwacji" visible="false" />
-      <Button fx:id="zam" layoutX="885.0" layoutY="226.0" onAction="#wyjdzButtonOnAction" mnemonicParsing="false" prefHeight="37.0" prefWidth="105.0" text="Zamknij" />
+      <Button fx:id="zam" layoutX="885.0" layoutY="226.0" mnemonicParsing="false" onAction="#wyjdzButtonOnAction" prefHeight="37.0" prefWidth="105.0" style="-fx-background-color: #355E3B; -fx-background-radius: 10;" text="Zamknij" textFill="WHITE">
+         <effect>
+            <DropShadow />
+         </effect></Button>
    </children>
 </AnchorPane>

@@ -115,7 +115,7 @@
                   <TextField fx:id="idRezrw" promptText="idR" visible="false" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="Tab" onMouseClicked="#getSelected" prefHeight="372.0" prefWidth="559.0" stylesheets="@../../css/WycieczkiMenu.css">
+                        <TableView fx:id="Tab" onMouseClicked="#getSelected" prefHeight="372.0" prefWidth="559.0" stylesheets="@../../css/tabelkaLast.css">
                           <columns>
                             <TableColumn fx:id="idR" prefWidth="75.0" text="ID" visible="false" />
                             <TableColumn fx:id="term" prefWidth="75.0" text="TERMIN" />
