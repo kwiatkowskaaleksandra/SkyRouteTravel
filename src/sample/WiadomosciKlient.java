@@ -74,7 +74,7 @@ public class WiadomosciKlient implements Initializable {
             e.printStackTrace();
         }
         DaneDoWiadomosci daneDoWiadomosci;
-        String dane3 = "SELECT imie, nazwisko FROM klient k WHERE k.id_klienta='" + idZal + "'";
+        String dane3 = "SELECT imie, nazwisko,email FROM klient k WHERE k.id_klienta='" + idZal + "'";
         ResultSet rs2 = null;
         try {
             rs2 = Objects.requireNonNull(st).executeQuery(dane3);
@@ -85,7 +85,9 @@ public class WiadomosciKlient implements Initializable {
             while (Objects.requireNonNull(rs2).next()) {
                 String imie = rs2.getString("imie");
                 String nazwisko = rs2.getString("nazwisko");
+                String em=rs2.getString("email");
                 DanePrac.setText(imie + " " + nazwisko);
+                adres.setText(em);
             }
 
         } catch (Exception e) {
@@ -170,65 +172,96 @@ public class WiadomosciKlient implements Initializable {
         }
     }
 
-    public void Odpowiedz() {
-        forma.setText("Do:");
-        subject.setText("RE: " + subject.getText());
-        wiad.clear();
-    }
-
-    public void WyslijWiadomosc() throws SQLException {
+    public void Odpowiedz() throws SQLException {
         this.index = this.Tab1.getSelectionModel().getSelectedIndex();
         if (this.index <= -1) {
             return;
         }
+        forma.setText("Do:");
+        subject.setText("RE: " + subject.getText());
+        wiad.clear();
+
+    }
+
+    public void WyslijWiadomosc() throws SQLException {
+        int idw = 0, id_prac = 0, id_kl = 0;
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
-        Statement stat = null;
-        stat = connectDB.createStatement();
         Statement stat2 = null;
         stat2 = connectDB.createStatement();
-        String t = this.tem.getCellData(index);
-        String a = this.od.getCellData(index);
-        String danee = "SELECT * FROM wiadomosci WHERE temat='" + t + "' AND adresat='" + a + "'";
-        ResultSet wynik = stat.executeQuery(danee);
-
-        int idw = 0, id_prac = 0, id_kl = 0;
-        while (wynik.next()) {
-            id_prac = wynik.getInt("id_pracownika");
-            id_kl = wynik.getInt("id_klienta");
-        }
-        String maxID = "SELECT id_wiadomosci FROM wiadomosci";
+        String maxID = "SELECT id_wiadomosci FROM wiadomosci order by id_wiadomosci ASC";
         ResultSet max = stat2.executeQuery(maxID);
         while (max.next()) {
             idw = max.getInt("id_wiadomosci");
         }
 
-        String dane = "INSERT INTO wiadomosci(id_wiadomosci,temat,adresat,tresc,data,id_pracownika,id_klienta)values(?,?,?,?,?,?,?)";
-        try {
-            pst = (PreparedStatement) connectDB.prepareStatement(dane);
-            pst.setString(1, String.valueOf(idw + 1));
-            pst.setString(2, subject.getText());
-            pst.setString(3, adres.getText());
-            pst.setString(4, wiad.getText());
-            pst.setString(5, String.valueOf(LocalDate.now()));
-            pst.setString(6, String.valueOf(id_prac));
-            pst.setString(7, String.valueOf(id_kl));
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Dodano pomyslnie!");
-            WyswietlWiadomosci();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Blad dodawania! " + e);
-        }
-        wynik.close();
-        max.close();
+if(forma.getText().equals("Do:")) {
+    Statement stat = null;
+    stat = connectDB.createStatement();
+    String t = this.tem.getCellData(index);
+    String a = this.od.getCellData(index);
+    String danee = "SELECT * FROM wiadomosci WHERE temat='" + t + "' AND adresat='" + a + "'";
+    ResultSet wynik = stat.executeQuery(danee);
+
+    while (wynik.next()) {
+        id_prac = wynik.getInt("id_pracownika");
+        id_kl = wynik.getInt("id_klienta");
     }
+
+    String dane = "INSERT INTO wiadomosci(id_wiadomosci,temat,adresat,tresc,data,id_pracownika,id_klienta)values(?,?,?,?,?,?,?)";
+    try {
+        pst = (PreparedStatement) connectDB.prepareStatement(dane);
+        pst.setString(1, String.valueOf(idw + 1));
+        pst.setString(2, subject.getText());
+        pst.setString(3, adres.getText());
+        pst.setString(4, wiad.getText());
+        pst.setString(5, String.valueOf(LocalDate.now()));
+        pst.setString(6, String.valueOf(id_prac));
+        pst.setString(7, String.valueOf(id_kl));
+        pst.execute();
+        JOptionPane.showMessageDialog(null, "Wyslano pomyslnie!");
+        WyswietlWiadomosci();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Blad dodawania! " + e);
+    }
+}else {
+
+
+
+    Statement stat3 = null;
+    stat3 = connectDB.createStatement();
+    String idK = "SELECT id_klienta FROM zalogowany";
+    ResultSet idKl = stat3.executeQuery(idK);
+    while (idKl.next()) {
+        id_kl = idKl.getInt("id_klienta");
+    }
+
+    String dane = "INSERT INTO wiadomosci(id_wiadomosci,temat,adresat,tresc,data,id_pracownika,id_klienta)values(?,?,?,?,?,?,?)";
+    try {
+        pst = (PreparedStatement) connectDB.prepareStatement(dane);
+        pst.setString(1, String.valueOf(idw + 1));
+        pst.setString(2, subject.getText());
+        pst.setString(3, adres.getText());
+        pst.setString(4, wiad.getText());
+        pst.setString(5, String.valueOf(LocalDate.now()));
+        pst.setString(6, String.valueOf(2));
+        pst.setString(7, String.valueOf(id_kl));
+        pst.execute();
+        JOptionPane.showMessageDialog(null, "Wyslano pomyslnie!");
+        WyswietlWiadomosci();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Blad dodawania! " + e);
+    }
+    max.close();
+}
+}
 
 
     public void UsunWiadomoscOnActionEvent() {
         usunWiadomosc();
     }
 
-    public void OdpowiedzOnActionEvent() {
+    public void OdpowiedzOnActionEvent() throws SQLException {
         Odpowiedz();
     }
 
