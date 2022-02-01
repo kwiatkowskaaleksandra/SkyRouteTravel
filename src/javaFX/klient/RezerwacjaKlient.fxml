@@ -15,7 +15,7 @@
             </Label>
             <TextField fx:id="cenaR" editable="false" layoutX="181.0" layoutY="190.0" prefHeight="23.0" prefWidth="150.0" promptText="cena" />
             <TextField fx:id="iloscDR" layoutX="181.0" layoutY="230.0" prefWidth="150.0" promptText="ilość dzieci" />
-            <TextField fx:id="iloscOR" layoutX="181.0" layoutY="270.0" prefWidth="150.0" promptText="ilość osób" />
+            <TextField fx:id="iloscOR" layoutX="181.0" layoutY="270.0" prefWidth="150.0" promptText="ilość dorosłych" />
             <Label layoutX="155.0" layoutY="20.0" text="REZERWACJA">
                <font>
                   <Font name="Colonna MT" size="48.0" />
