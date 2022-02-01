@@ -76,7 +76,7 @@ class OgloszeniaTest {
         Connection connectDB = connectNow.getConnection();
         Statement stat2 = null;
         stat2 = connectDB.createStatement();
-        String danee = "DELETE FROM ogloszenia WHERE id_ogloszenia=?";
+        String danee = "DELETE FROM ogloszenia WHERE id_ogloszenia=6";
         stat2.executeUpdate(danee);
 
 

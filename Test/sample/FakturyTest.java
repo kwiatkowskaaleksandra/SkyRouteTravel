@@ -1,13 +1,11 @@
 package sample;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import  static  org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.sql.*;
 import java.util.Objects;
 
@@ -82,7 +80,7 @@ class FakturyTest {
                 Statement stat3 = null;
                 stat3 = connectDB.createStatement();
 
-                String danee = "INSERT INTO faktury(id_faktury,imie,nazwisko,email,id_platnosc,data,kwota,id_wycieczki)values(1,'jarek','kot','jarek@wp.pl',4,'1999-04-04',1444,5)";
+                String danee = "INSERT INTO faktury(id_faktury,imie,nazwisko,email,id_platnosc,data,kwota,id_wycieczki)values(20,'jarek','kot','jarek@wp.pl',4,'1999-04-04',1444,5)";
                 stat3.executeUpdate(danee);
           //  } catch (Exception e) {
 
@@ -113,4 +111,15 @@ class FakturyTest {
         String danee="DELETE FROM faktury WHERE id_faktury=6";
         stat2.executeUpdate(danee);
     }
+
+    @AfterEach
+    void tearDown() throws SQLException {
+        Poloczenie connectNow = new Poloczenie();
+        Connection connectDB = connectNow.getConnection();
+        Statement stat3=null;
+        stat3=connectDB.createStatement();
+        String usun="DELETE FROM faktury where id_faktury = 20";
+        stat3.executeUpdate(usun);
+    }
+
 }

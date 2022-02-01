@@ -2,28 +2,26 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Objects;
 
 class WycieczkiKlientTest {
 
-
+    Poloczenie connectNow = new Poloczenie();
+    Connection connectDB = connectNow.getConnection();
+    PreparedStatement pst = null;
     @Test
-    void wyswietlWycieczki() {
+    void wyswietlWycieczki() throws SQLException {
 
 
-        Poloczenie connectNow = new Poloczenie();
-        Connection connectDB = connectNow.getConnection();
+
         final ObservableList WczTab = FXCollections.observableArrayList();
 
         String danee = "SELECT w.id_wycieczki,w.nazwa,w.miejsce,w.cena,t.rodzaj as transport,w.czas,z.rodzaj as zakwaterowanie,w.wyzywienie,w.premium, w.cenaPrem, w.atrakcje,w.rodzajWycieczki,w.iloscDni, w.zdjecie FROM wycieczki w join zakwaterowanie z on w.id_zakwaterowanie=z.id_zakwaterowanie join transport t on w.id_transport=t.id_transport  ORDER BY id_wycieczki ASC";
-
+        pst=(PreparedStatement) connectDB.prepareStatement(danee);
+        pst.execute();
         Statement st = null;
         try{
             st = connectDB.createStatement();
