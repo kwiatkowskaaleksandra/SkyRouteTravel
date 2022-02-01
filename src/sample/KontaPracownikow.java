@@ -165,50 +165,51 @@ public class KontaPracownikow implements Initializable {
                 JOptionPane.showMessageDialog(null, "Blad przy edycji! " + e);
         }
     }
-    public void DodajPracownika() throws SQLException {
-        this.index = this.Tab1.getSelectionModel().getSelectedIndex();
-        if (this.index <= -1) {
-            return;
-        }
+
+    public void DodajPracownika() throws Exception {
+
         Poloczenie connectNow = new Poloczenie();
         Connection connectDB = connectNow.getConnection();
         Statement stat=null;
         stat=connectDB.createStatement();
-        String dane="INSERT INTO pracownik(id_pracownika, imie,nazwisko,email,login,haslo,rola)values(?,?,?,?,?,?,?)";
-        Statement stat2=null;
-        stat2=connectDB.createStatement();
+
         String id="SELECT * FROM pracownik";
         ResultSet wynik=stat.executeQuery(id);
         int idw = 0;
-        while(wynik.next()) {idw = wynik.getInt("id_pracownika");}
-        wynik.close();
+        while(wynik.next()) {
+            idw = wynik.getInt("id_pracownika");
+        }
 
-                   try {
-                       Statement stat3 = null;
-                       stat3 = connectDB.createStatement();
-                       String w = "SELECT * FROM pracownik WHERE login='" + L.getText() + "'";
-                       ResultSet odp = stat.executeQuery(w);
-
-                       while (!odp.next()) {
-                           pst = (PreparedStatement) connectDB.prepareStatement(dane);
-                           pst.setString(1, String.valueOf(idw + 1));
-                           pst.setString(2, I.getText());
-                           pst.setString(3, N.getText());
-                           pst.setString(4, E.getText());
-                           pst.setString(5, L.getText());
-                           pst.setString(6, H.getText());
-                           pst.setString(7, R.getValue());
-                           pst.execute();
-                           JOptionPane.showMessageDialog(null, "Dodano pomyslnie!");
-                           WyswietlPracownikow();
-                       }
-                   } catch(Exception e){
-                           JOptionPane.showMessageDialog(null, "Blad dodawania! " + e);
-                       }
+        String dane="INSERT INTO pracownik(id_pracownika, imie,nazwisko,email,login,haslo,rola)values(?,?,?,?,?,?,?)";
+        try {
+                pst = (PreparedStatement) connectDB.prepareStatement(dane);
+                pst.setString(1, String.valueOf(idw + 1));
+                pst.setString(2, I.getText());
+                pst.setString(3, N.getText());
+                pst.setString(4, E.getText());
+                pst.setString(5, L.getText());
+                pst.setString(6, H.getText());
+                pst.setString(7, R.getValue());
+            if (I.getText().isEmpty() || N.getText().isEmpty() || E.getText().isEmpty() || L.getText().isEmpty() || H.getText().isEmpty() || R.getValue().equals("Funkcja")) {
+                throw new Exception();
+            } else {
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Dodano pomyslnie!");
+                I.clear();
+                N.clear();
+                E.clear();
+                L.clear();
+                H.clear();
+                R.setValue("Funkcja");
+                WyswietlPracownikow();
+            }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Blad dodawania! " + e);
+        }
     }
 
     public void usunPracownikaOnActionEvent(){usunPracownika();}
-    public void dodajPracownikaOnActionEvent() throws SQLException {DodajPracownika();}
+    public void dodajPracownikaOnActionEvent() throws Exception {DodajPracownika();}
     public void edytujPracownikaOnActionEvent() throws SQLException {EdytujPracownika();}
 
     private void ChoiceBoxRolaPracownika(){

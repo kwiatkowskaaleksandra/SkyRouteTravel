@@ -124,9 +124,16 @@ public class Ogloszenia implements Initializable {
             pst.setString(1, String.valueOf(idw+1));
             pst.setString(2,data.getText());
             pst.setString(3,tresc.getText());
-            pst.execute();
-            JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
-            wyswietlOgloszenia();
+            if(data.getText().isEmpty()||tresc.getText().isEmpty()){
+                throw new Exception();
+            }else{
+                pst.execute();
+                JOptionPane.showMessageDialog(null,"Dodano pomyslnie!");
+                data.clear();
+                tresc.clear();
+                wyswietlOgloszenia();
+            }
+
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Blad dodawania! "+e);
         }

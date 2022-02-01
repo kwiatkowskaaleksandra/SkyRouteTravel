@@ -26,7 +26,7 @@
             <Label fx:id="temOdp" layoutX="14.0" layoutY="53.0" prefHeight="25.0" prefWidth="48.0" text="Temat" textFill="#22c4ff" />
             <Label layoutX="14.0" layoutY="91.0" prefHeight="25.0" prefWidth="48.0" text="Treść:" textFill="#22c4ff" />
             <TextField fx:id="adres" editable="false" layoutX="57.0" layoutY="25.0" prefHeight="25.0" prefWidth="493.0" />
-            <TextField fx:id="subject" editable="false" layoutX="57.0" layoutY="53.0" prefHeight="25.0" prefWidth="493.0" />
+            <TextField fx:id="subject" layoutX="57.0" layoutY="53.0" prefHeight="25.0" prefWidth="493.0" />
             <TextArea fx:id="wiad" layoutX="57.0" layoutY="91.0" prefHeight="456.0" prefWidth="493.0" wrapText="true" />
          </children></Pane>
    </children>
