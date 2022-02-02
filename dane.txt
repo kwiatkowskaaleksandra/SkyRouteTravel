@@ -5,6 +5,5 @@
 - Java FX
 
 3. Skład zepsołu
-- Kot Jarosław (jarek003514@outlook.com): funkcje dla klienta
-- Kwiatkowska Aleksandra (kwiatkowska.aleksandra_00@wp.pl): funkcje dla pracownika
-- Zapała Michał (michas2820@onet.eu): funkcje dla administratora
+- Kot Jarosław (jarek003514@outlook.com): funkcje dla klienta, frontend
+- Kwiatkowska Aleksandra (kwiatkowska.aleksandra_00@wp.pl): funkcje dla pracownika, admina

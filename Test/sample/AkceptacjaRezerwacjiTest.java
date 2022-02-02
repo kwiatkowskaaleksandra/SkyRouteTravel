@@ -16,9 +16,12 @@ class AkceptacjaRezerwacjiTest {
 
     @BeforeEach
     void setUp() throws SQLException {
+        try{
 String dane="insert into rezerwacje(id_rezerwacji,id_klienta,id_wycieczki,termin, ileDoroslych, ileDzieci,cena, id_platnosc, statusPotwierdzenia) values (20,1,2,'2020-11-11',2,2,250,2,'Niezaakpcetowany');";
         pst=(PreparedStatement) connectDB.prepareStatement(dane);
-        pst.execute();
+        pst.execute();}catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Blad przy rezrwacji! "+e);
+        }
     }
 
     PreparedStatement pst = null;
@@ -69,16 +72,24 @@ String dane="insert into rezerwacje(id_rezerwacji,id_klienta,id_wycieczki,termin
 
     @Test
     void wyslijWiadomosc() throws SQLException {
-        String daneWiado="INSERT INTO wiadomosci(id_wiadomosci,temat,adresat,tresc,data,id_pracownika,id_klienta)VALUES(20,'jar','jarek@wp.pl','jar','2020-05-05',2,3)";
-        pst=(PreparedStatement) connectDB.prepareStatement(daneWiado);
-        pst.execute();
+        try {
+            String daneWiado = "INSERT INTO wiadomosci(id_wiadomosci,temat,adresat,tresc,data,id_pracownika,id_klienta)VALUES(20,'jar','jarek@wp.pl','jar','2020-05-05',2,3)";
+            pst = (PreparedStatement) connectDB.prepareStatement(daneWiado);
+            pst.execute();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Blad przy wysylaniu wiadomosci! "+e);
+        }
     }
 
     @Test
     void wyslijWiadomoscOdrzucona() throws SQLException {
+        try{
         String daneWiado="INSERT INTO wiadomosci(id_wiadomosci,temat,adresat,tresc,data,id_pracownika,id_klienta)VALUES(20,'jar','jarek@wp.pl','jar','2020-05-05',2,3)";
         pst=(PreparedStatement) connectDB.prepareStatement(daneWiado);
         pst.execute();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Blad przy wysylaniu wiadomosci! "+e);
+        }
     }
 
     @Test
