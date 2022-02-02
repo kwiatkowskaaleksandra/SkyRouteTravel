@@ -2,9 +2,13 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class WiadomosciTest {
     PreparedStatement pst = null;
@@ -55,7 +59,7 @@ class WiadomosciTest {
         pst.execute();
     }
     @Test
-    void usunWiadomosc() throws SQLException {
+    void usunWiadomosc() {
 
         String danee = "DELETE FROM wiadomosci WHERE temat='ok' AND adresat='ko@wp.pl'";
 

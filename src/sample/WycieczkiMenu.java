@@ -18,8 +18,6 @@ import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static java.lang.StrictMath.round;
-
 public class WycieczkiMenu implements Initializable {
     PreparedStatement pst = null;
 
@@ -230,7 +228,7 @@ public class WycieczkiMenu implements Initializable {
         }else if(rodzaj.getText().equals("LAST MINUTE")){
             rodz="Last Minute";
         }else if(rodzaj.getText().equals("EGZOTYKA")){
-            rodz="EGZOTYKA";
+            rodz="Egzotyka";
         }else if(rodzaj.getText().equals("OFERTY WYCIECZEK")){
             rodz="Promocja' OR w.rodzajWycieczki='Last Minute' OR w.rodzajWycieczki='Egzotyka";
         }

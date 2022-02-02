@@ -186,7 +186,6 @@ public class WycieczkiKlient implements Initializable {
             e.getCause();
         }
     }
-
     public void ZarezerwujButtonOnAction() throws SQLException {
         Stage stage = (Stage) ZamknijButton.getScene().getWindow();
        // stage.close();
@@ -230,7 +229,6 @@ public class WycieczkiKlient implements Initializable {
             Stage menuStage = new Stage();
             menuStage.initStyle(StageStyle.DECORATED);
             menuStage.setScene(new Scene(root, 600, 800.0D));
-            menuStage.setTitle("Rezerwacja");
             menuStage.show();
         } catch (Exception e) {
             e.printStackTrace();
