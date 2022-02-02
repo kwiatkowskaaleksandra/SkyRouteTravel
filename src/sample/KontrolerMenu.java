@@ -223,8 +223,8 @@ public class KontrolerMenu implements Initializable {
 
                     if ((pliki4[i].equals(foto4))) {
                         System.out.println("mam taki");
-                       // image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
-                          image4.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki4[i]));
+                        image4.setImage(new Image("file:///C:/Users/48732/Desktop/BiuroPodróży/src/obrazy/" + pliki4[i]));
+                       //   image4.setImage(new Image("file:///D:/SkyRouteTravel/src/obrazy/" + pliki4[i]));
                         tekst4.setText(nazwa4 + " TYLKO " + cena4 + " zł");
                     }
                 }

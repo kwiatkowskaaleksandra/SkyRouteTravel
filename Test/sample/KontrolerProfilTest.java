@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.sql.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,14 +50,18 @@ class KontrolerProfilTest {
 
     @Test
     void rezerwacja() throws SQLException {
-        String danee="insert into rezerwacje(id_rezerwacji,id_klienta,id_wycieczki,termin, ileDoroslych, ileDzieci,cena, id_platnosc, statusPotwierdzenia) values (10,10,2,'2020-11-11',2,2,250,2,'Niezaakpcetowany')";
-        pst=(PreparedStatement) connectDB.prepareStatement(danee);
-        pst.execute();
-        String daneee = "SELECT id_rezerwacji,imie,miejsce,nazwa,termin, ileDoroslych, ileDzieci,r.cena, p.rodzaj, statusPotwierdzenia " +
-                "FROM rezerwacje r, wycieczki w, platnosc p, klient k WHERE r.id_klienta=k.id_klienta AND r.id_platnosc=p.id_platnosc " +
-                "AND r.id_wycieczki=w.id_wycieczki AND r.id_klienta ='10' ORDER BY id_rezerwacji ASC";
-        pst=(PreparedStatement) connectDB.prepareStatement(daneee);
-        pst.execute();
+        try {
+            String danee = "insert into rezerwacje(id_rezerwacji,id_klienta,id_wycieczki,termin, ileDoroslych, ileDzieci,cena, id_platnosc, statusPotwierdzenia) values (10,10,2,'2020-11-11',2,2,250,2,'Niezaakpcetowany')";
+            pst = (PreparedStatement) connectDB.prepareStatement(danee);
+            pst.execute();
+            String daneee = "SELECT id_rezerwacji,imie,miejsce,nazwa,termin, ileDoroslych, ileDzieci,r.cena, p.rodzaj, statusPotwierdzenia " +
+                    "FROM rezerwacje r, wycieczki w, platnosc p, klient k WHERE r.id_klienta=k.id_klienta AND r.id_platnosc=p.id_platnosc " +
+                    "AND r.id_wycieczki=w.id_wycieczki AND r.id_klienta ='10' ORDER BY id_rezerwacji ASC";
+            pst = (PreparedStatement) connectDB.prepareStatement(daneee);
+            pst.execute();
+        }catch (Exception e){
+        JOptionPane.showMessageDialog(null,"Blad przy rezerwacji! "+e);
+    }
     }
 
     @Test
@@ -69,9 +74,13 @@ class KontrolerProfilTest {
 
     @Test
     void dodOpinie() throws SQLException {
+        try{
         String dane="INSERT INTO opinie(id_opinia,tresc,data,id_klienta,id_wycieczki)values(10,'tak','2000-12-12',10,2)";
         pst=(PreparedStatement) connectDB.prepareStatement(dane);
         pst.execute();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Blad przy dodawaniu opinii! "+e);
+        }
     }
     @AfterEach
     void tearDown() throws SQLException {

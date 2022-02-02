@@ -2,6 +2,7 @@ package sample;
 
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -35,6 +36,7 @@ class KontrolerRezeracjiKlientTest {
 
     @Test
     void zaplac() throws SQLException {
+        try{
         String danee2="DELETE from rezerwacje where id_rezerwacji = 10";
         pst=(PreparedStatement) connectDB.prepareStatement(danee2);
         pst.execute();
@@ -45,6 +47,9 @@ String danee3="DELETE from rezerwacje where id_rezerwacji = 10";
 
         pst=(PreparedStatement) connectDB.prepareStatement(danee3);
         pst.execute();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Blad przy zaplacie! "+e);
+        }
     }
 
 }
